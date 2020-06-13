@@ -12,7 +12,7 @@ function statShow() {
                 <button onclick="selectDiagram('topRedList')">Ord fra rød</button>
                 <button onclick="selectDiagram('topGreenList')">Ord fra grønn</button>
                 <button onclick="selectDiagram('topBlueList')">Ord fra blå</button>
-                <button onclick="selectDiagram('wordCloud')">Ordskyer</button>
+                <button onclick="selectDiagram('wordCircle')">demo1</button>
                 <button onclick="selectDiagram('wordFlower')">Ordsblomster</button>
                 <div class row>${diagramDiv}</div>
                 </div>`;
@@ -106,11 +106,15 @@ function selectDiagram(selected) {
     if (selected === 'topList') {
         showAll();
     } else if (selected === 'topRedList') {
-        redDiagrams();       
+        redDiagrams();
     } else if (selected === 'topGreenList') {
-        greenDiagrams();        
+        greenDiagrams();
     } else if (selected === 'topBlueList') {
-        blueDiagrams();        
+        blueDiagrams();
+    } else if (selected === 'wordCircle') {
+        wordCircles();
+    } else if (selected === 'wordFlower') {
+        wordFlower();
     }
     statShow();
 }
@@ -269,4 +273,54 @@ function blueDiagrams() {
     diagramDiv += '</div>';
 }
 
-    
+function wordCircles() {
+    let allColors = '';
+    let redAndGreen = '';
+    let redAndBlue = '';
+    let greenAndBlue = '';
+    let red = '';
+    let green = '';
+    let blue = '';
+
+    for (let words of allWords) {
+        if ((words.redAgreeRed > 0 || words.redAgreeGreen > 0 || words.redAgreeBlue > 0) && (words.greenAgreeRed > 0 || words.greenAgreeGreen > 0 || words.greenAgreeBlue > 0)
+            && (words.blueAgreeRed > 0 || words.blueAgreeGreen > 0 || words.blueAgreeBlue > 0)) {
+            allColors += `${words.word}</br>`;
+        } else if ((words.redAgreeRed > 0 || words.redAgreeGreen > 0 || words.redAgreeBlue > 0) && (words.greenAgreeRed > 0 || words.greenAgreeGreen > 0 || words.greenAgreeBlue > 0)
+            && (words.blueAgreeRed == 0 || words.blueAgreeGreen == 0 || words.blueAgreeBlue == 0)) {
+            redAndGreen += `${words.word}</br>`;
+        } else if ((words.redAgreeRed > 0 || words.redAgreeGreen > 0 || words.redAgreeBlue > 0) && (words.greenAgreeRed == 0 || words.greenAgreeGreen == 0 || words.greenAgreeBlue == 0)
+            && (words.blueAgreeRed > 0 || words.blueAgreeGreen > 0 || words.blueAgreeBlue > 0)) {
+            redAndBlue += `${words.word}</br>`;
+        } else if ((words.redAgreeRed == 0 || words.redAgreeGreen == 0 || words.redAgreeBlue == 0) && (words.greenAgreeRed > 0 || words.greenAgreeGreen > 0 || words.greenAgreeBlue > 0)
+            && (words.blueAgreeRed > 0 || words.blueAgreeGreen > 0 || words.blueAgreeBlue > 0)) {
+            greenAndBlue += `${words.word}</br>`;
+        } else if ((words.redAgreeRed > 0 || words.redAgreeGreen > 0 || words.redAgreeBlue > 0) && (words.greenAgreeRed == 0 || words.greenAgreeGreen == 0 || words.greenAgreeBlue == 0)
+            && (words.blueAgreeRed == 0 || words.blueAgreeGreen == 0 || words.blueAgreeBlue == 0)) {
+            red += `${words.word}</br>`;
+        } else if ((words.redAgreeRed == 0 || words.redAgreeGreen == 0 || words.redAgreeBlue == 0) && (words.greenAgreeRed > 0 || words.greenAgreeGreen > 0 || words.greenAgreeBlue > 0)
+            && (words.blueAgreeRed == 0 || words.blueAgreeGreen == 0 || words.blueAgreeBlue == 0)) {
+            green += `${words.word}</br>`;
+        } else if ((words.redAgreeRed == 0 || words.redAgreeGreen == 0 || words.redAgreeBlue == 0) && (words.greenAgreeRed == 0 || words.greenAgreeGreen == 0 || words.greenAgreeBlue == 0)
+            && (words.blueAgreeRed > 0 || words.blueAgreeGreen > 0 || words.blueAgreeBlue > 0)) {
+            blue += `${words.word}</br>`;
+        }
+    }
+
+    diagramDiv = `<div style="width: 800px; height: 600px;">
+        <div style="border: solid red; border-radius: 50%; width: 600px; height: 600px; position:absolute; z-index: -1; left: 500px; top: 50px;"></div>
+        <div style="border: solid green; border-radius: 50%; width: 600px; height: 600px; position:absolute; left: 350px; top: 300px;"></div>
+        <div style="border: solid blue; border-radius: 50%; width: 600px; height: 600px; position:absolute; z-index: 1; left: 650px; top: 300px;"></div>
+        <div style="position:absolute; z-index: 2; left: 775px; top: 375px;">${allColors}</div>
+        <div style="position:absolute; z-index: 3; left: 575px; top: 325px;">${redAndGreen}</div>
+        <div style="position:absolute; z-index: 3; left: 875px; top: 325px;">${redAndBlue}</div>
+        <div style="position:absolute; z-index: 3; left: 775px; top: 675px;">${greenAndBlue}</div>
+        <div style="position:absolute; z-index: 3; left: 775px; top: 100px;">${red}</div>
+        <div style="position:absolute; z-index: 3; left: 450px; top: 500px;">${green}</div>
+        <div style="position:absolute; z-index: 3; left: 1100px; top: 500px;">${blue}</div>
+    </div>`;
+}
+
+function wordFlower() {
+
+}
