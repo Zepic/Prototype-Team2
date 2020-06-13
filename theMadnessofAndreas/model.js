@@ -70,7 +70,7 @@ const model = {
             group: 'red 1',
             redAgree: 5,//['Terje', 'Per', 'Espen'],
             greenAgree: 0,
-            blueAgree: 0,
+            blueAgree: 5,
             disagree: 0, //['Knut'],
             posX: 150, //x
             posY: 250, //y
@@ -159,9 +159,9 @@ const model = {
             content: "Logisk",
             aboutColor: "blue",
             group: 'blue 1',
-            blueAgree: 3,//['Terje', 'Per', 'Espen'],
-            redAgree: 0,
-            greenAgree: 0,
+            blueAgree: 15,//['Terje', 'Per', 'Espen'],
+            redAgree: 3,
+            greenAgree: 19,
             disagree: 0, //['Knut'],
             posX: 100, //x
             posY: 300, //y
@@ -260,11 +260,11 @@ const model = {
         }, 
         {// how the model of the notes would look.
             ID: 17,
-            content: "Kreativ",
+            content: "Forstående",
             aboutColor: "green",
             group: 'blue 1',
             blueAgree: 8,//['Terje', 'Per', 'Espen'],
-            redAgree: 0,
+            redAgree: 2,
             greenAgree: 0,
             disagree: 0, //['Knut'],
             posX: 100, //x
@@ -406,7 +406,7 @@ const model = {
             content: "Vennlig",
             aboutColor: "red",
             group: 'blue 1',
-            blueAgree: 1,//['Terje', 'Per', 'Espen'],
+            blueAgree: 2,//['Terje', 'Per', 'Espen'],
             redAgree: 0,
             greenAgree: 0,
             disagree: 0, //['Knut'],
@@ -538,7 +538,7 @@ const model = {
             group: 'red 2',
             redAgree: 5,//['Terje', 'Per', 'Espen'],
             greenAgree: 0,
-            blueAgree: 0,
+            blueAgree: 10,
             disagree: 0, //['Knut'],
             posX: 100, //x
             posY: 500, //y
@@ -589,8 +589,8 @@ const model = {
             aboutColor: "green",
             group: 'green 2',
             greenAgree: 1,//['Terje', 'Per', 'Espen'],
-            redAgree: 0,
-            blueAgree: 0,
+            redAgree: 2,
+            blueAgree: 4,
             disagree: 0, //['Knut'],
             posX: 100, //x
             posY: 500, //y
@@ -693,8 +693,8 @@ const model = {
             aboutColor: "red",
             group: 'green 2',
             greenAgree: 5,//['Terje', 'Per', 'Espen'],
-            redAgree: 0,
-            blueAgree: 0,
+            redAgree: 15,
+            blueAgree: 5,
             disagree: 0, //['Knut'],
             posX: 100, //x
             posY: 500, //y
@@ -811,7 +811,7 @@ const model = {
             group: 'red 2',
             redAgree: 2,//['Terje', 'Per', 'Espen'],
             greenAgree: 0,
-            blueAgree: 0,
+            blueAgree: 9,
             disagree: 0, //['Knut'],
             posX: 200, //x
             posY: 300, //y
@@ -848,7 +848,7 @@ const model = {
             content: "Forstående",
             aboutColor: "red",
             group: 'blue 2',
-            blueAgree: 7,//['Terje', 'Per', 'Espen'],
+            blueAgree: 5,//['Terje', 'Per', 'Espen'],
             redAgree: 0,
             greenAgree: 0,
             disagree: 0, //['Knut'],
@@ -1447,8 +1447,8 @@ const model = {
             aboutColor: "blue",
             group: 'green 3',
             greenAgree: 3,//['Terje', 'Per', 'Espen'],
-            redAgree: 0,
-            blueAgree: 0,
+            redAgree: 1,
+            blueAgree: 1,
             disagree: 0, //['Knut'],
             posX: 200, //x
             posY: 500, //y
