@@ -322,5 +322,41 @@ function wordCircles() {
 }
 
 function wordFlower() {
+    let redAboutR = '';
+    let redAboutG = '';
+    let redAboutB = '';
+    let greenAboutR = '';
+    let greenAboutG = '';
+    let greenAboutB = '';
+    let blueAboutR = '';
+    let blueAboutG = '';
+    let blueAboutB = '';
 
+    for (let words of allWords) {
+        if (words.redAgreeRed > 0) { redAboutR += `${words.word}</br>`; }
+        if (words.redAgreeGreen > 0) { redAboutG += `${words.word}</br>`; }
+        if (words.redAgreeBlue > 0) { redAboutB += `${words.word}</br>`; }
+        if (words.greenAgreeRed > 0) { greenAboutR += `${words.word}</br>`; }
+        if (words.greenAgreeGreen > 0) { greenAboutG += `${words.word}</br>`; }
+        if (words.greenAgreeBlue > 0) { greenAboutB += `${words.word}</br>`; }
+        if (words.blueAgreeRed > 0) { blueAboutR += `${words.word}</br>`; }
+        if (words.blueAgreeGreen > 0) { blueAboutG += `${words.word}</br>`; }
+        if (words.blueAgreeBlue > 0) { blueAboutB += `${words.word}</br>`; }
+    }
+
+    diagramDiv = `<div style="width: 800px; height: 600px;">
+        <div style="border: solid black; background-color: red; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 825px; top: 50px;"></div>
+        <div style="border: solid black; background-color: mediumspringgreen; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 500px; top: 500px;"></div>
+        <div style="border: solid black; background-color: deepskyblue; border-radius: 50%; width: 200px; height: 200px; position:absolute; z-index: 1; left: 1150px; top: 500px;"></div>
+        <img src="pictures/circle.jpg" style="z-index: -2; display: block; margin-left: 450px; margin-top:50px">
+        <div style="position:absolute; z-index: 2; left: 900px; top: 75px;">${redAboutR}</div>
+        <div style="position:absolute; z-index: 3; left: 700px; top: 300px;">${redAboutG}</div>
+        <div style="position:absolute; z-index: 3; left: 1300px; top: 200px;">${redAboutB}</div>
+        <div style="position:absolute; z-index: 3; left: 550px; top: 200px;">${greenAboutR}</div>
+        <div style="position:absolute; z-index: 3; left: 575px; top: 525px;">${greenAboutG}</div>
+        <div style="position:absolute; z-index: 3; left: 900px; top: 650px;">${greenAboutB}</div>
+        <div style="position:absolute; z-index: 3; left: 1100px; top: 300px;">${blueAboutR}</div>
+        <div style="position:absolute; z-index: 3; left: 1220px; top: 725px;">${blueAboutG}</div>
+        <div style="position:absolute; z-index: 3; left: 1225px; top: 525px;">${blueAboutB}</div>
+    </div>`;
 }
