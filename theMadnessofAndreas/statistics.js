@@ -1,146 +1,46 @@
 // JavaScript source code
 let diagramDiv = '';
 
-let allWords = Array.from(allwordsList());
-
-allWords.sort(sorting("agree"));
-
-function statShow() {
-    
+function statShow() {    
     contentDiv.innerHTML = `<div>
-                <button onclick="selectDiagram('topList')">De ord flest er enig i</button>
-                <button onclick="selectDiagram('topRedList')">Ord fra rød</button>
-                <button onclick="selectDiagram('topGreenList')">Ord fra grønn</button>
-                <button onclick="selectDiagram('topBlueList')">Ord fra blå</button>
-                <button onclick="selectDiagram('wordCircle')">demo1</button>
-                <button onclick="selectDiagram('wordFlower')">Ordsblomster</button>
+                <button onclick="showAll()">De ord flest er enig i</button>
+                <button onclick="redDiagrams()">Ord fra rød</button>
+                <button onclick="greenDiagrams()">Ord fra grønn</button>
+                <button onclick="blueDiagrams()">Ord fra blå</button>
+                <button onclick="wordCircles()">demo1</button>
+                <button onclick="wordFlower()">Ordsblomster</button>                
                 <div class row>${diagramDiv}</div>
                 </div>`;
 
 }
 
+function showAll() {
+    diagramDiv = '</br>All words</br>';
+    let allWords = Array.from(allwordsList());
+    allWords.sort(sorting("agree"));
 
-//functions to sort and list information
-
-//sorts and add together words based on color of the group they are mentioned in
-
-
-function allwordsList() {
-    let totalList = [];
-    let testList = [];
-
-
-    for (let wordToAdd of model.notes) {
-        let agreeRedAboutRed = 0;
-        let agreeGreenAboutRed = 0;
-        let agreeBlueAboutRed = 0;
-        let agreeRedAboutGreen = 0;
-        let agreeGreenAboutGreen = 0;
-        let agreeBlueAboutGreen = 0;
-        let agreeRedAboutBlue = 0;
-        let agreeGreenAboutBlue = 0;
-        let agreeBlueAboutBlue = 0;
-
-        if (wordToAdd.aboutColor === 'red') {
-            agreeRedAboutRed = wordToAdd.redAgree;
-            agreeGreenAboutRed = wordToAdd.greenAgree;
-            agreeBlueAboutRed = wordToAdd.blueAgree;
-        } else if (wordToAdd.aboutColor === 'green') {
-            agreeRedAboutGreen = wordToAdd.redAgree;
-            agreeGreenAboutGreen = wordToAdd.greenAgree;
-            agreeBlueAboutGreen = wordToAdd.blueAgree;
-        } else if (wordToAdd.aboutColor === 'blue') {
-            agreeRedAboutBlue = wordToAdd.redAgree;
-            agreeGreenAboutBlue = wordToAdd.greenAgree;
-            agreeBlueAboutBlue = wordToAdd.blueAgree;
-        } 
-        let disagree = wordToAdd.disagree;
-        if (testList.includes(wordToAdd.content) === false) {
-            for (let noteInformation of model.notes) {
-                if (wordToAdd.ID != noteInformation.ID && wordToAdd.content === noteInformation.content) {
-                    if (wordToAdd.aboutColor === 'red') {
-                        agreeRedAboutRed = agreeRedAboutRed + noteInformation.redAgree;
-                        agreeGreenAboutRed = agreeGreenAboutRed + noteInformation.greenAgree;
-                        agreeBlueAboutRed = agreeBlueAboutRed + noteInformation.blueAgree;
-                    } else if (wordToAdd.aboutColor === 'green') {
-                        agreeRedAboutGreen = agreeRedAboutGreen + noteInformation.redAgree;
-                        agreeGreenAboutGreen = agreeGreenAboutGreen + noteInformation.greenAgree;
-                        agreeBlueAboutGreen = agreeBlueAboutGreen + noteInformation.blueAgree;
-                    } else if (wordToAdd.aboutColor === 'blue') {
-                        agreeRedAboutBlue = agreeRedAboutBlue + noteInformation.redAgree;
-                        agreeGreenAboutBlue = agreeGreenAboutBlue + noteInformation.greenAgree;
-                        agreeBlueAboutBlue = agreeBlueAboutBlue + noteInformation.blueAgree;
-                    }
-                }
-            }
-            let agree = agreeRedAboutRed + agreeGreenAboutRed + agreeBlueAboutRed + agreeRedAboutGreen +
-                        agreeGreenAboutGreen + agreeBlueAboutGreen + agreeRedAboutBlue + agreeGreenAboutBlue + agreeBlueAboutBlue;
-            testList.push(wordToAdd.content);
-            totalList.push({
-                word: wordToAdd.content, agree: agree, redAgreeRed: agreeRedAboutRed, redAgreeGreen: agreeRedAboutGreen, redAgreeBlue: agreeRedAboutBlue,
-                greenAgreeRed: agreeGreenAboutRed, greenAgreeGreen: agreeGreenAboutGreen, greenAgreeBlue: agreeGreenAboutBlue,
-                blueAgreeRed: agreeBlueAboutRed, blueAgreeGreen: agreeBlueAboutGreen, blueAgreeBlue: agreeBlueAboutBlue,
-                disagree: disagree, about: wordToAdd.aboutColor
-            });
-        }
-    }
-    return totalList;
-}
-
-function sorting(word) {
-    let sortOrder = -1;
-
-    return function (a, b) {
-        if (a[word] < b[word]) {
-            return -1 * sortOrder;
-        } else if (a[word] > b[word]) {
-            return 1 * sortOrder;
-        } else {
-            return 0 * sortOrder;
-        }
-    }
-}
-
-function selectDiagram(selected) {
-    
-    if (selected === 'topList') {
-        showAll();
-    } else if (selected === 'topRedList') {
-        redDiagrams();
-    } else if (selected === 'topGreenList') {
-        greenDiagrams();
-    } else if (selected === 'topBlueList') {
-        blueDiagrams();
-    } else if (selected === 'wordCircle') {
-        wordCircles();
-    } else if (selected === 'wordFlower') {
-        wordFlower();
+    for (let word of allWords) {
+        let redTotal = word.redAgreeRed + word.redAgreeBlue + word.redAgreeGreen;
+        let greenTotal = word.greenAgreeRed + word.greenAgreeGreen + word.greenAgreeBlue;
+        let blueTotal = word.blueAgreeRed + word.blueAgreeGreen + word.blueAgreeBlue;
+        let redx = redTotal * 5;
+        let greenx = greenTotal * 5;
+        let bluex = blueTotal * 5;
+        diagramDiv += ` ${word.word}: ${word.agree} <div style="float:left; height: 20px; width: ${redx}px; background-color: red;"></div>
+                                                    <div style="float:left; height: 20px; width: ${greenx}px; background-color: green;"></div>
+                                                    <div style="float:left; height: 20px; width: ${bluex}px; background-color: blue;"></div></br></br>`;
     }
     statShow();
 }
 
-function showAll() {
-    diagramDiv = '</br>All words</br>';
-
-    for (let test of allWords) {
-        let redTotal = test.redAgreeRed + test.redAgreeBlue + test.redAgreeGreen;
-        let greenTotal = test.greenAgreeRed + test.greenAgreeGreen + test.greenAgreeBlue;
-        let blueTotal = test.blueAgreeRed + test.blueAgreeGreen + test.blueAgreeBlue;
-        let redx = redTotal * 5;
-        let greenx = greenTotal * 5;
-        let bluex = blueTotal * 5;
-
-        diagramDiv += ` ${test.word}: ${test.agree} <div style="float:left; height: 20px; width: ${redx}px; background-color: red;"></div>
-                                                    <div style="float:left; height: 20px; width: ${greenx}px; background-color: green;"></div>
-                                                    <div style="float:left; height: 20px; width: ${bluex}px; background-color: blue;"></div></br></br>`;
-    }
-}
-
 function redDiagrams() {
+    diagramDiv = '';
+    let allWords = Array.from(allwordsList());    
     let redAboutAll = [];
     let redAboutRed = [];
     let redAboutGreen = [];
     let redAboutBlue = [];
+    let redDisagree = disagree('red');
 
     for (let redWords of allWords) {
         if (redWords.redAgreeRed > 0 || redWords.redAgreeGreen > 0 || redWords.redAgreeBlue > 0) {
@@ -155,13 +55,16 @@ function redDiagrams() {
             }
         }        
     }
+    redAboutAll.sort(sorting("amount"));
+    redAboutRed.sort(sorting("amount"));
+    redAboutGreen.sort(sorting("amount"));
+    redAboutBlue.sort(sorting("amount"));
     diagramDiv = `</br>Red total</br><div class="column">`;
-
     for (let redTotal of redAboutAll) {
         let x = redTotal.amount * 10;
         diagramDiv += redTotal.word + '   ' + redTotal.amount + `<div style="height: 10px; width: ${x}px; background-color: red;"></div></br>`;
     }
-    diagramDiv += `</div></br>Red about red</br><div class="column">`;
+    diagramDiv += `</div>Red about red</br><div class="column">`;
     for (let redAboutSelf of redAboutRed) {
 
         let x = redAboutSelf.amount * 10;
@@ -179,14 +82,19 @@ function redDiagrams() {
         let x = redAboutB.amount * 10;
         diagramDiv += redAboutB.word + '   ' + redAboutB.amount + `<div style="height: 10px; width: ${x}px; background-color: red;"></div></br>`;        
     }
-    diagramDiv += '</div>';
+    diagramDiv += `</div> ${redDisagree}
+    `;
+    statShow();
 }
 
 function greenDiagrams() {
+    diagramDiv = '';
+    let allWords = Array.from(allwordsList());   
     let greenAboutAll = [];
     let greenAboutRed = [];
     let greenAboutGreen = [];
     let greenAboutBlue = [];
+    let greenDisagree = disagree('green');
 
     for (let greenWords of allWords) {
         if (greenWords.greenAgreeRed > 0 || greenWords.greenAgreeGreen > 0 || greenWords.greenAgreeBlue > 0) {
@@ -201,8 +109,11 @@ function greenDiagrams() {
             }
         }
     }
+    greenAboutAll.sort(sorting("amount"));
+    greenAboutRed.sort(sorting("amount"));
+    greenAboutGreen.sort(sorting("amount"));
+    greenAboutBlue.sort(sorting("amount"));
     diagramDiv = `</br>Green total</br><div class="column">`;
-
     for (let greenTotal of greenAboutAll) {
         let x = greenTotal.amount * 10;
         diagramDiv += greenTotal.word + '   ' + greenTotal.amount + `<div style="height: 10px; width: ${x}px; background-color: green;"></div></br>`;
@@ -225,13 +136,19 @@ function greenDiagrams() {
         let x = greenAboutB.amount * 10;
         diagramDiv += greenAboutB.word + '   ' + greenAboutB.amount + `<div style="height: 10px; width: ${x}px; background-color: green;"></div></br>`;
     }
-    diagramDiv += '</div>';
+    diagramDiv += `</div> ${greenDisagree}
+    `;
+    statShow();
 }
+
 function blueDiagrams() {
+    diagramDiv = '';
+    let allWords = Array.from(allwordsList());
     let blueAboutAll = [];
     let blueAboutRed = [];
     let blueAboutGreen = [];
     let blueAboutBlue = [];
+    let blueDisagree = disagree('blue');
 
     for (let blueWords of allWords) {
         if (blueWords.blueAgreeRed > 0 || blueWords.blueAgreeGreen > 0 || blueWords.blueAgreeBlue > 0) {
@@ -246,8 +163,11 @@ function blueDiagrams() {
             }
         }
     }
+    blueAboutAll.sort(sorting("amount"));
+    blueAboutRed.sort(sorting("amount"));
+    blueAboutGreen.sort(sorting("amount"));
+    blueAboutBlue.sort(sorting("amount"));
     diagramDiv = `</br>Blue total</br><div class="column">`;
-
     for (let blueTotal of blueAboutAll) {
         let x = blueTotal.amount * 10;
         diagramDiv += blueTotal.word + '   ' + blueTotal.amount + `<div style="height: 10px; width: ${x}px; background-color: blue;"></div></br>`;
@@ -270,10 +190,13 @@ function blueDiagrams() {
         let x = blueAboutB.amount * 10;
         diagramDiv += blueAboutB.word + '   ' + blueAboutB.amount + `<div style="height: 10px; width: ${x}px; background-color: blue;"></div></br>`;
     }
-    diagramDiv += '</div>';
+    diagramDiv += `</div> ${blueDisagree}
+    `;
+    statShow();
 }
 
 function wordCircles() {
+    let allWords = Array.from(allwordsList());  
     let allColors = '';
     let redAndGreen = '';
     let redAndBlue = '';
@@ -319,9 +242,12 @@ function wordCircles() {
         <div style="position:absolute; z-index: 3; left: 450px; top: 500px;">${green}</div>
         <div style="position:absolute; z-index: 3; left: 1100px; top: 500px;">${blue}</div>
     </div>`;
+    statShow();
 }
 
 function wordFlower() {
+    diagramDiv = '';
+    let allWords = Array.from(allwordsList());
     let redAboutR = '';
     let redAboutG = '';
     let redAboutB = '';
@@ -359,4 +285,174 @@ function wordFlower() {
         <div style="position:absolute; z-index: 3; left: 1220px; top: 725px;">${blueAboutG}</div>
         <div style="position:absolute; z-index: 3; left: 1225px; top: 525px;">${blueAboutB}</div>
     </div>`;
+    statShow();
+}
+
+//functions to sort and list information
+
+//sorts and add together words based on color of the group they are mentioned in
+
+
+function allwordsList() {
+    let totalList = [];
+    let testList = [];
+
+    for (let wordToAdd of noteModel.notes) {
+        let agreeRedAboutRed = 0;
+        let agreeGreenAboutRed = 0;
+        let agreeBlueAboutRed = 0;
+        let agreeRedAboutGreen = 0;
+        let agreeGreenAboutGreen = 0;
+        let agreeBlueAboutGreen = 0;
+        let agreeRedAboutBlue = 0;
+        let agreeGreenAboutBlue = 0;
+        let agreeBlueAboutBlue = 0;
+
+        if (wordToAdd.aboutColor === 'red') {
+            agreeRedAboutRed = wordToAdd.redAgree;
+            agreeGreenAboutRed = wordToAdd.greenAgree;
+            agreeBlueAboutRed = wordToAdd.blueAgree;
+        } else if (wordToAdd.aboutColor === 'green') {
+            agreeRedAboutGreen = wordToAdd.redAgree;
+            agreeGreenAboutGreen = wordToAdd.greenAgree;
+            agreeBlueAboutGreen = wordToAdd.blueAgree;
+        } else if (wordToAdd.aboutColor === 'blue') {
+            agreeRedAboutBlue = wordToAdd.redAgree;
+            agreeGreenAboutBlue = wordToAdd.greenAgree;
+            agreeBlueAboutBlue = wordToAdd.blueAgree;
+        }
+        let disagree = wordToAdd.disagree;
+        if (testList.includes(wordToAdd.content) === false) {
+            for (let noteInformation of noteModel.notes) {
+                if (wordToAdd.ID != noteInformation.ID && wordToAdd.content === noteInformation.content) {
+                    if (wordToAdd.aboutColor === 'red') {
+                        agreeRedAboutRed = agreeRedAboutRed + noteInformation.redAgree;
+                        agreeGreenAboutRed = agreeGreenAboutRed + noteInformation.greenAgree;
+                        agreeBlueAboutRed = agreeBlueAboutRed + noteInformation.blueAgree;
+                    } else if (wordToAdd.aboutColor === 'green') {
+                        agreeRedAboutGreen = agreeRedAboutGreen + noteInformation.redAgree;
+                        agreeGreenAboutGreen = agreeGreenAboutGreen + noteInformation.greenAgree;
+                        agreeBlueAboutGreen = agreeBlueAboutGreen + noteInformation.blueAgree;
+                    } else if (wordToAdd.aboutColor === 'blue') {
+                        agreeRedAboutBlue = agreeRedAboutBlue + noteInformation.redAgree;
+                        agreeGreenAboutBlue = agreeGreenAboutBlue + noteInformation.greenAgree;
+                        agreeBlueAboutBlue = agreeBlueAboutBlue + noteInformation.blueAgree;
+                    }
+                }
+            }
+            let agree = agreeRedAboutRed + agreeGreenAboutRed + agreeBlueAboutRed + agreeRedAboutGreen +
+                agreeGreenAboutGreen + agreeBlueAboutGreen + agreeRedAboutBlue + agreeGreenAboutBlue + agreeBlueAboutBlue;
+            testList.push(wordToAdd.content);
+            totalList.push({
+                word: wordToAdd.content, agree: agree, redAgreeRed: agreeRedAboutRed, redAgreeGreen: agreeRedAboutGreen, redAgreeBlue: agreeRedAboutBlue,
+                greenAgreeRed: agreeGreenAboutRed, greenAgreeGreen: agreeGreenAboutGreen, greenAgreeBlue: agreeGreenAboutBlue,
+                blueAgreeRed: agreeBlueAboutRed, blueAgreeGreen: agreeBlueAboutGreen, blueAgreeBlue: agreeBlueAboutBlue,
+                disagree: disagree, about: wordToAdd.aboutColor
+            });
+        }
+    }
+    return totalList;
+}
+
+function sorting(valueToSortAfter) {
+    let sortOrder = -1;
+    return function (a, b) {
+        if (a[valueToSortAfter] < b[valueToSortAfter]) {
+            return -1 * sortOrder;
+        } else if (a[valueToSortAfter] > b[valueToSortAfter]) {
+            return 1 * sortOrder;
+        } else {
+            return 0 * sortOrder;
+        }
+    }
+}
+
+
+function disagree(color) {
+    let wordList = Array.from(disagreeList(color));    
+    diagramDiv += `<div class="column">Disagree red</br></br>`;
+    for (let aboutR of wordList) {
+        if (aboutR.disagreeRed > 0) {
+            let x = aboutR.disagreeRed * 10;
+            diagramDiv += aboutR.word + '   ' + aboutR.disagreeRed + `<div style="height: 10px; width: ${x}px; background-color: ${color};"></div></br>`;
+        }
+    }
+    diagramDiv += `</br>Disagree green</br></br>`;
+    for (let aboutG of wordList) {        
+        if (aboutG.disagreeGreen > 0) {
+            let x = aboutG.disagreeGreen * 10;
+            diagramDiv += aboutG.word + '   ' + aboutG.disagreeGreen + `<div style="height: 10px; width: ${x}px; background-color: ${color};"></div></br>`;
+        }        
+    }
+    diagramDiv += `</br>Disagree blue</br></br>`;
+    for (let aboutB of wordList) {
+        if (aboutB.disagreeBlue > 0) {
+            let x = aboutB.disagreeBlue * 10;
+            diagramDiv += aboutB.word + '   ' + aboutB.disagreeBlue + `<div style="height: 10px; width: ${x}px; background-color: ${color};"></div></br>`;
+        }        
+    }    
+
+    return diagramDiv += '</div>';
+}
+
+//sorts and add together words based on color of the group they are mentioned in
+function disagreeList(color) {
+    let groupList = [];
+    let groupResultList = [];
+    let testWord = [];
+    let collectedList = [];
+
+    let disagreeRed = 0;
+    let disagreeGreen = 0;
+    let disagreeBlue = 0;
+
+    //makes a list with all the groups from the selected color
+    for (let groupsOfColor of model.groups) {
+        if (groupsOfColor.color === color) {
+            groupList.push(groupsOfColor.name);
+        }
+    }
+
+    //making a list with all the notes by the selected color
+    for (let currentGroup of groupList) {
+        for (let words of noteModel.notes) {            
+            if (words.group === currentGroup) {              
+                groupResultList.push({ wordId: words.ID, word: words.content, disagree: words.disagree, about: words.aboutColor });
+            }
+        }
+    }
+
+    for (let wordToAdd of groupResultList) { //starts going through the list made above, selecting one word to check        
+        if (wordToAdd.about === 'red') {
+            disagreeRed = wordToAdd.disagree;
+        } else if (wordToAdd.about === 'green') {
+            disagreeGreen = wordToAdd.disagree;
+        } else if (wordToAdd.about === 'blue') {
+            disagreeBlue = wordToAdd.disagree;
+        }         
+        if (testWord.includes(wordToAdd.word) === false) { //makes sure the selected word has not been added before
+            for (let noteInformation of groupResultList) { //goes through the same list once per word that has not been selected before
+                if (wordToAdd.wordId != noteInformation.wordId && wordToAdd.word === noteInformation.word) { //make sure the note containing the word is different even though the word is the same
+                    if (wordToAdd.about === 'red') {
+                        disagreeRed = disagreeRed + noteInformation.disagree;
+                    } else if (wordToAdd.about === 'green') {
+                        disagreeGreen = disagreeGreen + noteInformation.disagree;
+                    } else if (wordToAdd.about === 'blue') {
+                        disagreeBlue = disagreeBlue + noteInformation.disagree;
+                    }
+                }
+            }
+            testWord.push(wordToAdd.word);
+            collectedList.push({ word: wordToAdd.word, disagreeRed: disagreeRed, disagreeGreen: disagreeGreen, disagreeBlue: disagreeBlue });
+        }
+    }
+    //for (let test1 of groupList) {
+    //    diagramDiv += test1;
+    //}
+    //for (let test2 of noteModel.notes) {
+    //    diagramDiv += test2.group;
+    //}
+    
+
+    return collectedList;
 }
