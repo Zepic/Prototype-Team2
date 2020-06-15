@@ -11,6 +11,12 @@ function content() {
     return contentHtml;
 }
 
+/*
+
+----- GROUPS OF COLORS ------------------------------------
+
+*/
+
 function groupPage() {
     let groupPageHtml = '';
 
@@ -19,24 +25,6 @@ function groupPage() {
     groupPageHtml += showNote();
 
     return groupPageHtml;
-}
-
-function statisticPage() {
-    let statisticPageHtml = '';
-
-    //code for generating page content for staisticName
-    statisticPageHtml += showStatisticsInfo();
-
-    return statisticPageHtml;
-}
-
-function userPage() {
-    let userPageHtml = '';
-
-    //code for generating page content for userName
-    userPageHtml += showUserPageInfo();
-
-    return userPageHtml;
 }
 
 //subfunctions for groups
@@ -53,6 +41,58 @@ function showGroupInfo() {
     return showGroupInfoHtml;
 }
 
+function showNote() {
+    return model.notes
+        .filter((n) => n.group == model.activeGroup)
+        .map((n) => {
+            return `
+            <li>
+                ID: ${n.ID}<br/>
+                Content: <b>${n.content}</b><br/>
+                Agree: ${n.agree}<br/>
+                Disagree: ${n.disagree}<br/>
+                PosX: ${n.posX}, PosY: ${n.posY}<br/>
+                zIndex: ${n.zIndex}<br/>
+            </li><br/>
+            `;
+        })
+        .join('');
+}
+
+//subfunctions for notes
+// function showNote() {
+//     let showNoteHtml = '';
+
+//     //code for generating single note
+
+//     showNoteHtml = `
+//         <div class="container">
+//             <div id="mydiv">
+//                 <div id="mydivheader">Click here to move</div>
+//                 <p>Move</p>
+//                 <p>this</p>
+//                 <p>DIV</p>
+//             </div>
+//         </div>
+//         `;
+//     return showNoteHtml;
+// }
+
+/*
+
+----- STATISTICS ------------------------------------------
+
+*/
+
+function statisticPage() {
+    let statisticPageHtml = '';
+
+    //code for generating page content for staisticName
+    statisticPageHtml += showStatisticsInfo();
+
+    return statisticPageHtml;
+}
+
 //subfunctions for statistics
 function showStatisticsInfo() {
     let showStatisticsInfoHtml = '';
@@ -67,6 +107,21 @@ function showStatisticsInfo() {
     return showStatisticsInfoHtml;
 }
 
+/*
+
+----- USERS PAGES -----------------------------------------
+
+*/
+
+function userPage() {
+    let userPageHtml = '';
+
+    //code for generating page content for userName
+    userPageHtml += showUserPageInfo();
+
+    return userPageHtml;
+}
+
 //subfunctions for users pages
 function showUserPageInfo() {
     let showUserPageInfoHtml = '';
@@ -79,23 +134,4 @@ function showUserPageInfo() {
         </div>
         `;
     return showUserPageInfoHtml;
-}
-
-//subfunctions for notes
-function showNote() {
-    let showNoteHtml = '';
-
-    //code for generating single note
-
-    showNoteHtml = `
-        <div class="container">
-            <div id="mydiv">
-                <div id="mydivheader">Click here to move</div>
-                <p>Move</p>
-                <p>this</p>
-                <p>DIV</p>
-            </div>
-        </div>
-        `;
-    return showNoteHtml;
 }
