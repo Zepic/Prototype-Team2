@@ -4,8 +4,9 @@ const model = {
         name: 'Terje',
         color: 'green'
     },
-    currentSelectedPage: 0, //0 = group select 1 = aboutcolors 2 = summary 3 = peronal notes
-    currentlySelectedGroup: 0, //0 = self 1 = next color 2 = next color
+    activeView: 'group',
+    activeUser: 'Mr. Blue',
+    activeGroup: 'Blue about blue 1',
     groupCounts: {
         blue: 2,
         green: 2,
