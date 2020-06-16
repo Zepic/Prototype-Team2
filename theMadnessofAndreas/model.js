@@ -1,9 +1,28 @@
 //model
 const model = {
-    user: {
-        name: 'Terje',
-        color: 'green'
-    },
+    user: [{
+            name: 'Mr Red',
+            color: 'red',
+            agreedWord: [],
+            disagreedWord: [],
+            userPageContent: [],
+        },
+        {
+            name: 'Mr Green',
+            color: 'green',
+            agreedWord: [],
+            disagreedWord: [],
+            userPageContent: [],
+        },
+        {
+            name: 'Mr Blue',
+            color: 'clue',
+            agreedWord: [],
+            disagreedWord: [],
+            userPageContent: [],
+        }
+
+    ],
     currentSelectedPage: 0, //0 = group select 1 = aboutcolors 2 = summary 3 = peronal notes
     currentlySelectedGroup: 0, //0 = self 1 = next color 2 = next color
     groupCounts: {
