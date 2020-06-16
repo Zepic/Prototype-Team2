@@ -11,9 +11,9 @@ function show() {
         `;
     }
     contentDiv.innerHTML = entirePageHtml;
+    model.activeView == 'group' ? activateNoteMovement() : '';
 }
 
-//Ultimately, the menu generation must be combined into one menu-generating function for each color
 function menuCode() {
     return `
         <div class="groups" >
@@ -54,7 +54,7 @@ function content() {
     if (model.activeView == 'group') {
         contentHtml = groupPage();
     } else if (model.activeView == 'statistics') {
-        contentHtml = statisticPage();
+        contentHtml = statShow();
     } else if (model.activeView == 'user') {
         contentHtml = userPage();
     }
@@ -68,30 +68,11 @@ function content() {
 */
 
 function groupPage() {
-    let groupPageHtml = '';
-
-    //code for generating page content for groupName
-    groupPageHtml += showGroupInfo();
-    groupPageHtml += `
+    return `
         <div>
-            <ol>${showNote()}</ol>
+            <div>${showNote()}</div>
         </div>
     `;
-    return groupPageHtml;
-}
-
-//subfunctions for groups
-function showGroupInfo() {
-    let showGroupInfoHtml = '';
-
-    //code for generating single note
-
-    showGroupInfoHtml = `
-        <div id="info">
-        Group name: ${model.activeGroup}, User name: ${model.activeUser}
-        </div>
-        `;
-    return showGroupInfoHtml;
 }
 
 function showNote() {
@@ -99,17 +80,55 @@ function showNote() {
         .filter((n) => n.group == model.activeGroup)
         .map((n) => {
             return `
-            <li>
-                ID: ${n.ID}, content: <b>${n.content}</b>, group: ${n.group}, aboutColor: ${n.group}<br/>
-                blueAgree: ${n.blueAgree}, greenAgree: ${n.greenAgree}, redAgree: ${n.redAgree}, disagree: ${n.disagree}<br/>
-                posX: ${n.posX}, posY: ${n.posY}, zIndex: ${n.zIndex}<br/>
-                <button
-                    type="button"
-                    class="btn btn-primary btn-sm"
-                    onclick="agree(${n.ID})"
-                >Agree</button>
-            </li><br/>
+            <div id="${n.ID}" class="mydiv" style="top: ${n.posY}px; left: ${n.posX}px">
+                <div class="mydivheader">Click here to move</div>
+                <div class="noteContent">
+                    <p>ID: ${n.ID}, content: <b>${n.content}</b>, group: ${n.group}, aboutColor: ${n.group}</p>
+                    <p>blueAgree: ${n.blueAgree}, greenAgree: ${n.greenAgree}, redAgree: ${n.redAgree}, disagree: ${n.disagree}</p>
+                    <p>posX: ${n.posX}, posY: ${n.posY}, zIndex: ${n.zIndex}</p>
+                    <button
+                        type="button"
+                        class="btn btn-primary btn-sm"
+                        onclick="agree(${n.ID})"
+                    >Agree</button>
+                </div>
+            </div>
             `;
         })
         .join('');
+}
+
+function activateNoteMovement() {
+    noteModel.notes
+        .filter((n) => n.group == model.activeGroup)
+        .map((u) => u.ID)
+        .forEach((a) => dragElement(document.getElementById(`${a}`)));
+}
+
+/*
+
+----- USERS PAGES -----------------------------------------
+
+*/
+
+function userPage() {
+    let userPageHtml = '';
+
+    //code for generating page content for userName
+    //or call another function with JS code to generate user page
+
+    //delete this code after you add corect code for user page
+    userPageHtml += showUserPageInfo();
+
+    return userPageHtml;
+}
+
+//subfunctions for users pages
+//delete this function after you have corect code for user page
+function showUserPageInfo() {
+    return `
+        <div id="info">
+        User home page, User name: ${model.activeUser}
+        </div>
+        `;
 }

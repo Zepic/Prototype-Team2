@@ -14,9 +14,8 @@ function clickGroup(activeView, activeGroupName) {
 }
 
 //shows the statistics page
-function clickStatistics(activeView, activeStatisticsName) {
+function clickStatistics(activeView) {
     model.activeView = activeView;
-    model.activeStatistics = activeStatisticsName;
     show();
 }
 
