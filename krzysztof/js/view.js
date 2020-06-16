@@ -10,7 +10,7 @@ function show() {
                     <a class="navbar-brand" href="#">+ ADD NOTE +</a>
                 </ul>
                 <ul class="navbar-nav">
-                    ${menuStatisti()}
+                    ${menuStatistics()}
                     ${menuUser()}   
                 </ul>
             </div>
@@ -24,7 +24,7 @@ function menuBlue() {
     return `
     <li class="nav-item dropdown">
         <a
-            class="nav-link dropdown-toggle navbar-brand"
+            class="nav-link dropdown-toggle navbar-brand blue"
             href="#"
             id="dropdownBlue"
             data-toggle="dropdown"
@@ -48,7 +48,7 @@ function menuGreen() {
     return `
     <li class="nav-item dropdown">
         <a
-            class="nav-link dropdown-toggle navbar-brand"
+            class="nav-link dropdown-toggle navbar-brand green"
             href="#"
             id="dropdownGreen"
             data-toggle="dropdown"
@@ -72,7 +72,7 @@ function menuRed() {
     return `
     <li class="nav-item dropdown">
         <a
-            class="nav-link dropdown-toggle navbar-brand"
+            class="nav-link dropdown-toggle navbar-brand red"
             href="#"
             id="dropdownRed"
             data-toggle="dropdown"
@@ -85,7 +85,7 @@ function menuRed() {
             <a class="dropdown-item" href="#" onclick="clickGroup('group', 'Red about blue 1')">&nbsp&nbsp&nbsp&nbspRed about blue 1</a>
             <a class="dropdown-item" href="#" onclick="clickGroup('group', 'Red about green 1')">&nbsp&nbsp&nbsp&nbspRed about green 1</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" onclick="clickGroup('group', 'Red about red 1')">Red about red 2</a>
+            <a class="dropdown-item" href="#" onclick="clickGroup('group', 'Red about red 2')">Red about red 2</a>
             <a class="dropdown-item" href="#" onclick="clickGroup('group', 'Red about blue 2')">&nbsp&nbsp&nbsp&nbspRed about blue 2</a>
             <a class="dropdown-item" href="#" onclick="clickGroup('group', 'Red about green 2')">&nbsp&nbsp&nbsp&nbspRed about green 2</a>
         </div>
@@ -94,7 +94,7 @@ function menuRed() {
 }
 
 //Generating Statistic menu
-function menuStatisti() {
+function menuStatistics() {
     return `
     <li class="nav-item dropdown">
         <a
@@ -119,9 +119,24 @@ function menuUser() {
     return `
     <li class="nav-item dropdown">
     <a
-        class="nav-link dropdown-toggle navbar-brand"
+        class="nav-link dropdown-toggle navbar-brand
+        ${model.users.filter((u) => u.name == model.activeUser)[0].color}"
         href="#"
         id="dropdownUser"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        >${model.activeUser}</a
+    >
+    <div class="dropdown-menu" aria-labelledby="dropdown01">
+        <a class="dropdown-item" href="#" onclick="clickUser('user')">User Page</a>
+    </div>
+    </li>
+    <li class="nav-item dropdown">
+    <a
+        class="nav-link dropdown-toggle navbar-brand gray"
+        href="#"
+        id="dropdownChangeUser"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -130,9 +145,13 @@ function menuUser() {
     <div class="dropdown-menu" aria-labelledby="dropdown01">
         <a class="dropdown-item" href="#" onclick="activeUser('Mr. Blue')">Mr. Blue</a>
         <a class="dropdown-item" href="#" onclick="activeUser('Mr. Green')">Mr. Green</a>
-        <a class="dropdown-item" href="#" onclick="activeUser('Mr. Red')">Mr. Red</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#" onclick="clickUser('user')">User Page</a>
+        <a class="dropdown-item" href="#" onclick="activeUser('Ms. Red')">Ms. Red</a>
+        <a class="dropdown-item" href="#" onclick="activeUser('Tom')">Tom</a>
+        <a class="dropdown-item" href="#" onclick="activeUser('Jerry')">Jerry</a>
+        <a class="dropdown-item" href="#" onclick="activeUser('Poul')">Poul</a>
+        <a class="dropdown-item" href="#" onclick="activeUser('Ann')">Ann</a>
+        <a class="dropdown-item" href="#" onclick="activeUser('Agnes')">Agnes</a>
+        <a class="dropdown-item" href="#" onclick="activeUser('Charlotte')">Charlotte</a>
     </div>
     </li>
     `;
