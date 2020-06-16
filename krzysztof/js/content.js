@@ -22,8 +22,11 @@ function groupPage() {
 
     //code for generating page content for groupName
     groupPageHtml += showGroupInfo();
-    groupPageHtml += showNote();
-
+    groupPageHtml += `
+        <div>
+            <ol>${showNote()}</ol>
+        </div>
+    `;
     return groupPageHtml;
 }
 
@@ -51,8 +54,12 @@ function showNote() {
                 Content: <b>${n.content}</b><br/>
                 Agree: ${n.agree}<br/>
                 Disagree: ${n.disagree}<br/>
-                PosX: ${n.posX}, PosY: ${n.posY}<br/>
-                zIndex: ${n.zIndex}<br/>
+                PosX: ${n.posX}, PosY: ${n.posY}, zIndex: ${n.zIndex}<br/>
+                <button
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                    onclick="agree(${n.ID})"
+                >Agree</button>
             </li><br/>
             `;
         })

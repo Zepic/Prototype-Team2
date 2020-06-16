@@ -2,19 +2,19 @@ body {
     padding-top: 5rem;
 }
 
-#dropdownBlue {
+.blue {
     background-color: rgb(20, 20, 221);
 }
 
-#dropdownGreen {
+.green {
     background-color: rgb(6, 143, 24);
 }
 
-#dropdownRed {
+.red {
     background-color: rgb(175, 14, 14);
 }
 
-#dropdownUser {
+.gray {
     background-color: rgb(124, 124, 124);
 }
 
