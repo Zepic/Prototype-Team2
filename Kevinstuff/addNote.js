@@ -4,7 +4,7 @@ function addNote(input){
         content: `${input}`,
         aboutColor: "red",
         group: 'red 1',
-        redAgree: 3,//['Terje', 'Per', 'Espen'],
+        redAgree: 0,
         greenAgree: 0,
         blueAgree: 0,
         disagree: 0, //['Knut'],
