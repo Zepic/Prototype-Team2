@@ -50,7 +50,7 @@ function menuCode() {
             <div class="red dropdown">
                 <button class="red dropbtn">Red groups</button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="clickGroup('group', 'red 1', 'red')">Red 1</a>
+                        <p onclick="clickGroup('group', 'red 1', 'red')">Red 1</p>
                         <a href="#" onclick="clickGroup('group', 'red 1', 'green')">&nbsp&nbspRed about green 1</a>
                         <a href="#" onclick="clickGroup('group', 'red 1', 'blue')">&nbsp&nbspRed about blue 1</a>
                         <a href="#" onclick="clickGroup('group', 'red 2', 'red')">Red 2</a>
@@ -83,7 +83,7 @@ function menuCode() {
             <div class=" dropdown">
                 <button class="dropbtn" style="background-color: transparent">+ Add note +</button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="addNote('🚧 We are working on this function 🚧')">Add note</a>
+                        <input type="text" onchange="addNote(this.value)">
                     </div>
             </div>
             <div class=" dropdown">

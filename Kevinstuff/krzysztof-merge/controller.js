@@ -24,16 +24,17 @@ function addNote(noteContent) {
     noteModel.notes.push({
         ID: noteModel.notes.length +1,
         content: `${noteContent}`,
-        aboutColor: `${activeAboutColor}`,
-        group: `${activeGroup}`,
+        aboutColor: `${model.activeAboutColor}`,
+        group: `${model.activeGroup}`,
         redAgree: 0,
         greenAgree: 0,
         blueAgree: 0,
         disagree: 0, //['Knut'],
-        posX: 100, //x
-        posY: 300, //y
+        posX: 600, //x
+        posY: 250, //y
         zIndex: 1
     },);
+    show()
 }
 
 //add or remove agree
