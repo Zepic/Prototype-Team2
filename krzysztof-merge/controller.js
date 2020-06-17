@@ -7,9 +7,10 @@ function clickUser(activeView) {
 }
 
 //shows the group with its notes
-function clickGroup(activeView, activeGroupName) {
+function clickGroup(activeView, activeGroupName, aboutColor) {
     model.activeView = activeView;
     model.activeGroup = activeGroupName;
+    model.activeAboutColor = aboutColor;
     show();
 }
 

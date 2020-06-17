@@ -21,22 +21,22 @@ function menuStartCode() {
             <div class="red dropdown">
                 <button class="red dropbtn">Red groups</button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="clickGroup('group', 'red 1')">Red 1</a>
-                        <a href="#" onclick="clickGroup('group', 'red 2')">Red 2</a>
+                        <a href="#" onclick="clickGroup('group', 'red 1', 'red')">Red 1</a>
+                        <a href="#" onclick="clickGroup('group', 'red 2', 'red')">Red 2</a>
                     </div>
             </div>
             <div class="green dropdown">
                 <button class="green dropbtn">Green groups</button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="clickGroup('group', 'green 1')">Green 1</a>
-                        <a href="#" onclick="clickGroup('group', 'green 2')">Green 2</a>
+                        <a href="#" onclick="clickGroup('group', 'green 1', 'green')">Green 1</a>
+                        <a href="#" onclick="clickGroup('group', 'green 2', 'green')">Green 2</a>
                     </div>
             </div>
             <div class="blue dropdown">
                 <button class="blue dropbtn">Blue groups</button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="clickGroup('group', 'blue 1')">Blue 1</a>
-                        <a href="#" onclick="clickGroup('group', 'blue 2')">Blue 2</a>
+                        <a href="#" onclick="clickGroup('group', 'blue 1', 'blue')">Blue 1</a>
+                        <a href="#" onclick="clickGroup('group', 'blue 2', 'blue')">Blue 2</a>
                     </div>
             </div>
         </div>
@@ -50,22 +50,34 @@ function menuCode() {
             <div class="red dropdown">
                 <button class="red dropbtn">Red groups</button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="clickGroup('group', 'red 1')">Red 1</a>
-                        <a href="#" onclick="clickGroup('group', 'red 2')">Red 2</a>
+                        <a href="#" onclick="clickGroup('group', 'red 1', 'red')">Red 1</a>
+                        <a href="#" onclick="clickGroup('group', 'red 1', 'green')">&nbsp&nbspRed about green 1</a>
+                        <a href="#" onclick="clickGroup('group', 'red 1', 'blue')">&nbsp&nbspRed about blue 1</a>
+                        <a href="#" onclick="clickGroup('group', 'red 2', 'red')">Red 2</a>
+                        <a href="#" onclick="clickGroup('group', 'red 2', 'green')">&nbsp&nbspRed about green 2</a>
+                        <a href="#" onclick="clickGroup('group', 'red 2', 'blue')">&nbsp&nbspRed about blue 2</a>
                     </div>
             </div>
             <div class="green dropdown">
                 <button class="green dropbtn">Green groups</button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="clickGroup('group', 'green 1')">Green 1</a>
-                        <a href="#" onclick="clickGroup('group', 'green 2')">Green 2</a>
+                        <a href="#" onclick="clickGroup('group', 'green 1', 'green')">Green 1</a>
+                        <a href="#" onclick="clickGroup('group', 'green 1', 'blue')">&nbsp&nbspGreen about blue 1</a>
+                        <a href="#" onclick="clickGroup('group', 'green 1', 'red')">&nbsp&nbspGreen about blue 1</a>
+                        <a href="#" onclick="clickGroup('group', 'green 2', 'green')">Green 2</a>
+                        <a href="#" onclick="clickGroup('group', 'green 2', 'blue')">&nbsp&nbspGreen about blue 2</a>
+                        <a href="#" onclick="clickGroup('group', 'green 2', 'red')">&nbsp&nbspGreen about blue 2</a>
                     </div>
             </div>
             <div class="blue dropdown">
                 <button class="blue dropbtn">Blue groups</button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="clickGroup('group', 'blue 1')">Blue 1</a>
-                        <a href="#" onclick="clickGroup('group', 'blue 2')">Blue 2</a>
+                        <a href="#" onclick="clickGroup('group', 'blue 1', 'blue')">Blue 1</a>
+                        <a href="#" onclick="clickGroup('group', 'blue 1', 'red')">&nbsp&nbspBlue about red 1</a>
+                        <a href="#" onclick="clickGroup('group', 'blue 1', 'green')">&nbsp&nbspBlue about green 1</a>
+                        <a href="#" onclick="clickGroup('group', 'blue 2', 'blue')">Blue 2</a>
+                        <a href="#" onclick="clickGroup('group', 'blue 2', 'red')">&nbsp&nbspBlue about red 2</a>
+                        <a href="#" onclick="clickGroup('group', 'blue 2', 'green')">&nbsp&nbspBlue about green 2</a>
                     </div>
             </div>
             <div class=" dropdown">
@@ -126,6 +138,7 @@ function groupPage() {
 function showNote() {
     return noteModel.notes
         .filter((n) => n.group == model.activeGroup)
+        .filter((n) => n.aboutColor == model.activeAboutColor)
         .map((n) => {
             return `
             <div id="${n.ID}" class="mydiv" style="top: ${n.posY}px; left: ${n.posX}px">
@@ -149,6 +162,7 @@ function showNote() {
 function activateNoteMovement() {
     noteModel.notes
         .filter((n) => n.group == model.activeGroup)
+        .filter((n) => n.aboutColor == model.activeAboutColor)
         .map((u) => u.ID)
         .forEach((a) => dragElement(document.getElementById(`${a}`)));
 }

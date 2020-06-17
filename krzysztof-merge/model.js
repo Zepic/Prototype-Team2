@@ -7,6 +7,7 @@ const model = {
     activeView: 'startPage',
     activeUser: '',
     activeGroup: 'blue 1',
+    activeAboutColor: 'blue',
     groups: [
         {
             name: 'red 1',
