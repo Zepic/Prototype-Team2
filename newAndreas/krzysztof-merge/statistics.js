@@ -15,7 +15,7 @@ function statShow() {
                 <button onclick="blueDiagrams()">Ord fra blå</button>
                 <button onclick="wordCircles()">demo1</button>
                 <button onclick="wordFlower()">Ordsblomster</button>                
-                <div class="row">${diagramDiv}</div>
+                <div class row>${diagramDiv}</div>
                 </div>`;
 }
 
@@ -122,7 +122,7 @@ function redDiagrams() {
     }
     diagramDiv += `</div> ${redDisagree}
     `;
-    show();
+    statShow();
 }
 
 function greenDiagrams() {
@@ -206,7 +206,7 @@ function greenDiagrams() {
     }
     diagramDiv += `</div> ${greenDisagree}
     `;
-    show();
+    statShow();
 }
 
 function blueDiagrams() {
@@ -290,7 +290,7 @@ function blueDiagrams() {
     }
     diagramDiv += `</div> ${blueDisagree}
     `;
-    show();
+    statShow();
 }
 
 function wordCircles() {
@@ -403,7 +403,7 @@ function wordCircles() {
         <div style="position:absolute; z-index: 3; left: 450px; top: 500px;">${green}</div>
         <div style="position:absolute; z-index: 3; left: 1100px; top: 500px;">${blue}</div>
     </div>`;
-    show();
+    statShow();
 }
 
 function wordFlower() {
@@ -464,7 +464,7 @@ function wordFlower() {
         <div style="position:absolute; z-index: 3; left: 1220px; top: 725px;">${blueAboutG}</div>
         <div style="position:absolute; z-index: 3; left: 1225px; top: 525px;">${blueAboutB}</div>
     </div>`;
-    show();
+    statShow();
 }
 
 //functions to sort and list information
