@@ -21,7 +21,20 @@ function clickStatistics(activeView) {
 }
 
 function addNote(noteContent) {
-    alert(noteContent);
+    noteModel.notes.push({
+        ID: noteModel.notes.length + 1,
+        content: `${noteContent}`,
+        aboutColor: `${model.activeAboutColor}`,
+        group: `${model.activeGroup}`,
+        redAgree: 0,
+        greenAgree: 0,
+        blueAgree: 0,
+        disagree: 0, //['Knut'],
+        posX: 600, //x
+        posY: 250, //y
+        zIndex: 1,
+    });
+    show();
 }
 
 //add or remove agree
