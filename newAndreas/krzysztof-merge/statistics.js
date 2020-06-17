@@ -20,7 +20,7 @@ function statShow() {
 }
 
 function showAll() {
-    diagramDiv = '</br>All words</br>';
+    diagramDiv = '<div style="background-color:white; border: solid black;"></br>All words</br>';
     let allWords = Array.from(allwordsList());
     allWords.sort(sorting('agree'));
 
@@ -38,6 +38,7 @@ function showAll() {
                                                     <div style="float:left; height: 20px; width: ${greenx}%; background-color: green;"></div>
                                                     <div style="float:left; height: 20px; width: ${bluex}%; background-color: blue;"></div></br></br>`;
     }
+    diagramDiv += '</div>';
     show();
 }
 
@@ -46,44 +47,46 @@ function redDiagrams() {
     let allWords = Array.from(allwordsList());
     let redAboutAll = [];
     let redAboutRed = [];
-    let redAboutGreen = [];
-    let redAboutBlue = [];
+    let greenAboutRed = [];
+    let blueAboutRed = [];
     let redDisagree = disagree('red');
 
     for (let redWords of allWords) {
         if (
             redWords.redAgreeRed > 0 ||
-            redWords.redAgreeGreen > 0 ||
-            redWords.redAgreeBlue > 0
+            redWords.greenAgreeRed > 0 ||
+            redWords.blueAgreeRed > 0
         ) {
             let total =
                 redWords.redAgreeRed +
-                redWords.redAgreeGreen +
-                redWords.redAgreeBlue;
+                redWords.greenAgreeRed +
+                redWords.blueAgreeRed;
             redAboutAll.push({ word: redWords.word, amount: total });
             if (redWords.redAgreeRed > 0) {
                 redAboutRed.push({
                     word: redWords.word,
                     amount: redWords.redAgreeRed,
                 });
-            } else if (redWords.redAgreeGreen > 0) {
-                redAboutGreen.push({
+            }
+            if (redWords.greenAgreeRed > 0) {
+                greenAboutRed.push({
                     word: redWords.word,
-                    amount: redWords.redAgreeGreen,
+                    amount: redWords.greenAgreeRed,
                 });
-            } else if (redWords.redAgreeBlue > 0) {
-                redAboutBlue.push({
+            }
+            if (redWords.blueAgreeRed > 0) {
+                blueAboutRed.push({
                     word: redWords.word,
-                    amount: redWords.redAgreeBlue,
+                    amount: redWords.blueAgreeRed,
                 });
             }
         }
     }
     redAboutAll.sort(sorting('amount'));
     redAboutRed.sort(sorting('amount'));
-    redAboutGreen.sort(sorting('amount'));
-    redAboutBlue.sort(sorting('amount'));
-    diagramDiv = `</br>Red total</br><div class="column">`;
+    greenAboutRed.sort(sorting('amount'));
+    blueAboutRed.sort(sorting('amount'));
+    diagramDiv = `<div class="column" style="background-color:white; border: solid black;"></br>Red total</br>`;
     for (let redTotal of redAboutAll) {
         let x = redTotal.amount;
         diagramDiv +=
@@ -92,7 +95,7 @@ function redDiagrams() {
             redTotal.amount +
             `<div style="height: 10px; width: ${x}%; background-color: red;"></div></br>`;
     }
-    diagramDiv += `</div>Red about red</br><div class="column">`;
+    diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;">Red about red</br>`;
     for (let redAboutSelf of redAboutRed) {
         let x = redAboutSelf.amount;
         diagramDiv +=
@@ -101,24 +104,24 @@ function redDiagrams() {
             redAboutSelf.amount +
             `<div style="height: 10px; width: ${x}%; background-color: red;"></div></br>`;
     }
-    diagramDiv += `</br>Red about green</br>`;
-    for (let redAboutG of redAboutGreen) {
+    diagramDiv += `</br>Green about red</br>`;
+    for (let redAboutG of greenAboutRed) {
         let x = redAboutG.amount;
 
         diagramDiv +=
             redAboutG.word +
             '   ' +
             redAboutG.amount +
-            `<div style="height: 10px; width: ${x}%; background-color: red;"></div></br>`;
+            `<div style="height: 10px; width: ${x}%; background-color: green;"></div></br>`;
     }
-    diagramDiv += `</br>Red about blue</br>`;
-    for (let redAboutB of redAboutBlue) {
+    diagramDiv += `</br>Blue about red</br>`;
+    for (let redAboutB of blueAboutRed) {
         let x = redAboutB.amount;
         diagramDiv +=
             redAboutB.word +
             '   ' +
             redAboutB.amount +
-            `<div style="height: 10px; width: ${x}%; background-color: red;"></div></br>`;
+            `<div style="height: 10px; width: ${x}%; background-color: blue;"></div></br>`;
     }
     diagramDiv += `</div> ${redDisagree}
     `;
@@ -129,45 +132,45 @@ function greenDiagrams() {
     diagramDiv = '';
     let allWords = Array.from(allwordsList());
     let greenAboutAll = [];
-    let greenAboutRed = [];
+    let redAboutGreen = [];
     let greenAboutGreen = [];
-    let greenAboutBlue = [];
+    let blueAboutGreen = [];
     let greenDisagree = disagree('green');
 
     for (let greenWords of allWords) {
         if (
-            greenWords.greenAgreeRed > 0 ||
+            greenWords.redAgreeGreen > 0 ||
             greenWords.greenAgreeGreen > 0 ||
-            greenWords.greenAgreeBlue > 0
+            greenWords.blueAgreeGreen > 0
         ) {
             let total =
-                greenWords.greenAgreeRed +
+                greenWords.redAgreeGreen +
                 greenWords.greenAgreeGreen +
-                greenWords.greenAgreeBlue;
+                greenWords.blueAgreeGreen;
             greenAboutAll.push({ word: greenWords.word, amount: total });
-            if (greenWords.greenAgreeRed > 0) {
-                greenAboutRed.push({
+            if (greenWords.redAgreeGreen > 0) {
+                redAboutGreen.push({
                     word: greenWords.word,
-                    amount: greenWords.greenAgreeRed,
+                    amount: greenWords.redAgreeGreen,
                 });
-            } else if (greenWords.greenAgreeGreen > 0) {
+            } if (greenWords.greenAgreeGreen > 0) {
                 greenAboutGreen.push({
                     word: greenWords.word,
                     amount: greenWords.greenAgreeGreen,
                 });
-            } else if (greenWords.greenAgreeBlue > 0) {
-                greenAboutBlue.push({
+            } if (greenWords.blueAgreeGreen > 0) {
+                blueAboutGreen.push({
                     word: greenWords.word,
-                    amount: greenWords.greenAgreeBlue,
+                    amount: greenWords.blueAgreeGreen,
                 });
             }
         }
     }
     greenAboutAll.sort(sorting('amount'));
-    greenAboutRed.sort(sorting('amount'));
+    redAboutGreen.sort(sorting('amount'));
     greenAboutGreen.sort(sorting('amount'));
-    greenAboutBlue.sort(sorting('amount'));
-    diagramDiv = `</br>Green total</br><div class="column">`;
+    blueAboutGreen.sort(sorting('amount'));
+    diagramDiv = `<div class="column" style="background-color:white; border: solid black;"></br>Green total</br>`;
     for (let greenTotal of greenAboutAll) {
         let x = greenTotal.amount;
         diagramDiv +=
@@ -176,16 +179,16 @@ function greenDiagrams() {
             greenTotal.amount +
             `<div style="height: 10px; width: ${x}%; background-color: green;"></div></br>`;
     }
-    diagramDiv += `</div></br>Green about red</br><div class="column">`;
-    for (let greenAboutR of greenAboutRed) {
+    diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;"></br>Red about green</br>`;
+    for (let greenAboutR of redAboutGreen) {
         let x = greenAboutR.amount;
         diagramDiv +=
             greenAboutR.word +
             '   ' +
             greenAboutR.amount +
-            `<div style="height: 10px; width: ${x}%; background-color: green;"></div></br>`;
+            `<div style="height: 10px; width: ${x}%; background-color: red;"></div></br>`;
     }
-    diagramDiv += `</br>Red about green</br>`;
+    diagramDiv += `</br>Green about green</br>`;
     for (let greenAboutG of greenAboutGreen) {
         let x = greenAboutG.amount;
 
@@ -195,14 +198,14 @@ function greenDiagrams() {
             greenAboutG.amount +
             `<div style="height: 10px; width: ${x}%; background-color: green;"></div></br>`;
     }
-    diagramDiv += `</br>Red about blue</br>`;
-    for (let greenAboutB of greenAboutBlue) {
+    diagramDiv += `</br>Blue about green</br>`;
+    for (let greenAboutB of blueAboutGreen) {
         let x = greenAboutB.amount;
         diagramDiv +=
             greenAboutB.word +
             '   ' +
             greenAboutB.amount +
-            `<div style="height: 10px; width: ${x}%; background-color: green;"></div></br>`;
+            `<div style="height: 10px; width: ${x}%; background-color: blue;"></div></br>`;
     }
     diagramDiv += `</div> ${greenDisagree}
     `;
@@ -213,33 +216,33 @@ function blueDiagrams() {
     diagramDiv = '';
     let allWords = Array.from(allwordsList());
     let blueAboutAll = [];
-    let blueAboutRed = [];
-    let blueAboutGreen = [];
+    let redAboutBlue = [];
+    let greenAboutBlue = [];
     let blueAboutBlue = [];
     let blueDisagree = disagree('blue');
 
     for (let blueWords of allWords) {
         if (
-            blueWords.blueAgreeRed > 0 ||
-            blueWords.blueAgreeGreen > 0 ||
+            blueWords.redAgreeBlue > 0 ||
+            blueWords.greenAgreeBlue > 0 ||
             blueWords.blueAgreeBlue > 0
         ) {
             let total =
-                blueWords.blueAgreeRed +
-                blueWords.blueAgreeGreen +
+                blueWords.redAgreeBlue +
+                blueWords.greenAgreeBlue +
                 blueWords.blueAgreeBlue;
             blueAboutAll.push({ word: blueWords.word, amount: total });
-            if (blueWords.blueAgreeRed > 0) {
-                blueAboutRed.push({
+            if (blueWords.redAgreeBlue > 0) {
+                redAboutBlue.push({
                     word: blueWords.word,
-                    amount: blueWords.blueAgreeRed,
+                    amount: blueWords.redAgreeBlue,
                 });
-            } else if (blueWords.blueAgreeGreen > 0) {
-                blueAboutGreen.push({
+            } if (blueWords.greenAgreeBlue > 0) {
+                greenAboutBlue.push({
                     word: blueWords.word,
-                    amount: blueWords.blueAgreeGreen,
+                    amount: blueWords.greenAgreeBlue,
                 });
-            } else if (blueWords.blueAgreeBlue > 0) {
+            } if (blueWords.blueAgreeBlue > 0) {
                 blueAboutBlue.push({
                     word: blueWords.word,
                     amount: blueWords.blueAgreeBlue,
@@ -248,10 +251,10 @@ function blueDiagrams() {
         }
     }
     blueAboutAll.sort(sorting('amount'));
-    blueAboutRed.sort(sorting('amount'));
-    blueAboutGreen.sort(sorting('amount'));
+    redAboutBlue.sort(sorting('amount'));
+    greenAboutBlue.sort(sorting('amount'));
     blueAboutBlue.sort(sorting('amount'));
-    diagramDiv = `</br>Blue total</br><div class="column">`;
+    diagramDiv = `<div class="column" style="background-color:white; border: solid black;"></br>Blue total</br>`;
     for (let blueTotal of blueAboutAll) {
         let x = blueTotal.amount;
         diagramDiv +=
@@ -260,24 +263,24 @@ function blueDiagrams() {
             blueTotal.amount +
             `<div style="height: 10px; width: ${x}%; background-color: blue;"></div></br>`;
     }
-    diagramDiv += `</div></br>Blue about red</br><div class="column">`;
-    for (let blueAboutR of blueAboutRed) {
+    diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;"></br>Red about blue</br>`;
+    for (let blueAboutR of redAboutBlue) {
         let x = blueAboutR.amount;
         diagramDiv +=
             blueAboutR.word +
             '   ' +
             blueAboutR.amount +
-            `<div style="height: 10px; width: ${x}%; background-color: blue;"></div></br>`;
+            `<div style="height: 10px; width: ${x}%; background-color: red;"></div></br>`;
     }
-    diagramDiv += `</br>Blue about green</br>`;
-    for (let blueAboutG of blueAboutGreen) {
+    diagramDiv += `</br>Green about blue</br>`;
+    for (let blueAboutG of greenAboutBlue) {
         let x = blueAboutG.amount;
 
         diagramDiv +=
             blueAboutG.word +
             '   ' +
             blueAboutG.amount +
-            `<div style="height: 10px; width: ${x}%; background-color: blue;"></div></br>`;
+            `<div style="height: 10px; width: ${x}%; background-color: green;"></div></br>`;
     }
     diagramDiv += `</br>Blue about blue</br>`;
     for (let blueAboutB of blueAboutBlue) {
