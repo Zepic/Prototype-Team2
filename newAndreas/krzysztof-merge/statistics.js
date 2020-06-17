@@ -9,12 +9,12 @@ function statShow() {
     //this way statShow() will not change any other content like navigation
     //only show() function from View can show other statics views
     return `<div>
-                <button onclick="showAll()">De ord flest er enig i</button>
-                <button onclick="redDiagrams()">Ord fra rød</button>
-                <button onclick="greenDiagrams()">Ord fra grønn</button>
-                <button onclick="blueDiagrams()">Ord fra blå</button>
-                <button onclick="wordCircles()">demo1</button>
-                <button onclick="wordFlower()">Ordsblomster</button>                
+                <button onclick="showAll()">Most agreed to words</button>
+                <button onclick="redDiagrams()">Agreed about red</button>
+                <button onclick="greenDiagrams()">Agreed about green</button>
+                <button onclick="blueDiagrams()">Agreed about blue</button>
+                <button onclick="wordCircles()">demo 1</button>
+                <button onclick="wordFlower()">demo 2</button>                
                 <div class="row">${diagramDiv}</div>
                 </div>`;
 }
