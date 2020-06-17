@@ -19,6 +19,10 @@ function clickStatistics(activeView) {
     show();
 }
 
+function addNote(noteContent) {
+    alert(noteContent);
+}
+
 //add or remove agree
 function agree(noteNumber) {
     // const note = model.notes.filter((n) => n.ID == noteNumber)[0];
