@@ -118,8 +118,7 @@ function content() {
     } else if (model.activeView == 'user') {
         contentHtml = userPage();
     }
-    return contentHtml;
-    show();
+    return contentHtml;    
 }
 
 /*
