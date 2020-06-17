@@ -63,10 +63,10 @@ function menuCode() {
                     <div class="dropdown-content">
                         <a href="#" onclick="clickGroup('group', 'green 1', 'green')">Green 1</a>
                         <a href="#" onclick="clickGroup('group', 'green 1', 'blue')">&nbsp&nbspGreen about blue 1</a>
-                        <a href="#" onclick="clickGroup('group', 'green 1', 'red')">&nbsp&nbspGreen about blue 1</a>
+                        <a href="#" onclick="clickGroup('group', 'green 1', 'red')">&nbsp&nbspGreen about red 1</a>
                         <a href="#" onclick="clickGroup('group', 'green 2', 'green')">Green 2</a>
                         <a href="#" onclick="clickGroup('group', 'green 2', 'blue')">&nbsp&nbspGreen about blue 2</a>
-                        <a href="#" onclick="clickGroup('group', 'green 2', 'red')">&nbsp&nbspGreen about blue 2</a>
+                        <a href="#" onclick="clickGroup('group', 'green 2', 'red')">&nbsp&nbspGreen about red 2</a>
                     </div>
             </div>
             <div class="blue dropdown">
@@ -118,7 +118,7 @@ function content() {
     } else if (model.activeView == 'user') {
         contentHtml = userPage();
     }
-    return contentHtml;    
+    return contentHtml;
 }
 
 /*
