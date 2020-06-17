@@ -2,7 +2,7 @@ show();
 function show() {
     let entirePageHtml;
     if (model.activeView == 'startPage') {
-        entirePageHtml = menuCode();
+        entirePageHtml = menuStartCode();
     } else {
         document.getElementById('pagestyle').setAttribute('href', 'styles.css');
         entirePageHtml = `
@@ -14,6 +14,36 @@ function show() {
     model.activeView == 'group' ? activateNoteMovement() : '';
 }
 
+//function generetes start page
+function menuStartCode() {
+    return `
+        <div class="groups" >
+            <div class="red dropdown">
+                <button class="red dropbtn">Red groups</button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="clickGroup('group', 'red 1')">Red 1</a>
+                        <a href="#" onclick="clickGroup('group', 'red 2')">Red 2</a>
+                    </div>
+            </div>
+            <div class="green dropdown">
+                <button class="green dropbtn">Green groups</button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="clickGroup('group', 'green 1')">Green 1</a>
+                        <a href="#" onclick="clickGroup('group', 'green 2')">Green 2</a>
+                    </div>
+            </div>
+            <div class="blue dropdown">
+                <button class="blue dropbtn">Blue groups</button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="clickGroup('group', 'blue 1')">Blue 1</a>
+                        <a href="#" onclick="clickGroup('group', 'blue 2')">Blue 2</a>
+                    </div>
+            </div>
+        </div>
+        `;
+}
+
+//function generates menu for others pages
 function menuCode() {
     return `
         <div class="groups" >
@@ -36,6 +66,18 @@ function menuCode() {
                     <div class="dropdown-content">
                         <a href="#" onclick="clickGroup('group', 'blue 1')">Blue 1</a>
                         <a href="#" onclick="clickGroup('group', 'blue 2')">Blue 2</a>
+                    </div>
+            </div>
+            <div class=" dropdown">
+                <button class="dropbtn" style="background-color: transparent">Statistics</button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="clickStatistics('statistics')">Statistics</a>
+                    </div>
+            </div>
+            <div class=" dropdown">
+                <button class="dropbtn" style="background-color: transparent">User page</button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="clickUser('user')">User page</a>
                     </div>
             </div>
         </div>
@@ -119,6 +161,9 @@ function userPage() {
 
     //delete this code after you add corect code for user page
     userPageHtml += showUserPageInfo();
+    userPageHtml += `
+    <p>Add code here to generates content for user page</p>
+    `;
 
     return userPageHtml;
 }
@@ -128,7 +173,7 @@ function userPage() {
 function showUserPageInfo() {
     return `
         <div id="info">
-        User home page, User name: ${model.activeUser}
+        User home page, Active user name in the model: ${model.activeUser}
         </div>
         `;
 }
