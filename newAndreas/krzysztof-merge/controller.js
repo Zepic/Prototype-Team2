@@ -7,9 +7,10 @@ function clickUser(activeView) {
 }
 
 //shows the group with its notes
-function clickGroup(activeView, activeGroupName) {
+function clickGroup(activeView, activeGroupName, aboutColor) {
     model.activeView = activeView;
     model.activeGroup = activeGroupName;
+    model.activeAboutColor = aboutColor;
     show();
 }
 
@@ -17,6 +18,10 @@ function clickGroup(activeView, activeGroupName) {
 function clickStatistics(activeView) {
     model.activeView = activeView;
     show();
+}
+
+function addNote(noteContent) {
+    alert(noteContent);
 }
 
 //add or remove agree
