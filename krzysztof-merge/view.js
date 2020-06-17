@@ -69,6 +69,12 @@ function menuCode() {
                     </div>
             </div>
             <div class=" dropdown">
+                <button class="dropbtn" style="background-color: transparent">+ Add note +</button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="addNote('🚧 We are working on this function 🚧')">Add note</a>
+                    </div>
+            </div>
+            <div class=" dropdown">
                 <button class="dropbtn" style="background-color: transparent">Statistics</button>
                     <div class="dropdown-content">
                         <a href="#" onclick="clickStatistics('statistics')">Statistics</a>
