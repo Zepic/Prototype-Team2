@@ -7,6 +7,7 @@ function statShow() {
     //function statShow() should not change content DIV
     //function statShow() should change diagramDIV
     //this way statShow() will not change any other content like navigation
+    //only show() function from View can show other statics views
     return `<div>
                 <button onclick="showAll()">De ord flest er enig i</button>
                 <button onclick="redDiagrams()">Ord fra rød</button>
