@@ -454,19 +454,19 @@ function wordFlower() {
     }
 
     diagramDiv = `<div style="width: 90%; height: 900px; background-color: white; border: solid black; z-index: -2;">
-        <div style="border: solid black; background-color: red; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 43%; top: 7%;"></div>
-        <div style="border: solid black; background-color: mediumspringgreen; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 25%; top: 55%;"></div>
-        <div style="border: solid black; background-color: deepskyblue; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 60%; top: 55%;"></div>
-        <img src="pictures/circle.jpg" style="z-index: -2; display: block; margin-left: 26%; margin-top:5% width: 100%">
-        <div style="position:absolute; left: 47%; top: 9%;">${redAboutR}</div>
-        <div style="position:absolute; left: 700px; top: 300px; color: red;">${redAboutG}</div>
-        <div style="position:absolute; left: 1300px; top: 200px; color: red;">${redAboutB}</div>
-        <div style="position:absolute; left: 550px; top: 200px; color: green">${greenAboutR}</div>
-        <div style="position:absolute; left: 575px; top: 525px;">${greenAboutG}</div>
-        <div style="position:absolute; left: 900px; top: 650px; color: green">${greenAboutB}</div>
-        <div style="position:absolute; left: 1100px; top: 300px; color: blue;">${blueAboutR}</div>
-        <div style="position:absolute; left: 1220px; top: 725px; color: blue;">${blueAboutG}</div>
-        <div style="position:absolute; left: 1225px; top: 525px;">${blueAboutB}</div>
+        <div style="border: solid black; background-color: red; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 18%; top: 8%;"></div>
+        <div style="border: solid black; background-color: mediumspringgreen; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 1%; top: 56%;"></div>
+        <div style="border: solid black; background-color: deepskyblue; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 35%; top: 56%;"></div>
+        <img src="pictures/circle.jpg" style="z-index: -2; display: block; margin-top:6% width: 100%;">
+        <div style="position:absolute; left: 21%; top: 10%;">${redAboutR}</div>
+        <div style="position:absolute; left: 11%; top: 31%; color: red;">${redAboutG}</div>
+        <div style="position:absolute; left: 44%; top: 26%; color: red;">${redAboutB}</div>
+        <div style="position:absolute; left: 3%; top: 26%; color: green">${greenAboutR}</div>
+        <div style="position:absolute; left: 5%; top: 57%;">${greenAboutG}</div>
+        <div style="position:absolute; left: 22%; top: 69%; color: green">${greenAboutB}</div>
+        <div style="position:absolute; left: 34%; top: 31%; color: blue;">${blueAboutR}</div>
+        <div style="position:absolute; left: 7%; top: 79%; color: blue;">${blueAboutG}</div>
+        <div style="position:absolute; left: 39%; top: 57%;">${blueAboutB}</div>
     </div>`;
     show();
 }
