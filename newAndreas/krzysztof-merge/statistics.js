@@ -86,7 +86,7 @@ function redDiagrams() {
     redAboutRed.sort(sorting('amount'));
     greenAboutRed.sort(sorting('amount'));
     blueAboutRed.sort(sorting('amount'));
-    diagramDiv = `<div class="column" style="background-color:white; border: solid black;"></br>Red total</br>`;
+    diagramDiv = `<div class="column" style="background-color:white; border: solid black; height: 450px;"></br>Red total</br>`;
     for (let redTotal of redAboutAll) {
         let x = redTotal.amount;
         diagramDiv +=
@@ -170,7 +170,7 @@ function greenDiagrams() {
     redAboutGreen.sort(sorting('amount'));
     greenAboutGreen.sort(sorting('amount'));
     blueAboutGreen.sort(sorting('amount'));
-    diagramDiv = `<div class="column" style="background-color:white; border: solid black;"></br>Green total</br>`;
+    diagramDiv = `<div class="column" style="background-color:white; border: solid black; height: 450px;"></br>Green total</br>`;
     for (let greenTotal of greenAboutAll) {
         let x = greenTotal.amount;
         diagramDiv +=
@@ -254,7 +254,7 @@ function blueDiagrams() {
     redAboutBlue.sort(sorting('amount'));
     greenAboutBlue.sort(sorting('amount'));
     blueAboutBlue.sort(sorting('amount'));
-    diagramDiv = `<div class="column" style="background-color:white; border: solid black;"></br>Blue total</br>`;
+    diagramDiv = `<div class="column" style="background-color:white; border: solid black; height: 450px;"></br>Blue total</br>`;
     for (let blueTotal of blueAboutAll) {
         let x = blueTotal.amount;
         diagramDiv +=
@@ -292,7 +292,7 @@ function blueDiagrams() {
             blueAboutB.amount +
             `<div style="height: 10px; width: ${x}%; background-color: blue;"></div></br>`;
     }
-    diagramDiv += `</div></div> ${blueDisagree}
+    diagramDiv += `</div></div>${blueDisagree}
     `;
     show();
 }
@@ -580,109 +580,51 @@ function sorting(valueToSortAfter) {
 
 function disagree(color) {
     let wordList = Array.from(disagreeList(color));
-    diagramDiv += `<div class="row"><div class="column">Disagree red</br></br>`;
+    diagramDiv += `<div class="row column" style="background-color:white; border: solid black;">Words ${color} disagree with</br>`;
     for (let aboutR of wordList) {
-        if (aboutR.disagreeRed > 0) {
-            let x = aboutR.disagreeRed * 10;
+        if (aboutR.disagree > 0) {
+            let x = aboutR.disagree;
             diagramDiv +=
                 aboutR.word +
                 '   ' +
-                aboutR.disagreeRed +
-                `<div style="height: 10px; width: ${x}px; background-color: ${color};"></div></br>`;
+                aboutR.disagree +
+                `<div style="height: 10px; width: ${x}%; background-color: ${color};"></div></br>`;
         }
     }
-    diagramDiv += `</br>Disagree green</br></br>`;
-    for (let aboutG of wordList) {
-        if (aboutG.disagreeGreen > 0) {
-            let x = aboutG.disagreeGreen * 10;
-            diagramDiv +=
-                aboutG.word +
-                '   ' +
-                aboutG.disagreeGreen +
-                `<div style="height: 10px; width: ${x}px; background-color: ${color};"></div></br>`;
-        }
-    }
-    diagramDiv += `</br>Disagree blue</br></br>`;
-    for (let aboutB of wordList) {
-        if (aboutB.disagreeBlue > 0) {
-            let x = aboutB.disagreeBlue * 10;
-            diagramDiv +=
-                aboutB.word +
-                '   ' +
-                aboutB.disagreeBlue +
-                `<div style="height: 10px; width: ${x}px; background-color: ${color};"></div></br>`;
-        }
-    }
-
-    return (diagramDiv += '</div></div>');
+    return (diagramDiv += '</div>');
 }
 
 //sorts and add together words based on color of the group they are mentioned in
-function disagreeList(color) {
-    let groupList = [];
-    let groupResultList = [];
+function disagreeList(color) {    
     let testWord = [];
     let collectedList = [];
 
-    let disagreeRed = 0;
-    let disagreeGreen = 0;
-    let disagreeBlue = 0;
+    let disagreeColor = 0;
+    
 
-    //makes a list with all the groups from the selected color
-    for (let groupsOfColor of model.groups) {
-        if (groupsOfColor.color === color) {
-            groupList.push(groupsOfColor.name);
-        }
-    }
-
-    //making a list with all the notes by the selected color
-    for (let currentGroup of groupList) {
-        for (let words of noteModel.notes) {
-            if (words.group === currentGroup) {
-                groupResultList.push({
-                    wordId: words.ID,
-                    word: words.content,
-                    disagree: words.disagree,
-                    about: words.aboutColor,
-                });
-            }
-        }
-    }
-
-    for (let wordToAdd of groupResultList) {
+    for (let wordToAdd of noteModel.notes) {
         //starts going through the list made above, selecting one word to check
-        if (wordToAdd.about === 'red') {
-            disagreeRed = wordToAdd.disagree;
-        } else if (wordToAdd.about === 'green') {
-            disagreeGreen = wordToAdd.disagree;
-        } else if (wordToAdd.about === 'blue') {
-            disagreeBlue = wordToAdd.disagree;
+        if (wordToAdd.aboutColor === color) {
+            disagreeColor = wordToAdd.disagree;
         }
-        if (testWord.includes(wordToAdd.word) === false) {
+        if (testWord.includes(wordToAdd.content) === false) {
             //makes sure the selected word has not been added before
-            for (let noteInformation of groupResultList) {
+            for (let noteInformation of noteModel.notes) {
                 //goes through the same list once per word that has not been selected before
                 if (
-                    wordToAdd.wordId != noteInformation.wordId &&
-                    wordToAdd.word === noteInformation.word
+                    wordToAdd.ID != noteInformation.ID &&
+                    wordToAdd.content === noteInformation.content
                 ) {
                     //make sure the note containing the word is different even though the word is the same
-                    if (wordToAdd.about === 'red') {
-                        disagreeRed = disagreeRed + noteInformation.disagree;
-                    } else if (wordToAdd.about === 'green') {
-                        disagreeGreen =
-                            disagreeGreen + noteInformation.disagree;
-                    } else if (wordToAdd.about === 'blue') {
-                        disagreeBlue = disagreeBlue + noteInformation.disagree;
+                    if (wordToAdd.aboutColor === color) {
+                        disagreeColor = disagreeColor + noteInformation.disagree;
                     }
                 }
             }
-            testWord.push(wordToAdd.word);
+            testWord.push(wordToAdd.content);
             collectedList.push({
-                word: wordToAdd.word,
-                disagreeRed: disagreeRed,
-                disagreeGreen: disagreeGreen,
-                disagreeBlue: disagreeBlue,
+                word: wordToAdd.content,
+                disagree: disagreeColor,               
             });
         }
     }
