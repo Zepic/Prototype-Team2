@@ -17,3 +17,23 @@
     display: inline-block;
     color: white;
 }
+
+.diagramButtonsDiv {
+    top:1%;
+}
+
+ .multicolored {
+    background-image: linear-gradient(to right, red, green, blue);
+ }
+
+.aboutRed {
+    background-color: red;
+}
+
+.aboutGreen {
+    background-color: green;
+}
+
+.aboutBlue {
+    background-color: blue;
+}

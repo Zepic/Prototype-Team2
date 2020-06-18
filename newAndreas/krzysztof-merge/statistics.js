@@ -8,13 +8,13 @@ function statShow() {
     //function statShow() should change diagramDIV
     //this way statShow() will not change any other content like navigation
     //only show() function from View can show other statics views
-    return `<div>
-                <button onclick="showAll()" class="selectDiagram" style="background-image: linear-gradient(to right, red, green, blue);" >Most agreed to words</button>
-                <button onclick="redDiagrams()" class="selectDiagram" style="background-color: red;" >Agreed about red</button>
-                <button onclick="greenDiagrams()" class="selectDiagram" style="background-color: green;" >Agreed about green</button>
-                <button onclick="blueDiagrams()" class="selectDiagram" style="background-color: blue;" >Agreed about blue</button>
-                <button onclick="wordCircles()" class="selectDiagram" style="background-image: linear-gradient(to right, red, green, blue);" >demo 1</button>
-                <button onclick="wordFlower()" class="selectDiagram" style="background-image: linear-gradient(to right, red, green, blue);" >demo 2</button>                
+    return `<div class="diagramButtonsDiv">
+                <button onclick="showAll()" class="selectDiagram multicolored">All agreed</button>
+                <button onclick="redDiagrams()" class="selectDiagram aboutRed">About Red</button>
+                <button onclick="greenDiagrams()" class="selectDiagram aboutGreen">About Green</button>
+                <button onclick="blueDiagrams()" class="selectDiagram aboutBlue">About Blue</button>
+                <button onclick="wordCircles()" class="selectDiagram multicolored">demo 1</button>
+                <button onclick="wordFlower()" class="selectDiagram multicolored">demo 2</button>
                 <div class="row">${diagramDiv}</div>
                 </div>`;
 }
