@@ -63,10 +63,10 @@ function menuCode() {
                     <div class="dropdown-content">
                         <a href="#" onclick="clickGroup('group', 'green 1', 'green')">Green 1</a>
                         <a href="#" onclick="clickGroup('group', 'green 1', 'blue')">&nbsp&nbspGreen about blue 1</a>
-                        <a href="#" onclick="clickGroup('group', 'green 1', 'red')">&nbsp&nbspGreen about blue 1</a>
+                        <a href="#" onclick="clickGroup('group', 'green 1', 'red')">&nbsp&nbspGreen about red 1</a>
                         <a href="#" onclick="clickGroup('group', 'green 2', 'green')">Green 2</a>
                         <a href="#" onclick="clickGroup('group', 'green 2', 'blue')">&nbsp&nbspGreen about blue 2</a>
-                        <a href="#" onclick="clickGroup('group', 'green 2', 'red')">&nbsp&nbspGreen about blue 2</a>
+                        <a href="#" onclick="clickGroup('group', 'green 2', 'red')">&nbsp&nbspGreen about red 2</a>
                     </div>
             </div>
             <div class="blue dropdown">
@@ -83,7 +83,7 @@ function menuCode() {
             <div class=" dropdown">
                 <button class="dropbtn" style="background-color: transparent">+ Add note +</button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="addNote('🚧 We are working on this function 🚧')">Add note</a>
+                        <input type="text" onchange="addNote(this.value)">
                     </div>
             </div>
             <div class=" dropdown">
@@ -118,7 +118,7 @@ function content() {
     } else if (model.activeView == 'user') {
         contentHtml = userPage();
     }
-    return contentHtml;    
+    return contentHtml;
 }
 
 /*
@@ -144,7 +144,7 @@ function showNote() {
             <div id="${n.ID}" class="mydiv" style="top: ${n.posY}px; left: ${n.posX}px">
                 <div class="mydivheader">Click here to move</div>
                 <div class="noteContent">
-                    <p>ID: ${n.ID}, content: <b>${n.content}</b>, group: ${n.group}, aboutColor: ${n.group}</p>
+                    <p>ID: ${n.ID}, content: <b>${n.content}</b>, group: ${n.group}, aboutColor: ${n.aboutColor}</p>
                     <p>blueAgree: ${n.blueAgree}, greenAgree: ${n.greenAgree}, redAgree: ${n.redAgree}, disagree: ${n.disagree}</p>
                     <p>posX: ${n.posX}, posY: ${n.posY}, zIndex: ${n.zIndex}</p>
                     <button

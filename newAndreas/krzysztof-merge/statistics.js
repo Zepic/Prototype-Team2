@@ -394,14 +394,14 @@ function wordCircles() {
         }
     }
 
-    diagramDiv = `<div style="width: 60%px; height: 60%px;">
-        <div style="border: solid red; border-radius: 50%; width: 33%; height: 65%; position:absolute; z-index: -1; left: 25%; top: 6%;"></div>
-        <div style="border: solid green; border-radius: 50%; width: 33%; height: 65%; position:absolute; left: 15%; top: 36%;"></div>
-        <div style="border: solid blue; border-radius: 50%; width: 33%; height: 65%; position:absolute; z-index: 1; left: 35%; top: 36%;"></div>
+    diagramDiv = `<div style="width: 90%; height: 900px; background-color: white; border: solid black; z-index: -2;">
+        <div style="border: solid red; border-radius: 50%; width: 33%; height: 63%; position:absolute; left: 25%; top: 9%;"></div>
+        <div style="border: solid green; border-radius: 50%; width: 33%; height: 63%; position:absolute; left: 15%; top: 36%;"></div>
+        <div style="border: solid blue; border-radius: 50%; width: 33%; height: 63%; position:absolute; z-index: 1; left: 35%; top: 36%;"></div>
         <div style="position:absolute; z-index: 2; left: 40%; top: 46%;">${allColors}</div>
         <div style="position:absolute; z-index: 2; left: 30%; top: 39%;">${redAndGreen}</div>
         <div style="position:absolute; z-index: 2; left: 50%; top: 39%;">${redAndBlue}</div>
-        <div style="position:absolute; z-index: 2; left: 40%; top: 72%;">${greenAndBlue}</div>
+        <div style="position:absolute; z-index: 2; left: 40%; top: 73%;">${greenAndBlue}</div>
         <div style="position:absolute; z-index: 2; left: 40%; top: 10%;">${red}</div>
         <div style="position:absolute; z-index: 2; left: 20%; top: 50%;">${green}</div>
         <div style="position:absolute; z-index: 2; left: 60%; top: 50%;">${blue}</div>
@@ -452,7 +452,7 @@ function wordFlower() {
         }
     }
 
-    diagramDiv = `<div style="width: 800px; height: 600px;">
+    diagramDiv = `<div style="width: 90%; height: 900px; background-color: white; border: solid black; z-index: -2;">
         <div style="border: solid black; background-color: red; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 825px; top: 50px;"></div>
         <div style="border: solid black; background-color: mediumspringgreen; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 500px; top: 500px;"></div>
         <div style="border: solid black; background-color: deepskyblue; border-radius: 50%; width: 200px; height: 200px; position:absolute; z-index: 1; left: 1150px; top: 500px;"></div>
