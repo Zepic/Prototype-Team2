@@ -22,7 +22,7 @@ function clickStatistics(activeView) {
 
 function addNote(noteContent) {
     noteModel.notes.push({
-        ID: noteModel.notes.length + 1,
+        ID: noteModel.notes.length +1,
         content: `${noteContent}`,
         aboutColor: `${model.activeAboutColor}`,
         group: `${model.activeGroup}`,
@@ -32,9 +32,9 @@ function addNote(noteContent) {
         disagree: 0, //['Knut'],
         posX: 600, //x
         posY: 250, //y
-        zIndex: 1,
-    });
-    show();
+        zIndex: 1
+    },);
+    show()
 }
 
 //add or remove agree

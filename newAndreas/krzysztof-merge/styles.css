@@ -1,6 +1,6 @@
 body {
     min-height: 100vh;
-    overflow: hidden;
+    overflow: auto;
     padding: 0%;
     margin: 0%;
     background-image: linear-gradient(
@@ -20,11 +20,7 @@ body {
     background-color: rgb(28, 96, 224);
 }
 
-.groups {
-    justify-content: center;
-    align-self: center;
-    display: flex;
-}
+
 /* Dropdown Button */
 .dropbtn {
     color: white;
@@ -81,4 +77,22 @@ body {
     height: 6vh;
     background-color: rgb(88, 87, 87);
     color: white;
+}
+.statisticsNav{
+    position: relative;
+    display: inline-block;
+}
+.navButton{
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    display: block;
+    cursor: pointer;
+}
+.button1{
+    background-color: orange;
+}
+.button2{
+    background-color: orangered;
 }

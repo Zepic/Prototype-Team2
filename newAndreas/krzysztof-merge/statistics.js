@@ -95,7 +95,7 @@ function redDiagrams() {
             redTotal.amount +
             `<div style="height: 10px; width: ${x}%; background-color: red;"></div></br>`;
     }
-    diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;">Red about red</br>`;
+    diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;"><div class="columnWithin">Red about red</br>`;
     for (let redAboutSelf of redAboutRed) {
         let x = redAboutSelf.amount;
         diagramDiv +=
@@ -104,7 +104,7 @@ function redDiagrams() {
             redAboutSelf.amount +
             `<div style="height: 10px; width: ${x}%; background-color: red;"></div></br>`;
     }
-    diagramDiv += `</br>Green about red</br>`;
+    diagramDiv += `</div><div class="columnWithin"></br>Green about red</br>`;
     for (let redAboutG of greenAboutRed) {
         let x = redAboutG.amount;
 
@@ -114,7 +114,7 @@ function redDiagrams() {
             redAboutG.amount +
             `<div style="height: 10px; width: ${x}%; background-color: green;"></div></br>`;
     }
-    diagramDiv += `</br>Blue about red</br>`;
+    diagramDiv += `</div><div class="columnWithin"></br>Blue about red</br>`;
     for (let redAboutB of blueAboutRed) {
         let x = redAboutB.amount;
         diagramDiv +=
@@ -123,7 +123,7 @@ function redDiagrams() {
             redAboutB.amount +
             `<div style="height: 10px; width: ${x}%; background-color: blue;"></div></br>`;
     }
-    diagramDiv += `</div> ${redDisagree}
+    diagramDiv += `</div></div> ${redDisagree}
     `;
     show();
 }
@@ -179,7 +179,7 @@ function greenDiagrams() {
             greenTotal.amount +
             `<div style="height: 10px; width: ${x}%; background-color: green;"></div></br>`;
     }
-    diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;"></br>Red about green</br>`;
+    diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;"><div class="columnWithin"></br>Red about green</br>`;
     for (let greenAboutR of redAboutGreen) {
         let x = greenAboutR.amount;
         diagramDiv +=
@@ -188,7 +188,7 @@ function greenDiagrams() {
             greenAboutR.amount +
             `<div style="height: 10px; width: ${x}%; background-color: red;"></div></br>`;
     }
-    diagramDiv += `</br>Green about green</br>`;
+    diagramDiv += `</div><div class="columnWithin"></br>Green about green</br>`;
     for (let greenAboutG of greenAboutGreen) {
         let x = greenAboutG.amount;
 
@@ -198,7 +198,7 @@ function greenDiagrams() {
             greenAboutG.amount +
             `<div style="height: 10px; width: ${x}%; background-color: green;"></div></br>`;
     }
-    diagramDiv += `</br>Blue about green</br>`;
+    diagramDiv += `</div><div class="columnWithin"></br>Blue about green</br>`;
     for (let greenAboutB of blueAboutGreen) {
         let x = greenAboutB.amount;
         diagramDiv +=
@@ -207,7 +207,7 @@ function greenDiagrams() {
             greenAboutB.amount +
             `<div style="height: 10px; width: ${x}%; background-color: blue;"></div></br>`;
     }
-    diagramDiv += `</div> ${greenDisagree}
+    diagramDiv += `</div></div> ${greenDisagree}
     `;
     show();
 }
@@ -263,7 +263,7 @@ function blueDiagrams() {
             blueTotal.amount +
             `<div style="height: 10px; width: ${x}%; background-color: blue;"></div></br>`;
     }
-    diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;"></br>Red about blue</br>`;
+    diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;"><div class="columnWithin"></br>Red about blue</br>`;
     for (let blueAboutR of redAboutBlue) {
         let x = blueAboutR.amount;
         diagramDiv +=
@@ -272,7 +272,8 @@ function blueDiagrams() {
             blueAboutR.amount +
             `<div style="height: 10px; width: ${x}%; background-color: red;"></div></br>`;
     }
-    diagramDiv += `</br>Green about blue</br>`;
+    
+    diagramDiv += `</div><div class="columnWithin"></br>Green about blue</br>`;
     for (let blueAboutG of greenAboutBlue) {
         let x = blueAboutG.amount;
 
@@ -282,7 +283,7 @@ function blueDiagrams() {
             blueAboutG.amount +
             `<div style="height: 10px; width: ${x}%; background-color: green;"></div></br>`;
     }
-    diagramDiv += `</br>Blue about blue</br>`;
+    diagramDiv += `</div><div class="columnWithin"></br>Blue about blue</br>`;
     for (let blueAboutB of blueAboutBlue) {
         let x = blueAboutB.amount;
         diagramDiv +=
@@ -291,7 +292,7 @@ function blueDiagrams() {
             blueAboutB.amount +
             `<div style="height: 10px; width: ${x}%; background-color: blue;"></div></br>`;
     }
-    diagramDiv += `</div> ${blueDisagree}
+    diagramDiv += `</div></div> ${blueDisagree}
     `;
     show();
 }
@@ -453,19 +454,19 @@ function wordFlower() {
     }
 
     diagramDiv = `<div style="width: 90%; height: 900px; background-color: white; border: solid black; z-index: -2;">
-        <div style="border: solid black; background-color: red; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 825px; top: 50px;"></div>
-        <div style="border: solid black; background-color: mediumspringgreen; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 500px; top: 500px;"></div>
-        <div style="border: solid black; background-color: deepskyblue; border-radius: 50%; width: 200px; height: 200px; position:absolute; z-index: 1; left: 1150px; top: 500px;"></div>
-        <img src="pictures/circle.jpg" style="z-index: -2; display: block; margin-left: 450px; margin-top:50px">
-        <div style="position:absolute; z-index: 2; left: 900px; top: 75px;">${redAboutR}</div>
-        <div style="position:absolute; z-index: 3; left: 700px; top: 300px;">${redAboutG}</div>
-        <div style="position:absolute; z-index: 3; left: 1300px; top: 200px;">${redAboutB}</div>
-        <div style="position:absolute; z-index: 3; left: 550px; top: 200px;">${greenAboutR}</div>
-        <div style="position:absolute; z-index: 3; left: 575px; top: 525px;">${greenAboutG}</div>
-        <div style="position:absolute; z-index: 3; left: 900px; top: 650px;">${greenAboutB}</div>
-        <div style="position:absolute; z-index: 3; left: 1100px; top: 300px;">${blueAboutR}</div>
-        <div style="position:absolute; z-index: 3; left: 1220px; top: 725px;">${blueAboutG}</div>
-        <div style="position:absolute; z-index: 3; left: 1225px; top: 525px;">${blueAboutB}</div>
+        <div style="border: solid black; background-color: red; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 43%; top: 7%;"></div>
+        <div style="border: solid black; background-color: mediumspringgreen; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 25%; top: 55%;"></div>
+        <div style="border: solid black; background-color: deepskyblue; border-radius: 50%; width: 200px; height: 200px; position:absolute; left: 60%; top: 55%;"></div>
+        <img src="pictures/circle.jpg" style="z-index: -2; display: block; margin-left: 26%; margin-top:5% width: 100%">
+        <div style="position:absolute; left: 47%; top: 9%;">${redAboutR}</div>
+        <div style="position:absolute; left: 700px; top: 300px; color: red;">${redAboutG}</div>
+        <div style="position:absolute; left: 1300px; top: 200px; color: red;">${redAboutB}</div>
+        <div style="position:absolute; left: 550px; top: 200px; color: green">${greenAboutR}</div>
+        <div style="position:absolute; left: 575px; top: 525px;">${greenAboutG}</div>
+        <div style="position:absolute; left: 900px; top: 650px; color: green">${greenAboutB}</div>
+        <div style="position:absolute; left: 1100px; top: 300px; color: blue;">${blueAboutR}</div>
+        <div style="position:absolute; left: 1220px; top: 725px; color: blue;">${blueAboutG}</div>
+        <div style="position:absolute; left: 1225px; top: 525px;">${blueAboutB}</div>
     </div>`;
     show();
 }
@@ -579,7 +580,7 @@ function sorting(valueToSortAfter) {
 
 function disagree(color) {
     let wordList = Array.from(disagreeList(color));
-    diagramDiv += `<div class="column">Disagree red</br></br>`;
+    diagramDiv += `<div class="row"><div class="column">Disagree red</br></br>`;
     for (let aboutR of wordList) {
         if (aboutR.disagreeRed > 0) {
             let x = aboutR.disagreeRed * 10;
@@ -613,7 +614,7 @@ function disagree(color) {
         }
     }
 
-    return (diagramDiv += '</div>');
+    return (diagramDiv += '</div></div>');
 }
 
 //sorts and add together words based on color of the group they are mentioned in
