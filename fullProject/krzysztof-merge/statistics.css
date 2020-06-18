@@ -1,0 +1,43 @@
+.column {
+    float: left;
+    width: 45%;
+    padding: 1%;
+}
+
+.columnWithin {
+    float: left;
+    width: 29%;
+    padding: 1%;
+}
+
+.row::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+
+.selectDiagram {
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    color: white;
+    font-weight: bolder;   
+}
+
+.multicolored {
+    background-image: linear-gradient(to right, red, green, blue);
+}
+
+.aboutRed {
+    background-color: red;
+}
+
+.aboutGreen {
+    background-color: green;
+}
+
+.aboutBlue {
+    background-color: blue;
+}
