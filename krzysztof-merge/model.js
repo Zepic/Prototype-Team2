@@ -1,11 +1,13 @@
 //model
 const model = {
-    user: {
-        name: 'Terje',
-        color: 'green',
-    },
+    users: [
+        {
+            name: 'Terje',
+            color: 'blue',
+        },
+    ],
     activeView: 'startPage',
-    activeUser: '',
+    activeUser: 'Terje',
     activeGroup: 'blue 1',
     activeAboutColor: 'blue',
     groups: [
