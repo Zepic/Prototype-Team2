@@ -52,3 +52,11 @@ function agree(noteNumber) {
     }
     show();
 }
+//allows the people of the same color as the note is about to disagree
+function disagree(){
+
+}
+//copy word to own page
+function shop(){
+
+}

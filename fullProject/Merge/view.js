@@ -50,7 +50,7 @@ function menuCode() {
             <div class="red dropdown">
                 <button class="red dropbtn">Red groups</button>
                     <div class="dropdown-content">
-                        <a onclick="clickGroup('group', 'red 1', 'red')">Red 1</a>
+                        <a href="#" onclick="clickGroup('group', 'red 1', 'red')">Red 1</a>
                         <a href="#" onclick="clickGroup('group', 'red 1', 'green')">&nbsp&nbspRed about green 1</a>
                         <a href="#" onclick="clickGroup('group', 'red 1', 'blue')">&nbsp&nbspRed about blue 1</a>
                         <a href="#" onclick="clickGroup('group', 'red 2', 'red')">Red 2</a>
@@ -128,6 +128,7 @@ function groupPage() {
     return `
         <div>
             <div>${showNote()}</div>
+            <button class="nextColor" onclick="clickGroup()">Next color</button>
         </div>
     `;
 }
@@ -144,13 +145,13 @@ function showNote() {
             return `
             <div id="${n.ID}" class="noteDiv" style="background-color: ${noteColor}; top: ${n.posY}px; left: ${n.posX}px">
                 <div class="noteHeader">Click here to move</div>
-                <div class="noteContent">
-                    <b>${n.content}</b>
-                    <button
-                        type="button"
-                        class="noteAgree"
-                        onclick="agree(${n.ID})"
-                    >Agree</button>
+                <div class="noteContainer">
+                    <b class="noteContent">${n.content}</b>
+                    <div class="noteButtonDiv">
+                        <button type="button" class="noteButtons noteAgree" onclick="agree(${n.ID})">Agree</button>
+                        <button type="button" class="noteButtons noteDisagree" onclick="disagree(${n.ID})">Disagree</button>
+                        <button type="button" class="noteButtons noteShop" onclick="shop(${n.ID})">Copy Word</button>
+                    </div>
                 </div>
             </div>
             `;

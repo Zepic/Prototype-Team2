@@ -452,7 +452,7 @@ const noteModel = {
             blueAgree: 0,
             disagree: 0,
             posX: 1169,
-            posY: 679,
+            posY: 379,
             zIndex: 3,
         },
         {

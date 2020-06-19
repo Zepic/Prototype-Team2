@@ -101,6 +101,7 @@ body {
     z-index: 9;
     border: 1px solid #d3d3d3;
     text-align: center;
+    min-height: 5rem;
 }
 .noteHeader {
     padding: 1px;
@@ -109,12 +110,35 @@ body {
     color: #fff;
 }
 .noteContent {
-    padding: 0 10px 10px 10px;
+    padding:10px;
+    font-size: large;
 }
-
-.noteAgree{
+/* .noteContainer{
+    
+} */
+.noteButtonDiv{
+display: flex;
+}
+.noteButtons{
     color: white;
     background-color: rgb(155, 177, 164);
-    font-size: medium;
     cursor: pointer;
+}
+/* .noteAgree{
+
+}
+.noteShop{
+
+}
+.noteDisagree{
+
+} */
+.nextColor{
+    height: 3rem;
+    width: 5rem;
+    display: flex;
+    text-align: center;
+    position: relative;
+    left: 193vh;
+    top: 87vh;
 }
