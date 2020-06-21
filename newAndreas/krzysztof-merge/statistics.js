@@ -61,7 +61,7 @@ function redDiagrams() {
                 redWords.redAgreeRed +
                 redWords.greenAgreeRed +
                 redWords.blueAgreeRed;
-            redAboutAll.push({ word: redWords.word, amount: total });
+            redAboutAll.push({ word: redWords.word, amount: total, redAgree: redWords.redAgreeRed, greenAgree: redWords.greenAgreeRed, blueAgree: redWords.blueAgreeRed });
             if (redWords.redAgreeRed > 0) {
                 redAboutRed.push({
                     word: redWords.word,
@@ -92,8 +92,11 @@ function redDiagrams() {
         diagramDiv +=
             redTotal.word +
             '   ' +
-            redTotal.amount +
-            `<div style="height: 10px; width: ${x}%; background-color: red;"></div></br>`;
+        redTotal.amount +
+        `<div style=" float:left; height: 10px; width: ${redTotal.redAgree}%; background-color: red;"></div>
+            <div style=" float:left; height: 10px; width: ${redTotal.greenAgree}%; background-color: green;"></div>
+            <div style=" float:left; height: 10px; width: ${redTotal.blueAgree}%; background-color: blue;"></div>
+            </br>`;
     }
     diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;"><div class="columnWithin">Red about red</br>`;
     for (let redAboutSelf of redAboutRed) {
@@ -147,7 +150,7 @@ function greenDiagrams() {
                 greenWords.redAgreeGreen +
                 greenWords.greenAgreeGreen +
                 greenWords.blueAgreeGreen;
-            greenAboutAll.push({ word: greenWords.word, amount: total });
+            greenAboutAll.push({ word: greenWords.word, amount: total, redAgree: greenWords.redAgreeGreen, greenAgree: greenWords.greenAgreeGreen, blueAgree: greenWords.blueAgreeGreen });
             if (greenWords.redAgreeGreen > 0) {
                 redAboutGreen.push({
                     word: greenWords.word,
@@ -176,8 +179,10 @@ function greenDiagrams() {
         diagramDiv +=
             greenTotal.word +
             '   ' +
-            greenTotal.amount +
-            `<div style="height: 10px; width: ${x}%; background-color: green;"></div></br>`;
+            greenTotal.amount + `<div style=" float:left; height: 10px; width: ${greenTotal.redAgree}%; background-color: red;"></div>
+            <div style=" float:left; height: 10px; width: ${greenTotal.greenAgree}%; background-color: green;"></div>
+            <div style=" float:left; height: 10px; width: ${greenTotal.blueAgree}%; background-color: blue;"></div>
+            </br>`;
     }
     diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;"><div class="columnWithin"></br>Red about green</br>`;
     for (let greenAboutR of redAboutGreen) {
@@ -231,7 +236,7 @@ function blueDiagrams() {
                 blueWords.redAgreeBlue +
                 blueWords.greenAgreeBlue +
                 blueWords.blueAgreeBlue;
-            blueAboutAll.push({ word: blueWords.word, amount: total });
+            blueAboutAll.push({ word: blueWords.word, amount: total, redAgree: blueWords.redAgreeBlue, greenAgree: blueWords.greenAgreeBlue, blueAgree: blueWords.blueAgreeBlue });
             if (blueWords.redAgreeBlue > 0) {
                 redAboutBlue.push({
                     word: blueWords.word,
@@ -260,8 +265,10 @@ function blueDiagrams() {
         diagramDiv +=
             blueTotal.word +
             '   ' +
-            blueTotal.amount +
-            `<div style="height: 10px; width: ${x}%; background-color: blue;"></div></br>`;
+            blueTotal.amount + `<div style=" float:left; height: 10px; width: ${blueTotal.redAgree}%; background-color: red;"></div>
+            <div style=" float:left; height: 10px; width: ${blueTotal.greenAgree}%; background-color: green;"></div>
+            <div style=" float:left; height: 10px; width: ${blueTotal.blueAgree}%; background-color: blue;"></div>
+            </br>`;
     }
     diagramDiv += `</div><div class="column" style="background-color:white; border: solid black;"><div class="columnWithin"></br>Red about blue</br>`;
     for (let blueAboutR of redAboutBlue) {
