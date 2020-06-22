@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+
+    <script src="notes.js"></script>
+    <script src="model.js"></script>
+</head>
+<body>
+
+    <div id="content"></div>
+    <div id="test1"></div>
+    
+    <script>
+        const contentDiv = document.getElementById('content');
+        let mainArea = '';
+        let selectedUser = model.user[1];
+
+        showGroup();
+
+        function showGroup() {
+            
+
+            let groupLists = groupListGenerator();
+
+            contentDiv.innerHTML = `<div>${groupLists}</div></br>
+            <div>${mainArea}</div>
+            `;
+
+
+        }
+
+        function groupListGenerator() {
+            let groupselectHtml = '';
+            let redGroupselectHtml = '';
+            let greenGroupselectHtml = '';
+            let blueGroupselectHtml = '';            
+
+
+            for (let index = 0; index < model.groups.length; index++) {
+                let groupInfo = model.groups[index];                
+                if (groupInfo.color === 'red') {                    
+                    redGroupselectHtml += `<option> ${groupInfo.name}
+                    <div class="dropdown-content">            
+                    <option onclick="about('${groupInfo.name}', 'red', '${groupInfo.color}')"> Red about red</option>
+                    <option onclick="about('${groupInfo.name}', 'green', '${groupInfo.color}')"> Red about green</option>
+                    <option onclick="about('${groupInfo.name}', 'blue', '${groupInfo.color}')"> Red about blue</option>
+                    </div>
+                    </option>`;
+                } else if (groupInfo.color === 'green') {
+                    greenGroupselectHtml += `<option> ${groupInfo.name} 
+                    <option onclick="about('${groupInfo.name}', 'red', '${groupInfo.color}')"> Green about red</option>
+                    <option onclick="about('${groupInfo.name}', 'green', '${groupInfo.color}')"> Green about green</option>
+                    <option onclick="about('${groupInfo.name}', 'blue', '${groupInfo.color}')"> Green about blue</option>
+                    </div>
+                    </option>`;
+                } else if (groupInfo.color === 'blue') {
+                    blueGroupselectHtml += `<option> ${groupInfo.name} 
+                    <option onclick="about('${groupInfo.name}', 'red', '${groupInfo.color}')"> Blue about red</option>
+                    <option onclick="about('${groupInfo.name}', 'green', '${groupInfo.color}')"> Blue about green</option>
+                    <option onclick="about('${groupInfo.name}', 'blue', '${groupInfo.color}')"> Blue about blue</option>
+                    </div>
+                    </option>`;
+                } 
+            }
+            groupselectHtml = `<select>${redGroupselectHtml}</select>
+            <select>${greenGroupselectHtml}</select>
+            <select>${blueGroupselectHtml}</select>`;
+
+            return groupselectHtml;
+        }
+
+        function about(groupName, color, groupColor) {
+            backGcolor = '';
+            if (groupColor === 'red') { backGcolor = 'red' }
+            if (groupColor === 'green') { backGcolor = 'mediumspringgreen' }
+            if (groupColor === 'blue') { backGcolor = 'deepskyblue' }
+
+            mainArea = `<h1>${groupColor} about ${color}</h1>`;
+            for (let note of noteModel.notes) {
+                if (note.group === groupName && note.aboutColor === color) {
+                    let totalAgree = note.redAgree + note.greenAgree + note.blueAgree;
+                    mainArea += `<div style=" width: 200px; height: 50px; background-color: ${backGcolor}; border: 
+                                solid black; position:absolute; left: ${note.posX}px; bottom: ${note.posY}px; z-index: ${note.zIndex};">${note.content}</br>
+                                <button onclick="addDisagree('${note.ID}')">Disagree</button>${note.disagree}<button onclick="addAgree('${note.ID}')">Agree</button> ${totalAgree}</div>`;
+                }
+            }
+            showGroup();
+        }
+
+        function addDisagree(note) {
+            let userDisagree = Array.from(selectedUser.disagreedWord);
+            document.getElementById('test1').innerHTML = selectedUser.disagreedWord;
+            let userAgree = Array.from(selectedUser.agreedWord);
+            if (userDisagree.includes(note) === false && userAgree.includes(note) === false) {
+                selectedUser.disagreedWord.push(note);
+                document.getElementById('test1').innerHTML = selectedUser.disagreedWord[0];
+                for (let index = 0; index < noteModel.notes.length; index++) {
+                    let noteInfo = noteModel.notes[index];
+                    if (noteInfo.ID === note) {
+                        noteInfo.disagree = noteInfo.disagree + 1;
+                        about(noteInfo.group, noteInfo.aboutColor, selectedUser.color);
+                    }                    
+                }                
+            } else if (selectedUser.disagreedWord.includes(note.ID) === false && selectedUser.agreedWord.includes(note.ID) === true) {
+
+            } else {
+
+            }
+            showGroup();
+        }
+
+        function addAgree(note) {
+
+        }
+        
+    </script>
+</body>
+</html>

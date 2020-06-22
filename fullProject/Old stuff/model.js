@@ -1,30 +1,12 @@
 //model
 const model = {
-    user: [{
-            name: 'Mr Red',
-            color: 'red',
-            agreedWord: [],
-            disagreedWord: [],
-            userPageContent: [],
-        },
-        {
-            name: 'Mr Green',
-            color: 'green',
-            agreedWord: [],
-            disagreedWord: [],
-            userPageContent: [],
-        },
-        {
-            name: 'Mr Blue',
-            color: 'clue',
-            agreedWord: [],
-            disagreedWord: [],
-            userPageContent: [],
-        }
-
-    ],
-    currentSelectedPage: 0, //0 = group select 1 = aboutcolors 2 = summary 3 = peronal notes
-    currentlySelectedGroup: 0, //0 = self 1 = next color 2 = next color
+    user: {
+        name: 'Terje',
+        color: 'green'
+    },
+    activeView: 'group',
+    activeUser: 'Mr. Blue',
+    activeGroup: 'Blue about blue 1',
     groupCounts: {
         blue: 2,
         green: 2,
@@ -67,6 +49,6 @@ const model = {
             name: "blue 3",
             color: "blue",
         }
-    ],    
+    ],
     updates: [] //insert fake news
 };
