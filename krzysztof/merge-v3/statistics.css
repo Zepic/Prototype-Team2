@@ -1,0 +1,70 @@
+.column {
+    float: left;
+    width: 45%;
+    padding: 1%;
+}
+.columnR {
+    float: left;
+    width: 45%;
+    padding: 1%;
+}
+.columnG {
+    float: left;
+    width: 45%;
+    padding: 1%;
+}
+
+.columnWithin {
+    float: left;
+    width: 31%;
+    padding: 1%;
+}
+.columnWithinRed {
+    float: left;
+    width: 31%;
+    padding: 1%;
+}
+.columnWithinGreen {
+    float: left;
+    width: 31%;
+    padding: 1%;    
+}
+
+.row::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+
+.selectDiagram {
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;    
+    font-weight: bolder;   
+}
+
+.multicolored {
+    background-color:azure;
+}
+
+.aboutRed {
+    background-color: red;
+    color: white;
+}
+
+.aboutGreen {
+    background-color: green;
+    color: white;
+}
+
+.aboutBlue {
+    background-color: blue;
+    color: white;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
