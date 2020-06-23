@@ -156,7 +156,7 @@ function showNote() {
                     <div class="noteButtonDiv">
                         <button type="button" class="noteButtons noteAgree" onclick="agree(${n.ID})">Agree</button>
                         <button type="button" class="noteButtons noteDisagree" onclick="disagree(${n.ID})">Disagree</button>
-                        <button type="button" class="noteButtons noteShop" onclick="shop(${n.ID})">Copy Word</button>
+                        <button type="button" class="noteButtons noteShop" onclick="copyNote(${n.ID})">Copy Word</button>
                     </div>
                 </div>
             </div>
