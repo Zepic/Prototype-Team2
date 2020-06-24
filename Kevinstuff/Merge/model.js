@@ -1,5 +1,13 @@
 //model
 const model = {
+<<<<<<< HEAD
+    user: {
+        name: 'Terje',
+        color: 'green',
+    },
+    activeView: 'startPage',
+    activeUser: '',
+=======
     user: [
         {
         name: 'Terje',
@@ -24,6 +32,7 @@ const model = {
     ],
     activeView: 'user',
     activeUser: 'Terje',
+>>>>>>> 9e83e9f779ab32e56423088fbe2b3f559cb20d57
     activeGroup: 'blue 1',
     activeAboutColor: 'blue',
     groups: [

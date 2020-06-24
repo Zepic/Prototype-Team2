@@ -78,7 +78,11 @@ body {
     background-color: rgb(88, 87, 87);
     color: white;
 }
+<<<<<<< HEAD
+.menuNav{
+=======
 .statisticsNav{
+>>>>>>> 9e83e9f779ab32e56423088fbe2b3f559cb20d57
     position: relative;
     display: inline-block;
 }
@@ -135,6 +139,14 @@ display: flex;
 } */
 .nextColor{
     height: 3rem;
+<<<<<<< HEAD
+    width: 5rem;
+    display: flex;
+    text-align: center;
+    position: relative;
+    left: 193vh;
+    top: 87vh;
+=======
     width: 100px;
     display: flex;
     align-items: center;
@@ -147,4 +159,5 @@ display: flex;
     display: block;
     text-align: center;
     color: white;
+>>>>>>> 9e83e9f779ab32e56423088fbe2b3f559cb20d57
 }
