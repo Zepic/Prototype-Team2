@@ -135,10 +135,16 @@ display: flex;
 } */
 .nextColor{
     height: 3rem;
-    width: 5rem;
+    width: 100px;
     display: flex;
+    align-items: center;
+    font-size: large;
+    position: absolute;
+    left: 190vh;
+    top: 93vh;
+}
+.groupName{
+    display: block;
     text-align: center;
-    position: relative;
-    left: 193vh;
-    top: 87vh;
+    color: white;
 }

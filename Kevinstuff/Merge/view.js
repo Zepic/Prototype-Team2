@@ -125,32 +125,15 @@ function content() {
 */
 
 function groupPage() {
+    tempGroup = model.activeGroup
+    capitalizedGroup = tempGroup.charAt(0).toUpperCase() + tempGroup.slice(1);
     return `
         <div>
+        <h1 class='groupName'>${capitalizedGroup} about ${model.activeAboutColor}</h1>
             <div>${showNote()}</div>
-            <button class="nextColor" onclick="clickGroup('group', '${model.activeGroup}', 'green')">Next color</button>
+            <button class="nextColor" onclick="clickGroup('group', '${model.activeGroup}', '${model.activeAboutColor}')">Next color</button>
         </div>
     `;
-}
-
-function nextColor(){
-    const colorList = ['blue','green','red',]
-    let nextColor = '';
-    let lastColor = '';
-        if(model.activeAboutColor.includes('blue')){
-            
-        }
-        else if (model.activeAboutColor.includes('green')) {
-            for(i = 1; i > colorList.length; i++){
-                
-            }
-        }
-        else if (model.activeAboutColor.includes('red')) {
-            for(i = 2; i > colorList.length; i++){
-                
-            }
-        }
-
 }
 
 function showNote() {
@@ -198,22 +181,44 @@ function userPage() {
 
     //code for generating page content for userName
     //or call another function with JS code to generate user page
-
-    //delete this code after you add corect code for user page
-    userPageHtml += showUserPageInfo();
     userPageHtml += `
-    <p>Add code here to generates content for user page</p>
+    <div class='userPage'>
+        <div class='copiedWords'>
+            <ul>
+                ${showCopiedWords()}
+            </ul>
+        </div>
+            <div class="personalNotes">
+                
+            </div>
+    </div>
     `;
-
+    // ${showPersonalNotes()}
     return userPageHtml;
 }
 
 //subfunctions for users pages
-//delete this function after you have corect code for user page
-function showUserPageInfo() {
-    return `
-        <div id="info">
-        User home page, Active user name in the model: ${model.activeUser}
-        </div>
-        `;
+function showCopiedWords(){
+    return model.user
+        .filter((u) => u.name == model.activeUser)
+        .map((u) => {
+            return`
+            <li>${showPersonalWords(u.copiedWords)}</li>
+            `;
+        })
+        .join('');
+}
+// .filter((n) => n.group == model.activeGroup)
+// .filter((n) => n.aboutColor == model.activeAboutColor)
+function showPersonalWords(id){
+        
+        return noteModel.notes
+        .filter((n) => n.ID == id)
+        .map((n) => {
+            return`
+                ${n.content}
+            `;
+        })
+        .join('');
+        
 }
