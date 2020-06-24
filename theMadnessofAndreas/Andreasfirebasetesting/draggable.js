@@ -19,7 +19,7 @@ function dragElement(elmnt) {
         document.onmousemove = elementDrag;
     }
 
-    function elementDrag(e) {
+    async function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
         // calculate the new cursor position:
@@ -30,8 +30,20 @@ function dragElement(elmnt) {
         // set the element's new position:
         elmnt.style.top = elmnt.offsetTop - pos2 + 'px';
         elmnt.style.left = elmnt.offsetLeft - pos1 + 'px';
-        noteInModel.posY = elmnt.offsetTop - pos2;
-        noteInModel.posX = elmnt.offsetLeft - pos1;
+        let updatedX = elmnt.offsetLeft - pos1;
+        let updatedY = elmnt.offsetTop - pos2;
+
+        try {
+            await db.collection('notes').doc(noteInModel.ID).update({                
+                posX: updatedX, //x
+                posY: updatedY, //y                
+            });
+        } catch (error) {
+            console.error(error);
+        }
+
+        noteInModel.posY = updatedY;
+        noteInModel.posX = updatedX;
     }
 
     function closeDragElement() {

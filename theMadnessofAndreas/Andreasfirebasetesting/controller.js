@@ -22,8 +22,7 @@ function clickStatistics(activeView) {
 
 async function addNote(noteContent) {
     try {
-        await db.collection('notes').add({
-            ID: noteModel.notes.length + 1,
+        await db.collection('notes').add({            
             content: `${noteContent}`,
             aboutColor: `${model.activeAboutColor}`,
             group: `${model.activeGroup}`,
