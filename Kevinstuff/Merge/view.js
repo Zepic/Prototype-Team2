@@ -200,10 +200,10 @@ function userPage() {
 //subfunctions for users pages
 function showCopiedWords(){
     return model.user
-        .filter((u) => u.name == model.activeUser)
-        .map((u) => {
+        .filter((u) => u.name == model.activeUser)[0]
+        .copiedWords.map((u) => {
             return`
-            <li>${showPersonalWords(u.copiedWords)}</li>
+            ${showPersonalWords(u.copiedWords)}
             `;
         })
         .join('');
@@ -216,7 +216,7 @@ function showPersonalWords(id){
         .filter((n) => n.ID == id)
         .map((n) => {
             return`
-                ${n.content}
+                <li>${n.content}</li>
             `;
         })
         .join('');

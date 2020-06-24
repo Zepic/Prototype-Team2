@@ -5,7 +5,7 @@ const model = {
         name: 'Terje',
         color: 'green',
         copiedWords: [
-            6,
+            4,6,10,53
         ],
         personalNotes:[
 
