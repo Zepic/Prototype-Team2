@@ -8,9 +8,18 @@ function clickUser(activeView) {
 
 //shows the group with its notes
 function clickGroup(activeView, activeGroupName, aboutColor) {
+    const colorList = ['blue','green','red',]
+    if(aboutColor == 'blue'){
+        model.activeAboutColor = colorList[1]
+    }
+    else if (aboutColor == 'green') {
+        model.activeAboutColor = colorList[2]
+    }
+    else if (aboutColor == 'red') {
+        model.activeAboutColor = colorList[0]
+    }
     model.activeView = activeView;
     model.activeGroup = activeGroupName;
-    model.activeAboutColor = aboutColor;
     show();
 }
 
@@ -22,7 +31,7 @@ function clickStatistics(activeView) {
 
 function addNote(noteContent) {
     noteModel.notes.push({
-        ID: noteModel.notes.length + 1,
+        ID: noteModel.notes.length +1,
         content: `${noteContent}`,
         aboutColor: `${model.activeAboutColor}`,
         group: `${model.activeGroup}`,
@@ -32,24 +41,13 @@ function addNote(noteContent) {
         disagree: 0, //['Knut'],
         posX: 600, //x
         posY: 250, //y
-        zIndex: 1,
-    });
-    show();
-}
-
-function copyNote(noteID) {
-    console.log('note copied');
-    const userCopiedNotes = model.users.find((n) => n.name == model.activeUser)
-        .copiedNotes;
-    //this statement prevent to copy the note more than one time
-    if (userCopiedNotes.find((n) => n == noteID) == undefined) {
-        userCopiedNotes.push(noteID);
-    }
+        zIndex: 1
+    },);
+    show()
 }
 
 //add or remove agree
 function agree(noteNumber) {
-    console.log('agreed');
     // const note = model.notes.filter((n) => n.ID == noteNumber)[0];
     // const agreeWithNoteIndex = note.agree.findIndex(
     //     (u) => u == model.activeUser,
@@ -60,18 +58,4 @@ function agree(noteNumber) {
     //     note.agree.splice(agreeWithNoteIndex, 1);
     // }
     // show();
-}
-
-function disAgree(noteID) {
-    console.log('disagreed');
-    const disagreeNote = noteModel.notes.find((n) => n.ID == noteID);
-    const activeUserColour = model.users.find((u) => u.name == model.activeUser)
-        .color;
-    const noteGroupColor = model.groups.find(
-        (g) => g.name == disagreeNote.group,
-    ).color;
-    if (noteGroupColor == activeUserColour) {
-        console.log('dziala');
-        disagreeNote.disagree.push(model.activeUser);
-    }
 }

@@ -20,6 +20,7 @@ body {
     background-color: rgb(28, 96, 224);
 }
 
+
 /* Dropdown Button */
 .dropbtn {
     color: white;
@@ -77,11 +78,11 @@ body {
     background-color: rgb(88, 87, 87);
     color: white;
 }
-.statisticsNav {
+.statisticsNav{
     position: relative;
     display: inline-block;
 }
-.navButton {
+.navButton{
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -89,10 +90,10 @@ body {
     display: block;
     cursor: pointer;
 }
-.button1 {
+.button1{
     background-color: orange;
 }
-.button2 {
+.button2{
     background-color: orangered;
 }
 .noteDiv {
@@ -109,23 +110,19 @@ body {
     color: #fff;
 }
 .noteContent {
-    padding: 10px;
+    padding:10px;
     font-size: large;
 }
 /* .noteContainer{
     
 } */
-.noteButtonDiv {
-    display: flex;
+.noteButtonDiv{
+display: flex;
 }
-.noteButtons {
+.noteButtons{
     color: white;
     background-color: rgb(155, 177, 164);
     cursor: pointer;
-}
-
-button[type='button']:disabled {
-    visibility: hidden;
 }
 /* .noteAgree{
 
@@ -136,12 +133,18 @@ button[type='button']:disabled {
 .noteDisagree{
 
 } */
-.nextColor {
+.nextColor{
     height: 3rem;
-    width: 5rem;
+    width: 100px;
     display: flex;
+    align-items: center;
+    font-size: large;
+    position: absolute;
+    left: 190vh;
+    top: 93vh;
+}
+.groupName{
+    display: block;
     text-align: center;
-    position: relative;
-    left: 193vh;
-    top: 87vh;
+    color: white;
 }

@@ -4,9 +4,7 @@ function show() {
     if (model.activeView == 'startPage') {
         entirePageHtml = menuStartCode();
     } else {
-        document
-            .getElementById('pagestyle')
-            .setAttribute('href', 'css/styles.css');
+        document.getElementById('pagestyle').setAttribute('href', 'styles.css');
         entirePageHtml = `
         ${menuCode()}
         ${content()}
@@ -127,25 +125,23 @@ function content() {
 */
 
 function groupPage() {
+    tempGroup = model.activeGroup;
+    capitalizedGroup = tempGroup.charAt(0).toUpperCase() + tempGroup.slice(1);
     return `
         <div>
+        <h1 class='groupName'>${capitalizedGroup} about ${
+        model.activeAboutColor
+    }</h1>
             <div>${showNote()}</div>
-            <button class="nextColor" onclick="clickGroup()">Next color</button>
+            <button class="nextColor" onclick="clickGroup('group', '${
+                model.activeGroup
+            }', '${model.activeAboutColor}')">Next color</button>
         </div>
     `;
 }
 
 function showNote() {
     let noteColor;
-    let disabled = '';
-    const activeUserColour = model.users.find((u) => u.name == model.activeUser)
-        .color;
-    const activeGroupColor = model.groups.find(
-        (g) => g.name == model.activeGroup,
-    ).color;
-    activeUserColour != activeGroupColor
-        ? (disabled = "disabled='disabled'")
-        : '';
     if (model.activeGroup.includes('blue')) {
         noteColor = 'blue';
     } else if (model.activeGroup.includes('green')) {
@@ -164,8 +160,8 @@ function showNote() {
                     <b class="noteContent">${n.content}</b>
                     <div class="noteButtonDiv">
                         <button type="button" class="noteButtons noteAgree" onclick="agree(${n.ID})">Agree</button>
-                        <button type="button" class="noteButtons noteDisagree" onclick="disAgree(${n.ID}) ${disabled}">Disagree</button>
-                        <button type="button" class="noteButtons noteShop" onclick="copyNote(${n.ID})">Copy Word</button>
+                        <button type="button" class="noteButtons noteDisagree" onclick="disagree(${n.ID})">Disagree</button>
+                        <button type="button" class="noteButtons noteShop" onclick="shop(${n.ID})">Copy Word</button>
                     </div>
                 </div>
             </div>
@@ -193,22 +189,42 @@ function userPage() {
 
     //code for generating page content for userName
     //or call another function with JS code to generate user page
-
-    //delete this code after you add corect code for user page
-    userPageHtml += showUserPageInfo();
     userPageHtml += `
-    <p>Add code here to generates content for user page</p>
+    <div class='userPage'>
+        <div class='copiedWords'>
+            <ul>
+                ${showCopiedWords()}
+            </ul>
+        </div>
+            <div class="personalNotes">
+                
+            </div>
+    </div>
     `;
-
+    // ${showPersonalNotes()}
     return userPageHtml;
 }
 
 //subfunctions for users pages
-//delete this function after you have corect code for user page
-function showUserPageInfo() {
-    return `
-        <div id="info">
-        User home page, Active user name in the model: ${model.activeUser}
-        </div>
-        `;
+function showCopiedWords() {
+    return model.user
+        .filter((u) => u.name == model.activeUser)[0]
+        .copiedWords.map((u) => {
+            return `
+            <li>${showPersonalWords(u)}</li>
+            `;
+        })
+        .join('');
+}
+// .filter((n) => n.group == model.activeGroup)
+// .filter((n) => n.aboutColor == model.activeAboutColor)
+function showPersonalWords(id) {
+    return noteModel.notes
+        .filter((n) => n.ID == id)
+        .map((n) => {
+            return `
+                ${n.content}
+            `;
+        })
+        .join('');
 }
