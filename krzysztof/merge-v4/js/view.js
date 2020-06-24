@@ -137,6 +137,15 @@ function groupPage() {
 
 function showNote() {
     let noteColor;
+    let disabled = '';
+    const activeUserColour = model.users.find((u) => u.name == model.activeUser)
+        .color;
+    const activeGroupColor = model.groups.find(
+        (g) => g.name == model.activeGroup,
+    ).color;
+    activeUserColour != activeGroupColor
+        ? (disabled = "disabled='disabled'")
+        : '';
     if (model.activeGroup.includes('blue')) {
         noteColor = 'blue';
     } else if (model.activeGroup.includes('green')) {
@@ -155,7 +164,7 @@ function showNote() {
                     <b class="noteContent">${n.content}</b>
                     <div class="noteButtonDiv">
                         <button type="button" class="noteButtons noteAgree" onclick="agree(${n.ID})">Agree</button>
-                        <button type="button" class="noteButtons noteDisagree" onclick="disagree(${n.ID})">Disagree</button>
+                        <button type="button" class="noteButtons noteDisagree" onclick="disAgree(${n.ID}) ${disabled}">Disagree</button>
                         <button type="button" class="noteButtons noteShop" onclick="copyNote(${n.ID})">Copy Word</button>
                     </div>
                 </div>

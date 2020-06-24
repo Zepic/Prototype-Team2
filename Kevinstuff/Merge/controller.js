@@ -8,6 +8,11 @@ function clickUser(activeView) {
 
 //shows the group with its notes
 function clickGroup(activeView, activeGroupName, aboutColor) {
+<<<<<<< HEAD
+    model.activeView = activeView;
+    model.activeGroup = activeGroupName;
+    model.activeAboutColor = aboutColor;
+=======
     const colorList = ['blue','green','red',]
     if(aboutColor == 'blue'){
         model.activeAboutColor = colorList[1]
@@ -20,6 +25,7 @@ function clickGroup(activeView, activeGroupName, aboutColor) {
     }
     model.activeView = activeView;
     model.activeGroup = activeGroupName;
+>>>>>>> 9e83e9f779ab32e56423088fbe2b3f559cb20d57
     show();
 }
 
