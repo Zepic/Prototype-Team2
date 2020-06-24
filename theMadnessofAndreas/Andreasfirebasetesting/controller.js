@@ -8,24 +8,9 @@ function clickUser(activeView) {
 
 //shows the group with its notes
 function clickGroup(activeView, activeGroupName, aboutColor) {
-<<<<<<< HEAD
     model.activeView = activeView;
     model.activeGroup = activeGroupName;
     model.activeAboutColor = aboutColor;
-=======
-    const colorList = ['blue','green','red',]
-    if(aboutColor == 'blue'){
-        model.activeAboutColor = colorList[1]
-    }
-    else if (aboutColor == 'green') {
-        model.activeAboutColor = colorList[2]
-    }
-    else if (aboutColor == 'red') {
-        model.activeAboutColor = colorList[0]
-    }
-    model.activeView = activeView;
-    model.activeGroup = activeGroupName;
->>>>>>> 9e83e9f779ab32e56423088fbe2b3f559cb20d57
     show();
 }
 
@@ -35,7 +20,24 @@ function clickStatistics(activeView) {
     show();
 }
 
-function addNote(noteContent) {
+async function addNote(noteContent) {
+    try {
+        await db.collection('notes').add({
+            ID: noteModel.notes.length + 1,
+            content: `${noteContent}`,
+            aboutColor: `${model.activeAboutColor}`,
+            group: `${model.activeGroup}`,
+            redAgree: 0,
+            greenAgree: 0,
+            blueAgree: 0,
+            disagree: 0, //['Knut'],
+            posX: 600, //x
+            posY: 250, //y
+            zIndex: 1
+        });
+    } catch (error) {
+        console.error(error);
+    }
     noteModel.notes.push({
         ID: noteModel.notes.length +1,
         content: `${noteContent}`,
@@ -48,8 +50,9 @@ function addNote(noteContent) {
         posX: 600, //x
         posY: 250, //y
         zIndex: 1
-    },);
-    show()
+    });
+    
+    show();
 }
 
 //add or remove agree

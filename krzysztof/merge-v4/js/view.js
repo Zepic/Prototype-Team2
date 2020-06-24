@@ -4,7 +4,9 @@ function show() {
     if (model.activeView == 'startPage') {
         entirePageHtml = menuStartCode();
     } else {
-        document.getElementById('pagestyle').setAttribute('href', 'styles.css');
+        document
+            .getElementById('pagestyle')
+            .setAttribute('href', 'css/styles.css');
         entirePageHtml = `
         ${menuCode()}
         ${content()}
@@ -81,19 +83,11 @@ function menuCode() {
                     </div>
             </div>
 
-<<<<<<< HEAD
-                    <div class="menuNav">
-                        <button class="navButton button1"  onclick="clickStatistics('statistics')">Statistics</button>
-                    </div>
-
-            <div class="menuNav">
-=======
                     <div class="statisticsNav">
                         <button class="navButton button1"  onclick="clickStatistics('statistics')">Statistics</button>
                     </div>
 
             <div class="statisticsNav">
->>>>>>> 9e83e9f779ab32e56423088fbe2b3f559cb20d57
                         <button class="navButton button2" onclick="clickUser('user')">User page</button>
             </div>
 
@@ -123,7 +117,7 @@ function content() {
     } else if (model.activeView == 'user') {
         contentHtml = userPage();
     }
-    return contentHtml;    
+    return contentHtml;
 }
 
 /*
@@ -133,29 +127,23 @@ function content() {
 */
 
 function groupPage() {
-<<<<<<< HEAD
     return `
         <div>
             <div>${showNote()}</div>
             <button class="nextColor" onclick="clickGroup()">Next color</button>
-=======
-    tempGroup = model.activeGroup
-    capitalizedGroup = tempGroup.charAt(0).toUpperCase() + tempGroup.slice(1);
-    return `
-        <div>
-        <h1 class='groupName'>${capitalizedGroup} about ${model.activeAboutColor}</h1>
-            <div>${showNote()}</div>
-            <button class="nextColor" onclick="clickGroup('group', '${model.activeGroup}', '${model.activeAboutColor}')">Next color</button>
->>>>>>> 9e83e9f779ab32e56423088fbe2b3f559cb20d57
         </div>
     `;
 }
 
 function showNote() {
     let noteColor;
-    if (model.activeGroup.includes('blue')) {noteColor = 'blue'}
-    else if (model.activeGroup.includes('green')) {noteColor = 'green'}
-    else if (model.activeGroup.includes('red')) {noteColor = 'red'}
+    if (model.activeGroup.includes('blue')) {
+        noteColor = 'blue';
+    } else if (model.activeGroup.includes('green')) {
+        noteColor = 'green';
+    } else if (model.activeGroup.includes('red')) {
+        noteColor = 'red';
+    }
     return noteModel.notes
         .filter((n) => n.group == model.activeGroup)
         .filter((n) => n.aboutColor == model.activeAboutColor)
@@ -168,7 +156,7 @@ function showNote() {
                     <div class="noteButtonDiv">
                         <button type="button" class="noteButtons noteAgree" onclick="agree(${n.ID})">Agree</button>
                         <button type="button" class="noteButtons noteDisagree" onclick="disagree(${n.ID})">Disagree</button>
-                        <button type="button" class="noteButtons noteShop" onclick="shop(${n.ID})">Copy Word</button>
+                        <button type="button" class="noteButtons noteShop" onclick="copyNote(${n.ID})">Copy Word</button>
                     </div>
                 </div>
             </div>
@@ -196,7 +184,6 @@ function userPage() {
 
     //code for generating page content for userName
     //or call another function with JS code to generate user page
-<<<<<<< HEAD
 
     //delete this code after you add corect code for user page
     userPageHtml += showUserPageInfo();
@@ -204,26 +191,10 @@ function userPage() {
     <p>Add code here to generates content for user page</p>
     `;
 
-=======
-    userPageHtml += `
-    <div class='userPage'>
-        <div class='copiedWords'>
-            <ul>
-                ${showCopiedWords()}
-            </ul>
-        </div>
-            <div class="personalNotes">
-                
-            </div>
-    </div>
-    `;
-    // ${showPersonalNotes()}
->>>>>>> 9e83e9f779ab32e56423088fbe2b3f559cb20d57
     return userPageHtml;
 }
 
 //subfunctions for users pages
-<<<<<<< HEAD
 //delete this function after you have corect code for user page
 function showUserPageInfo() {
     return `
@@ -231,29 +202,4 @@ function showUserPageInfo() {
         User home page, Active user name in the model: ${model.activeUser}
         </div>
         `;
-=======
-function showCopiedWords(){
-    return model.user
-        .filter((u) => u.name == model.activeUser)
-        .map((u) => {
-            return`
-            <li>${showPersonalWords(u.copiedWords)}</li>
-            `;
-        })
-        .join('');
-}
-// .filter((n) => n.group == model.activeGroup)
-// .filter((n) => n.aboutColor == model.activeAboutColor)
-function showPersonalWords(id){
-        
-        return noteModel.notes
-        .filter((n) => n.ID == id)
-        .map((n) => {
-            return`
-                ${n.content}
-            `;
-        })
-        .join('');
-        
->>>>>>> 9e83e9f779ab32e56423088fbe2b3f559cb20d57
 }
