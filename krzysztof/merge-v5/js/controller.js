@@ -50,11 +50,26 @@ function agree(noteID) {
     const userAgreeNotes = noteModel.notes.find((n) => n.ID == noteID);
     const activeUser = model.users.find((u) => u.name == model.activeUser);
     if (activeUser.color == 'red') {
-        userAgreeNotes.redAgree.push(model.activeUser);
+        if (
+            userAgreeNotes.redAgree.find((u) => u == model.activeUser) ==
+            undefined
+        ) {
+            userAgreeNotes.redAgree.push(model.activeUser);
+        }
     } else if (activeUser.color == 'green') {
-        userAgreeNotes.greenAgree.push(model.activeUser);
+        if (
+            userAgreeNotes.greenAgree.find((u) => u == model.activeUser) ==
+            undefined
+        ) {
+            userAgreeNotes.greenAgree.push(model.activeUser);
+        }
     } else if (activeUser.color == 'blue') {
-        userAgreeNotes.blueAgree.push(model.activeUser);
+        if (
+            userAgreeNotes.blueAgree.find((u) => u == model.activeUser) ==
+            undefined
+        ) {
+            userAgreeNotes.blueAgree.push(model.activeUser);
+        }
     }
 }
 
