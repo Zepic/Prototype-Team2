@@ -124,8 +124,11 @@ body {
     cursor: pointer;
 }
 
+/* disagree button CSS */
 button[type='button']:disabled {
-    visibility: hidden;
+    /* visibility: hidden; */
+    color: rgb(120, 128, 123);
+    cursor: default;
 }
 /* .noteAgree{
 

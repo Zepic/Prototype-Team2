@@ -49,7 +49,6 @@ function copyNote(noteID) {
 
 //add or remove agree
 function agree(noteNumber) {
-    console.log('agreed');
     // const note = model.notes.filter((n) => n.ID == noteNumber)[0];
     // const agreeWithNoteIndex = note.agree.findIndex(
     //     (u) => u == model.activeUser,
@@ -64,14 +63,5 @@ function agree(noteNumber) {
 
 function disAgree(noteID) {
     console.log('disagreed');
-    const disagreeNote = noteModel.notes.find((n) => n.ID == noteID);
-    const activeUserColour = model.users.find((u) => u.name == model.activeUser)
-        .color;
-    const noteGroupColor = model.groups.find(
-        (g) => g.name == disagreeNote.group,
-    ).color;
-    if (noteGroupColor == activeUserColour) {
-        console.log('dziala');
-        disagreeNote.disagree.push(model.activeUser);
-    }
+    noteModel.notes.find((n) => n.ID == noteID).disagree.push(model.activeUser);
 }
