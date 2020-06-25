@@ -1,5 +1,5 @@
 //model
-let model = {
+const model = {
     user: {
         name: 'Terje',
         color: 'green',
