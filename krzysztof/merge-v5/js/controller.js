@@ -38,7 +38,6 @@ function addNote(noteContent) {
 }
 
 function copyNote(noteID) {
-    console.log('note copied');
     const userCopiedNotes = model.users.find((n) => n.name == model.activeUser)
         .copiedNotes;
     //this statement prevent to copy the note more than one time
@@ -47,21 +46,22 @@ function copyNote(noteID) {
     }
 }
 
-//add or remove agree
-function agree(noteNumber) {
-    // const note = model.notes.filter((n) => n.ID == noteNumber)[0];
-    // const agreeWithNoteIndex = note.agree.findIndex(
-    //     (u) => u == model.activeUser,
-    // );
-    // if (agreeWithNoteIndex == -1) {
-    //     note.agree.push(model.activeUser);
-    // } else {
-    //     note.agree.splice(agreeWithNoteIndex, 1);
-    // }
-    // show();
+function agree(noteID) {
+    const userAgreeNotes = noteModel.notes.find((n) => n.ID == noteID);
+    const activeUser = model.users.find((u) => u.name == model.activeUser);
+    if (activeUser.color == 'red') {
+        userAgreeNotes.redAgree.push(model.activeUser);
+    } else if (activeUser.color == 'green') {
+        userAgreeNotes.greenAgree.push(model.activeUser);
+    } else if (activeUser.color == 'blue') {
+        userAgreeNotes.blueAgree.push(model.activeUser);
+    }
 }
 
 function disAgree(noteID) {
-    console.log('disagreed');
-    noteModel.notes.find((n) => n.ID == noteID).disagree.push(model.activeUser);
+    const userDisagreeNotes = noteModel.notes.find((n) => n.ID == noteID)
+        .disagree;
+    if (userDisagreeNotes.find((u) => u == model.activeUser) == undefined) {
+        userDisagreeNotes.push(model.activeUser);
+    }
 }

@@ -140,10 +140,10 @@ function showNote() {
     let disabled = '';
     const activeUserColour = model.users.find((u) => u.name == model.activeUser)
         .color;
-    const activeGroupColor = model.groups.find(
+    const activeGroupColour = model.groups.find(
         (g) => g.name == model.activeGroup,
     ).color;
-    activeUserColour != activeGroupColor
+    activeUserColour != activeGroupColour
         ? (disabled = "disabled='disabled'")
         : '';
     if (model.activeGroup.includes('blue')) {
