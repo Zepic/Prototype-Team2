@@ -6,6 +6,13 @@ function clickUser(activeView) {
     show();
 }
 
+function createPersonalNote(text){
+    model.user
+    .filter((u) => u.name == model.activeUser)
+    [0].personalNotes.push({content: `${text}`});
+    show();
+}
+
 //shows the group with its notes
 function clickGroup(activeView, activeGroupName, aboutColor) {
     const colorList = ['blue','green','red',]
@@ -20,12 +27,6 @@ function clickGroup(activeView, activeGroupName, aboutColor) {
     }
     model.activeView = activeView;
     model.activeGroup = activeGroupName;
-    show();
-}
-
-//shows the statistics page
-function clickStatistics(activeView) {
-    model.activeView = activeView;
     show();
 }
 
@@ -45,6 +46,14 @@ function addNote(noteContent) {
     },);
     show()
 }
+
+//shows the statistics page
+function clickStatistics(activeView) {
+    model.activeView = activeView;
+    show();
+}
+
+
 
 //add or remove agree
 function agree(noteNumber) {

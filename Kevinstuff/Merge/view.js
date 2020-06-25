@@ -189,8 +189,10 @@ function userPage() {
             </ul>
         </div>
             <div class="personalNotes">
-                <input type="text" oninput="showPersonalNotes()">
-                <div id="personalNoteDiv"></div>
+                <input type="text" onchange="createPersonalNote(this.value)">
+                <ul>
+                    ${showPersonalNotes()}
+                </ul>
             </div>
     </div>
     `;
@@ -223,5 +225,12 @@ function copiedWordsNotes(id){
 }
 
 function showPersonalNotes(){
-    
+    return model.user
+    .filter((u) => u.name == model.activeUser)
+    [0].personalNotes.map((u)=>{
+       return `
+            <li>${u.content}</li>
+       `
+    })
+    .join('');
 }

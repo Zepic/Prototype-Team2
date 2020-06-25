@@ -2,22 +2,34 @@
 const model = {
     user: [
         {
-        name: 'Terje',
+        name: 'terje',
         color: 'green',
-        copiedWords: [6,5.4,10,69],
-        personalNotes:[],
+        copiedWords: [6,5,4,10,69],
+        personalNotes:[
+            'bob', 'karl','hei',
+        ],
     },
         {
-        name: 'Geir',
+        name: 'geir',
         color: 'green',
         copiedWords: [
             7,13,11,73
         ],
-        personalNotes:[],
+        personalNotes:[
+            {
+                content: 'bob'
+            },
+            {
+                content: 'hei'
+            },
+            {
+                content: 'ree'
+            },
+        ],
     },
     ],
     activeView: 'user',
-    activeUser: 'Geir',
+    activeUser: 'geir',
     activeGroup: 'blue 1',
     activeAboutColor: 'blue',
     groups: [
