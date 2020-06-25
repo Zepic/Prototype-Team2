@@ -498,17 +498,17 @@ function allwordsList() {
         let agreeBlueAboutBlue = 0;
 
         if (wordToAdd.aboutColor === 'red') {
-            agreeRedAboutRed = wordToAdd.redAgree;
-            agreeGreenAboutRed = wordToAdd.greenAgree;
-            agreeBlueAboutRed = wordToAdd.blueAgree;
+            agreeRedAboutRed = wordToAdd.redAgree.length;
+            agreeGreenAboutRed = wordToAdd.greenAgree.length;
+            agreeBlueAboutRed = wordToAdd.blueAgree.length;
         } else if (wordToAdd.aboutColor === 'green') {
-            agreeRedAboutGreen = wordToAdd.redAgree;
-            agreeGreenAboutGreen = wordToAdd.greenAgree;
-            agreeBlueAboutGreen = wordToAdd.blueAgree;
+            agreeRedAboutGreen = wordToAdd.redAgree.length;
+            agreeGreenAboutGreen = wordToAdd.greenAgree.length;
+            agreeBlueAboutGreen = wordToAdd.blueAgree.length;
         } else if (wordToAdd.aboutColor === 'blue') {
-            agreeRedAboutBlue = wordToAdd.redAgree;
-            agreeGreenAboutBlue = wordToAdd.greenAgree;
-            agreeBlueAboutBlue = wordToAdd.blueAgree;
+            agreeRedAboutBlue = wordToAdd.redAgree.length;
+            agreeGreenAboutBlue = wordToAdd.greenAgree.length;
+            agreeBlueAboutBlue = wordToAdd.blueAgree.length;
         }
         let disagree = wordToAdd.disagree;
         if (testList.includes(wordToAdd.content) === false) {
@@ -519,25 +519,25 @@ function allwordsList() {
                 ) {
                     if (wordToAdd.aboutColor === 'red') {
                         agreeRedAboutRed =
-                            agreeRedAboutRed + noteInformation.redAgree;
+                            agreeRedAboutRed + noteInformation.redAgree.length;
                         agreeGreenAboutRed =
-                            agreeGreenAboutRed + noteInformation.greenAgree;
+                            agreeGreenAboutRed + noteInformation.greenAgree.length;
                         agreeBlueAboutRed =
-                            agreeBlueAboutRed + noteInformation.blueAgree;
+                            agreeBlueAboutRed + noteInformation.blueAgree.length;
                     } else if (wordToAdd.aboutColor === 'green') {
                         agreeRedAboutGreen =
-                            agreeRedAboutGreen + noteInformation.redAgree;
+                            agreeRedAboutGreen + noteInformation.redAgree.length;
                         agreeGreenAboutGreen =
-                            agreeGreenAboutGreen + noteInformation.greenAgree;
+                            agreeGreenAboutGreen + noteInformation.greenAgree.length;
                         agreeBlueAboutGreen =
-                            agreeBlueAboutGreen + noteInformation.blueAgree;
+                            agreeBlueAboutGreen + noteInformation.blueAgree.length;
                     } else if (wordToAdd.aboutColor === 'blue') {
                         agreeRedAboutBlue =
-                            agreeRedAboutBlue + noteInformation.redAgree;
+                            agreeRedAboutBlue + noteInformation.redAgree.length;
                         agreeGreenAboutBlue =
-                            agreeGreenAboutBlue + noteInformation.greenAgree;
+                            agreeGreenAboutBlue + noteInformation.greenAgree.length;
                         agreeBlueAboutBlue =
-                            agreeBlueAboutBlue + noteInformation.blueAgree;
+                            agreeBlueAboutBlue + noteInformation.blueAgree.length;
                     }
                 }
             }
@@ -612,7 +612,7 @@ function disagreeList(color) {
     for (let wordToAdd of noteModel.notes) {
         //starts going through the list made above, selecting one word to check
         if (wordToAdd.aboutColor === color) {
-            disagreeColor = wordToAdd.disagree;
+            disagreeColor = wordToAdd.disagree.length;
         }
         if (testWord.includes(wordToAdd.content) === false) {
             //makes sure the selected word has not been added before

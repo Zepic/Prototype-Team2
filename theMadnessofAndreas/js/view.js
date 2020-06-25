@@ -1,12 +1,12 @@
-
 getNotesFromFirebase();
-//show();
 function show() {
     let entirePageHtml;
     if (model.activeView == 'startPage') {
         entirePageHtml = menuStartCode();
     } else {
-        document.getElementById('pagestyle').setAttribute('href', 'styles.css');
+        document
+            .getElementById('pagestyle')
+            .setAttribute('href', 'css/styles.css');
         entirePageHtml = `
         ${menuCode()}
         ${content()}
@@ -117,7 +117,7 @@ function content() {
     } else if (model.activeView == 'user') {
         contentHtml = userPage();
     }
-    return contentHtml;    
+    return contentHtml;
 }
 
 /*
@@ -137,9 +137,22 @@ function groupPage() {
 
 function showNote() {
     let noteColor;
-    if (model.activeGroup.includes('blue')) {noteColor = 'blue'}
-    else if (model.activeGroup.includes('green')) {noteColor = 'green'}
-    else if (model.activeGroup.includes('red')) {noteColor = 'red'}
+    let disabled = '';
+    const activeUserColour = model.users.find((u) => u.name == model.activeUser)
+        .color;
+    const activeGroupColor = model.groups.find(
+        (g) => g.name == model.activeGroup,
+    ).color;
+    activeUserColour != activeGroupColor
+        ? (disabled = "disabled='disabled'")
+        : '';
+    if (model.activeGroup.includes('blue')) {
+        noteColor = 'blue';
+    } else if (model.activeGroup.includes('green')) {
+        noteColor = 'green';
+    } else if (model.activeGroup.includes('red')) {
+        noteColor = 'red';
+    }
     return noteModel.notes
         .filter((n) => n.group == model.activeGroup)
         .filter((n) => n.aboutColor == model.activeAboutColor)
@@ -151,8 +164,8 @@ function showNote() {
                     <b class="noteContent">${n.content}</b>
                     <div class="noteButtonDiv">
                         <button type="button" class="noteButtons noteAgree" onclick="agree(${n.ID})">Agree</button>
-                        <button type="button" class="noteButtons noteDisagree" onclick="disagree(${n.ID})">Disagree</button>
-                        <button type="button" class="noteButtons noteShop" onclick="shop(${n.ID})">Copy Word</button>
+                        <button type="button" class="noteButtons noteDisagree" onclick="disAgree(${n.ID})" ${disabled}>Disagree</button>
+                        <button type="button" class="noteButtons noteShop" onclick="copyNote(${n.ID})">Copy Word</button>
                     </div>
                 </div>
             </div>

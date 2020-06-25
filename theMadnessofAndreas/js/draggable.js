@@ -8,7 +8,6 @@ function dragElement(elmnt) {
     elmnt.onmousedown = dragMouseDown;
 
     function dragMouseDown(e) {
-        console.log(e);
         e = e || window.event;
         e.preventDefault();
         // get the mouse cursor position at startup:
@@ -34,7 +33,7 @@ function dragElement(elmnt) {
         let updatedY = elmnt.offsetTop - pos2;
 
         try {
-            await db.collection('notes').doc(noteInModel.ID).update({                
+            await db.collection('notes').doc(noteInModel.ID).update({
                 posX: updatedX, //x
                 posY: updatedY, //y                
             });
