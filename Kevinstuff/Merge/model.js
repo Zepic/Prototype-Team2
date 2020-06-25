@@ -28,7 +28,8 @@ const model = {
         ],
     },
     ],
-    activeView: 'user',
+    // 
+    activeView: 'startPage',
     activeUser: 'geir',
     activeGroup: 'blue 1',
     activeAboutColor: 'blue',

@@ -144,7 +144,7 @@ button[type='button']:disabled {
     width: 5rem;
     display: flex;
     text-align: center;
-    position: relative;
+    position: absolute;
     left: 193vh;
     top: 87vh;
 }
