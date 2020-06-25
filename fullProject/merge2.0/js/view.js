@@ -224,7 +224,7 @@ function showCopiedWords(){
     // else if (noteModel.notes.includes('red')) {noteColor = 'red'}
     // style="background-color:${noteColor};"
 
-    return model.user
+    return model.users
         .filter((u) => u.name == model.activeUser)
         [0].copiedWords.map((u) => {
             return`
@@ -247,7 +247,7 @@ function copiedWordsNotes(id){
 }
 
 function showPersonalNotes(){
-    return model.user
+    return model.users
     .filter((u) => u.name == model.activeUser)
     [0].personalNotes.map((u)=>{
        return `

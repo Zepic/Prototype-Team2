@@ -7,7 +7,7 @@ function clickUser(activeView) {
 }
 
 function createPersonalNote(text){
-    model.user
+    model.users
     .filter((u) => u.name == model.activeUser)
     [0].personalNotes.push({content: `${text}`});
     show();
