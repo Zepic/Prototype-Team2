@@ -1,6 +1,6 @@
 //model
 const model = {
-    user: [
+    users: [
         {
         name: 'terje',
         color: 'green',
