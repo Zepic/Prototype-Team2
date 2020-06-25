@@ -1,23 +1,11 @@
 //model
 const model = {
-<<<<<<< HEAD
-    user: {
-        name: 'Terje',
-        color: 'green',
-    },
-    activeView: 'startPage',
-    activeUser: '',
-=======
     user: [
         {
         name: 'Terje',
         color: 'green',
-        copiedWords: [
-            6,
-        ],
-        personalNotes:[
-
-        ]
+        copiedWords: [6,5.4,10,69],
+        personalNotes:[],
     },
         {
         name: 'Geir',
@@ -25,14 +13,11 @@ const model = {
         copiedWords: [
             7,13,11,73
         ],
-        personalNotes:[
-
-        ]
+        personalNotes:[],
     },
     ],
     activeView: 'user',
-    activeUser: 'Terje',
->>>>>>> 9e83e9f779ab32e56423088fbe2b3f559cb20d57
+    activeUser: 'Geir',
     activeGroup: 'blue 1',
     activeAboutColor: 'blue',
     groups: [
