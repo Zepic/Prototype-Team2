@@ -7,7 +7,7 @@ function clickUser(activeView) {
 }
 
 function createPersonalNote(text){
-    model.users
+    model.user
     .filter((u) => u.name == model.activeUser)
     [0].personalNotes.push({content: `${text}`});
     show();
@@ -54,7 +54,7 @@ function addNote(noteContent) {
 }
 
 function copyNote(noteID) {
-    const userCopiedNotes = model.users.find((n) => n.name == model.activeUser)
+    const userCopiedNotes = model.user.find((n) => n.name == model.activeUser)
         .copiedNotes;
     //this statement prevent to copy the note more than one time
     if (userCopiedNotes.find((n) => n == noteID) == undefined) {
@@ -64,7 +64,7 @@ function copyNote(noteID) {
 
 function agree(noteID) {
     const userAgreeNotes = noteModel.notes.find((n) => n.ID == noteID);
-    const activeUser = model.users.find((u) => u.name == model.activeUser);
+    const activeUser = model.user.find((u) => u.name == model.activeUser);
     if (activeUser.color == 'red') {
         userAgreeNotes.redAgree.push(model.activeUser);
     } else if (activeUser.color == 'green') {

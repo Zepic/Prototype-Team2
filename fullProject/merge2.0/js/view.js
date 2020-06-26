@@ -127,10 +127,13 @@ function content() {
 */
 
 function groupPage() {
+    tempGroup = model.activeGroup;
+    capitalizedGroup = tempGroup.charAt(0).toUpperCase() + tempGroup.slice(1);
     return `
         <div>
+        <h1 class='groupName'>${capitalizedGroup} about ${model.activeAboutColor}</h1>
             <div>${showNote()}</div>
-            <button class="nextColor" onclick="clickGroup()">Next color</button>
+            <button class="nextColor" onclick="clickGroup('group', '${model.activeGroup}', '${model.activeAboutColor}')">Next color</button>
         </div>
     `;
 }
@@ -138,7 +141,7 @@ function groupPage() {
 function showNote() {
     let noteColor;
     let disabled = '';
-    const activeUserColour = model.users.find((u) => u.name == model.activeUser)
+    const activeUserColour = model.user.find((u) => u.name == model.activeUser)
         .color;
     const activeGroupColour = model.groups.find(
         (g) => g.name == model.activeGroup,
@@ -224,7 +227,7 @@ function showCopiedWords(){
     // else if (noteModel.notes.includes('red')) {noteColor = 'red'}
     // style="background-color:${noteColor};"
 
-    return model.users
+    return model.user
         .filter((u) => u.name == model.activeUser)
         [0].copiedWords.map((u) => {
             return`
@@ -247,7 +250,7 @@ function copiedWordsNotes(id){
 }
 
 function showPersonalNotes(){
-    return model.users
+    return model.user
     .filter((u) => u.name == model.activeUser)
     [0].personalNotes.map((u)=>{
        return `

@@ -8,6 +8,9 @@ body {
         hsl(118, 85%, 40%)
     );
 }
+.logo{
+    float: right;
+}
 .groupName{
     display: block;
     text-align: center;
