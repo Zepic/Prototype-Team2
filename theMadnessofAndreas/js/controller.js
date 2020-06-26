@@ -51,74 +51,65 @@ function copyNote(noteID) {
     }
 }
 
-function agree(noteID) {
+async function agree(noteID) {
     const userAgreeNotes = noteModel.notes.find((n) => n.ID == noteID);
     const activeUser = model.users.find((u) => u.name == model.activeUser);
     if (activeUser.color == 'red') {
         if (
-            userAgreeNotes.redAgree.find((u) => u == model.activeUser) ==
-            undefined
-        ) {
+            userAgreeNotes.redAgree.find((u) => u == model.activeUser) == undefined) {
             userAgreeNotes.redAgree.push(model.activeUser);
-        }
-    } else if (activeUser.color == 'green') {
-        if (
-            userAgreeNotes.greenAgree.find((u) => u == model.activeUser) ==
-            undefined
-        ) {
-            userAgreeNotes.greenAgree.push(model.activeUser);
-        }
-    } else if (activeUser.color == 'blue') {
-        if (
-            userAgreeNotes.blueAgree.find((u) => u == model.activeUser) ==
-            undefined
-        ) {
-            userAgreeNotes.blueAgree.push(model.activeUser);
-        }
-    }
-    updateNotesAgreeAndDisagree(noteID);
-}
-
-function disAgree(noteID) {
-    console.log('kom hit 1');
-    console.log(noteID);
-    
-    const userDisagreeNotes = noteModel.notes.find((n) => n.ID == noteID)
-        .disagree;
-    if (userDisagreeNotes.find((u) => u == model.activeUser) == undefined) {
-        userDisagreeNotes.push(model.activeUser);
-    }
-    
-    updateNotesAgreeAndDisagree(noteID);
-}
-
-async function updateNotesAgreeAndDisagree(noteID) {
-    console.log('kom hit 3');
-    console.log(noteID);
-    for (let theNotesID of noteModel.notes) {
-        
-        if (theNotesID.ID === noteID) {
-            console.log('kom hit 4');
             try {
-                await db.collection('notes').doc(noteID).set({
-                    content: theNotesID.content,
-                    aboutColor: theNotesID.aboutColor,
-                    group: theNotesID.group,
-                    redAgree: theNotesID.redAgree,
-                    greenAgree: theNotesID.greenAgree,
-                    blueAgree: theNotesID.blueAgree,
-                    disagree: theNotesID.disagree, //['Knut'],
-                    posX: theNotesID.posX, //x
-                    posY: theNotesID.posY, //y
-                    zIndex: theNotesID.zIndex
+                await db.collection('notes').doc(noteID).update({
+                    redAgree: userAgreeNotes.redAgree
                 });
-
             } catch (error) {
                 console.error(error);
             }
             getNotesFromFirebase();
         }
-        
+    } else if (activeUser.color == 'green') {
+        if (
+            userAgreeNotes.greenAgree.find((u) => u == model.activeUser) == undefined) {
+            userAgreeNotes.greenAgree.push(model.activeUser);
+            try {
+                await db.collection('notes').doc(noteID).update({
+                    greenAgree: userAgreeNotes.greenAgree
+                });
+            } catch (error) {
+                console.error(error);
+            }
+            getNotesFromFirebase();            
+        }
+    } else if (activeUser.color == 'blue') {
+        if (
+            userAgreeNotes.blueAgree.find((u) => u == model.activeUser) == undefined) {
+            userAgreeNotes.blueAgree.push(model.activeUser);
+            try {
+                await db.collection('notes').doc(noteID).update({
+                    blueAgree: userAgreeNotes.blueAgree
+                });
+            } catch (error) {
+                console.error(error);
+            }
+            getNotesFromFirebase();
+        }
     }
     
+}
+
+async function disAgree(noteID) {    
+    const userDisagreeNotes = noteModel.notes.find((n) => n.ID == noteID)
+        .disagree;
+    if (userDisagreeNotes.find((u) => u == model.activeUser) == undefined) {
+        userDisagreeNotes.push(model.activeUser);
+
+        try {
+            await db.collection('notes').doc(noteID).update({                
+                disagree: userDisagreeNotes
+            });
+        } catch (error) {
+            console.error(error);
+        }
+        getNotesFromFirebase();
+    }    
 }

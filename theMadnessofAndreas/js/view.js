@@ -158,7 +158,7 @@ function showNote() {
         .filter((n) => n.aboutColor == model.activeAboutColor)
         .map((n) => {
             return `
-            <div class="noteDiv" style="background-color: ${noteColor}; top: ${n.posY}px; left: ${n.posX}px">
+            <div id="${n.ID}" class="noteDiv" style="background-color: ${noteColor}; top: ${n.posY}px; left: ${n.posX}px">
                 <div class="noteHeader">Click here to move</div>
                 <div class="noteContainer">
                     <b class="noteContent">${n.content}</b>
