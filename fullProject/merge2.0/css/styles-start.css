@@ -4,13 +4,16 @@ body {
     padding: 0%;
     margin: 0%;
     justify-content: center;
-    align-items   : center;
+    align-items: center;
     display: flex;
     background-image: linear-gradient(
         to right,
         hsl(355, 86%, 58%),
         hsl(118, 85%, 40%)
     );
+}
+.logo{
+    float: right;
 }
 /* Color group buttons*/
 button {
