@@ -140,10 +140,10 @@ function showNote() {
     let disabled = '';
     const activeUserColour = model.users.find((u) => u.name == model.activeUser)
         .color;
-    const activeGroupColor = model.groups.find(
+    const activeGroupColour = model.groups.find(
         (g) => g.name == model.activeGroup,
     ).color;
-    activeUserColour != activeGroupColor
+    activeUserColour != activeGroupColour
         ? (disabled = "disabled='disabled'")
         : '';
     if (model.activeGroup.includes('blue')) {
@@ -158,14 +158,14 @@ function showNote() {
         .filter((n) => n.aboutColor == model.activeAboutColor)
         .map((n) => {
             return `
-            <div id="${n.ID}" class="noteDiv" style="background-color: ${noteColor}; top: ${n.posY}px; left: ${n.posX}px">
+            <div class="noteDiv" style="background-color: ${noteColor}; top: ${n.posY}px; left: ${n.posX}px">
                 <div class="noteHeader">Click here to move</div>
                 <div class="noteContainer">
                     <b class="noteContent">${n.content}</b>
                     <div class="noteButtonDiv">
-                        <button type="button" class="noteButtons noteAgree" onclick="agree(${n.ID})">Agree</button>
-                        <button type="button" class="noteButtons noteDisagree" onclick="disAgree(${n.ID})" ${disabled}>Disagree</button>
-                        <button type="button" class="noteButtons noteShop" onclick="copyNote(${n.ID})">Copy Word</button>
+                        <button type="button" class="noteButtons noteAgree" onclick="agree('${n.ID}')">Agree</button>
+                        <button type="button" class="noteButtons noteDisagree" onclick="disAgree('${n.ID}')" ${disabled}>Disagree</button>
+                        <button type="button" class="noteButtons noteShop" onclick="copyNote('${n.ID}')">Copy Word</button>
                     </div>
                 </div>
             </div>
