@@ -31,18 +31,19 @@ function dragElement(elmnt) {
         elmnt.style.left = elmnt.offsetLeft - pos1 + 'px';
         let updatedX = elmnt.offsetLeft - pos1;
         let updatedY = elmnt.offsetTop - pos2;
+        noteInModel.posY = updatedY;
+        noteInModel.posX = updatedX;      
 
         try {
             await db.collection('notes').doc(noteInModel.ID).update({
-                posX: updatedX, //x
-                posY: updatedY, //y                
+                posX: noteInModel.posY, //x
+                posY: noteInModel.posX, //y                
             });
         } catch (error) {
             console.error(error);
         }
 
-        noteInModel.posY = updatedY;
-        noteInModel.posX = updatedX;
+          
     }
 
     function closeDragElement() {

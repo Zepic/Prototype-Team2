@@ -1406,23 +1406,14 @@ const noteModel = {
     ],
 };
 
-async function getNotesFromFirebase() {
-    try {
-        let notesList = noteModel.notes;
+async function readFirebase() {
+    try {        
         let groupList = model.groups;
         let userList = model.user;        
-        notesList.length = 0;
         groupList.lenght = 0;
-        userList.length = 0;
-        let notesDoc = await db.collection('notes').get();
+        userList.length = 0;        
         let groupsDoc = await db.collection('groups').get();
-        let usersDoc = await db.collection('user').get();
-        notesDoc.forEach(
-            function (noteDoc) {
-                let notesObj = noteDoc.data();
-                notesObj.ID = noteDoc.id;
-                notesList.push(notesObj);
-            });
+        let usersDoc = await db.collection('user').get();        
         groupsDoc.forEach(
             function (groupDoc) {
                 let groupsObj = groupDoc.data();
@@ -1433,9 +1424,28 @@ async function getNotesFromFirebase() {
             function (userDoc) {
                 let userObj = userDoc.data();
                 userObj.ID = userDoc.id;
-                userList.push(userObj);                
+                userList.push(userObj);
             });
-        show();
+        getNotesFromFirebase();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getNotesFromFirebase() {
+    try {  
+        await db.collection('notes').onSnapshot(function (querySnapshot) {
+            let notesList = noteModel.notes;
+            notesList.length = 0;
+            
+            querySnapshot.forEach(function (noteDoc) {
+                let notesObj = noteDoc.data();
+                notesObj.ID = noteDoc.id;
+                notesList.push(notesObj);
+            });
+            
+            show();
+        });
     } catch (error) {
         console.error(error);
     }

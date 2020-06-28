@@ -1,4 +1,4 @@
-getNotesFromFirebase();
+readFirebase();
 function show() {
     let entirePageHtml;
     if (model.activeView == 'startPage') {

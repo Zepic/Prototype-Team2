@@ -50,7 +50,7 @@ async function addNote(noteContent) {
     } catch (error) {
         console.error(error);
     }
-    getNotesFromFirebase();
+    //getNotesFromFirebase();
 }
 
 async function copyNote(noteID) {
