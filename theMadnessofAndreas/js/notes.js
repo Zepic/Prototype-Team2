@@ -1410,10 +1410,13 @@ async function getNotesFromFirebase() {
     try {
         let notesList = noteModel.notes;
         let groupList = model.groups;
+        let userList = model.user;        
         notesList.length = 0;
         groupList.lenght = 0;
+        userList.length = 0;
         let notesDoc = await db.collection('notes').get();
         let groupsDoc = await db.collection('groups').get();
+        let usersDoc = await db.collection('user').get();
         notesDoc.forEach(
             function (noteDoc) {
                 let notesObj = noteDoc.data();
@@ -1425,6 +1428,12 @@ async function getNotesFromFirebase() {
                 let groupsObj = groupDoc.data();
                 groupsObj.ID = groupDoc.id;
                 groupList.push(groupsObj);
+            });
+        usersDoc.forEach(
+            function (userDoc) {
+                let userObj = userDoc.data();
+                userObj.ID = userDoc.id;
+                userList.push(userObj);                
             });
         show();
     } catch (error) {

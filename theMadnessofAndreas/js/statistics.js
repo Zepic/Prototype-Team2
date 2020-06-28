@@ -587,6 +587,7 @@ function sorting(valueToSortAfter) {
 
 function disagree(color) {
     let wordList = Array.from(disagreeList(color));
+    console.log(wordList);
     diagramDiv += `<div class="row column" style="background-color:white; border: solid black;">Words ${color} disagree with</br>`;
     for (let aboutR of wordList) {
         if (aboutR.disagree > 0) {
@@ -635,12 +636,5 @@ function disagreeList(color) {
             });
         }
     }
-    //for (let test1 of groupList) {
-    //    diagramDiv += test1;
-    //}
-    //for (let test2 of noteModel.notes) {
-    //    diagramDiv += test2.group;
-    //}
-
     return collectedList;
 }

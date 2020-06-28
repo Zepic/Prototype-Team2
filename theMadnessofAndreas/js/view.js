@@ -138,7 +138,7 @@ function groupPage() {
 function showNote() {
     let noteColor;
     let disabled = '';
-    const activeUserColour = model.users.find((u) => u.name == model.activeUser)
+    const activeUserColour = model.user.find((u) => u.name == model.activeUser)
         .color;
     const activeGroupColour = model.groups.find(
         (g) => g.name == model.activeGroup,
@@ -193,22 +193,65 @@ function userPage() {
 
     //code for generating page content for userName
     //or call another function with JS code to generate user page
-
-    //delete this code after you add corect code for user page
-    userPageHtml += showUserPageInfo();
     userPageHtml += `
-    <p>Add code here to generates content for user page</p>
+    <div class='userPage'>
+        <div class='copiedWords'>
+        <h3>Copied Words</h3>
+        <p>Here the words you feel relate to you end up</p>
+        <ul>
+                ${showCopiedWords()}
+            </ul>
+        </div>
+            <div class="personalNotes">
+                <h3>What you've learned</h3>
+                <p>Here you can write about what you've learned during this process</p>
+                <input class="input" type="text" onchange="createPersonalNote(this.value)">
+                <ul>
+                    ${showPersonalNotes()}
+                </ul>
+            </div>
+    </div>
     `;
 
     return userPageHtml;
 }
 
 //subfunctions for users pages
-//delete this function after you have corect code for user page
-function showUserPageInfo() {
-    return `
-        <div id="info">
-        User home page, Active user name in the model: ${model.activeUser}
-        </div>
-        `;
+function showCopiedWords() {
+    // let noteColor;
+    // if (noteModel.notes.includes('blue')) {noteColor = 'blue'}
+    // else if (noteModel.notes.includes('green')) {noteColor = 'green'}
+    // else if (noteModel.notes.includes('red')) {noteColor = 'red'}
+    // style="background-color:${noteColor};"
+
+    return model.user
+        .filter((u) => u.name == model.activeUser)
+    [0].copiedWords.map((u) => {
+        return `
+            <li>${copiedWordsNotes(u)}</li>
+            `;
+    })
+        .join('');
+}
+
+function copiedWordsNotes(id) {    
+    return noteModel.notes
+        .filter((n) => n.ID == id)
+        .map((n) => {
+            return `
+                ${n.content}
+            `;
+        })
+        .join('');
+}
+
+function showPersonalNotes() {
+    return model.user
+        .filter((u) => u.name == model.activeUser)
+    [0].personalNotes.map((u) => {
+        return `
+            <li>${u}</li>
+       `
+    })
+        .join('');
 }

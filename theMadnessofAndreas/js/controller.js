@@ -6,6 +6,19 @@ function clickUser(activeView) {
     show();
 }
 
+async function createPersonalNote(text) {
+    const activeUserToFirebase = model.user.find((u) => u.name == model.activeUser);    
+    activeUserToFirebase.personalNotes.push(`${text}`);    
+    try {
+        await db.collection('user').doc(activeUserToFirebase.ID).update({
+            personalNotes: activeUserToFirebase.personalNotes 
+            
+        });
+    } catch (error) {
+        console.error(error);
+    }
+    getNotesFromFirebase();
+}
 //shows the group with its notes
 function clickGroup(activeView, activeGroupName, aboutColor) {
     model.activeView = activeView;
@@ -37,23 +50,28 @@ async function addNote(noteContent) {
     } catch (error) {
         console.error(error);
     }
-    
-
     getNotesFromFirebase();
 }
 
-function copyNote(noteID) {
-    const userCopiedNotes = model.users.find((n) => n.name == model.activeUser)
-        .copiedNotes;
+async function copyNote(noteID) {
+    const userCopiedNotes = model.user.find((n) => n.name == model.activeUser);
     //this statement prevent to copy the note more than one time
-    if (userCopiedNotes.find((n) => n == noteID) == undefined) {
-        userCopiedNotes.push(noteID);
+    if (userCopiedNotes.copiedWords.find((n) => n == noteID) == undefined) {
+        userCopiedNotes.copiedWords.push(noteID);
+        try {
+            await db.collection('user').doc(userCopiedNotes.ID).update({
+                copiedWords: userCopiedNotes.copiedWords
+            });
+        } catch (error) {
+            console.error(error);
+        }        
+        getNotesFromFirebase();
     }
 }
 
 async function agree(noteID) {
     const userAgreeNotes = noteModel.notes.find((n) => n.ID == noteID);
-    const activeUser = model.users.find((u) => u.name == model.activeUser);
+    const activeUser = model.user.find((u) => u.name == model.activeUser);
     if (activeUser.color == 'red') {
         if (
             userAgreeNotes.redAgree.find((u) => u == model.activeUser) == undefined) {
