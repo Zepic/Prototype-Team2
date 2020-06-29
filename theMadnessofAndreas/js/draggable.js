@@ -34,8 +34,6 @@ function dragElement(elmnt) {
         let updatedY = elmnt.offsetTop - pos2;
         noteInModel.posY = updatedY;
         noteInModel.posX = updatedX;
-
-                            
     }
         
 
