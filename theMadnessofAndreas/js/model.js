@@ -13,6 +13,7 @@ const model = {
     activeUserID: 'pwHIdY22f7JQSfC7HHEN',
     activeGroup: '',
     activeAboutColor: '',
+    newUserName: '',
     groups: [
         {
             name: 'red 1',

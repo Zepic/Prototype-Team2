@@ -36,6 +36,7 @@ async function readFirebase() { // I think function with await have to be async 
                 let userObj = userDoc.data();
                 userObj.ID = userDoc.id;
                 userList.push(userObj);
+                console.log(userObj);
             });
         getNotesFromFirebase();
     } catch (error) {

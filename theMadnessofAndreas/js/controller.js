@@ -17,7 +17,7 @@ async function createPersonalNote(text) {
     } catch (error) {
         console.error(error);
     }
-    getNotesFromFirebase();
+    show();
 }
 //shows the group with its notes
 function clickGroup(activeView, activeGroupName, aboutColor) {
@@ -69,7 +69,7 @@ async function copyNote(noteID) {
         } catch (error) {
             console.error(error);
         }        
-        getNotesFromFirebase();
+        //getNotesFromFirebase();
     }
 }
 
@@ -87,7 +87,7 @@ async function agree(noteID) {
             } catch (error) {
                 console.error(error);
             }
-            getNotesFromFirebase();
+            //getNotesFromFirebase();
         }
     } else if (activeUser.color == 'green') {
         if (
@@ -100,7 +100,7 @@ async function agree(noteID) {
             } catch (error) {
                 console.error(error);
             }
-            getNotesFromFirebase();            
+            //getNotesFromFirebase();            
         }
     } else if (activeUser.color == 'blue') {
         if (
@@ -113,7 +113,7 @@ async function agree(noteID) {
             } catch (error) {
                 console.error(error);
             }
-            getNotesFromFirebase();
+            //getNotesFromFirebase();
         }
     }
     
@@ -132,6 +132,31 @@ async function disAgree(noteID) {
         } catch (error) {
             console.error(error);
         }
-        getNotesFromFirebase();
+        //getNotesFromFirebase();
     }    
+}
+
+async function createUser(userColor) {    
+    try {
+        await db.collection('user').add({
+            name: `${model.newUserName}`,
+            color: `${userColor}`,
+            copiedWords: [],
+            personalNotes: [],
+        });
+        await readFirebase();        
+    } catch (error) {
+        console.error(error);
+    }    
+    selectedUser(model.newUserName);
+}
+
+function selectedUser(userName) {    
+    for (let nameOfUser of model.user) {        
+        if (nameOfUser.name === userName) {            
+            model.activeUser = nameOfUser.name;
+            model.activeUserID = nameOfUser.ID;
+        }
+    }    
+    show();
 }

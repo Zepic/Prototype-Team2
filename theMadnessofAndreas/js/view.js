@@ -90,13 +90,23 @@ function menuCode() {
             <div class="statisticsNav">
                         <button class="navButton button2" onclick="clickUser('user')">User page</button>
             </div>
-
             <div class=" dropdown">
             <button class="dropbtn" style="background-color: transparent">+ Add note +</button>
                 <div class="dropdown-content">
                     <input type="text" onchange="addNote(this.value)">
                 </div>
         </div>
+                    <label class="dropbtn" style="background-color: transparent; font-size: 20px;">Enter username: </label>  
+                    <input type="text" onchange="model.newUserName = this.value">
+                    <div class="red dropdown">                        
+                        <button class="navButton button2">Create user</button>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="createUser('red')">Red</a>
+                            <a href="#" onclick="createUser('green')">Green</a>
+                            <a href="#" onclick="createUser('blue')">Blue</a>                            
+                        </div>
+                    </div>
+                    
         </div>
         `;
 }
