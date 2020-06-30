@@ -101,7 +101,7 @@ function allwordsList() {
 function disagreeList(color) {
     let testWord = [];
     let collectedList = [];
-
+    console.log(color);
     let disagreeColor = 0;
 
 
@@ -114,22 +114,17 @@ function disagreeList(color) {
             //makes sure the selected word has not been added before
             for (let noteInformation of noteModel.notes) {
                 //goes through the same list once per word that has not been selected before
-                if (
-                    wordToAdd.ID != noteInformation.ID &&
-                    wordToAdd.content === noteInformation.content
-                ) {
-                    //make sure the note containing the word is different even though the word is the same
-                    if (wordToAdd.aboutColor === color) {
-                        disagreeColor = disagreeColor + noteInformation.disagree;
-                    }
+                if (wordToAdd.ID != noteInformation.ID && wordToAdd.content === noteInformation.content && noteInformation.aboutColor === color && noteInformation.disagree.length > 0) {
+                    disagreeColor = disagreeColor + noteInformation.disagree.length;                    
                 }
             }
-            testWord.push(wordToAdd.content);
-            collectedList.push({
-                word: wordToAdd.content,
-                disagree: disagreeColor,
-            });
+            if (wordToAdd.aboutColor === color && disagreeColor > 0) {
+                console.log(wordToAdd.aboutColor);
+                testWord.push(wordToAdd.content);
+                collectedList.push({ word: wordToAdd.content, disagree: disagreeColor, });
+            }            
         }
+        
     }
     return collectedList;
 }

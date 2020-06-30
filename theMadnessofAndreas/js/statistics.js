@@ -25,18 +25,20 @@ function showAll() {
     allWords.sort(sorting('agree'));
 
     for (let word of allWords) {
-        let redTotal =
-            word.redAgreeRed + word.redAgreeBlue + word.redAgreeGreen;
-        let greenTotal =
-            word.greenAgreeRed + word.greenAgreeGreen + word.greenAgreeBlue;
-        let blueTotal =
-            word.blueAgreeRed + word.blueAgreeGreen + word.blueAgreeBlue;
-        let redx = redTotal / 2;
-        let greenx = greenTotal / 2;
-        let bluex = blueTotal / 2;
-        diagramDiv += ` ${word.word}: ${word.agree} <div style="float:left; height: 20px; width: ${redx}%; background-color: red;"></div>
+        if (word.agree > 0) {
+            let redTotal =
+                word.redAgreeRed + word.redAgreeBlue + word.redAgreeGreen;
+            let greenTotal =
+                word.greenAgreeRed + word.greenAgreeGreen + word.greenAgreeBlue;
+            let blueTotal =
+                word.blueAgreeRed + word.blueAgreeGreen + word.blueAgreeBlue;
+            let redx = redTotal / 2;
+            let greenx = greenTotal / 2;
+            let bluex = blueTotal / 2;
+            diagramDiv += ` ${word.word}: ${word.agree} <div style="float:left; height: 20px; width: ${redx}%; background-color: red;"></div>
                                                     <div style="float:left; height: 20px; width: ${greenx}%; background-color: green;"></div>
                                                     <div style="float:left; height: 20px; width: ${bluex}%; background-color: blue;"></div></br></br>`;
+        }        
     }
     diagramDiv += '</div>';
     show();
@@ -290,7 +292,6 @@ function blueDiagrams() {
 
 function disagree(color) {
     let wordList = Array.from(disagreeList(color));
-    console.log(wordList);
     diagramDiv += `<div class="row column" style="background-color:white; border: solid black;">Words ${color} disagree with</br>`;
     for (let aboutR of wordList) {
         if (aboutR.disagree > 0) {
