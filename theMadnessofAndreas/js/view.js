@@ -1,4 +1,4 @@
-readFirebase();
+readFirebase(); // Starts with the function that fills the model
 function show() {
     let entirePageHtml;
     if (model.activeView == 'startPage') {

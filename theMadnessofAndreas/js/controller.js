@@ -34,6 +34,9 @@ function clickStatistics(activeView) {
 }
 
 async function addNote(noteContent) {
+    // Instead of adding the new note to the model we add it directly to the firebase
+    // and since we are listening for changes in that collection it will automatically
+    // update it for the user and whoever is on the same page
     try {
         await db.collection('notes').add({
             content: `${noteContent}`,
@@ -58,6 +61,7 @@ async function copyNote(noteID) {
     //this statement prevent to copy the note more than one time
     if (userCopiedNotes.copiedWords.find((n) => n == noteID) == undefined) {
         userCopiedNotes.copiedWords.push(noteID);
+        // Update firebase with the same information that we added to the model
         try {
             await db.collection('user').doc(userCopiedNotes.ID).update({
                 copiedWords: userCopiedNotes.copiedWords
@@ -75,7 +79,7 @@ async function agree(noteID) {
     if (activeUser.color == 'red') {
         if (
             userAgreeNotes.redAgree.find((u) => u == model.activeUser) == undefined) {
-            userAgreeNotes.redAgree.push(model.activeUser);
+            userAgreeNotes.redAgree.push(model.activeUser);            
             try {
                 await db.collection('notes').doc(noteID).update({
                     redAgree: userAgreeNotes.redAgree

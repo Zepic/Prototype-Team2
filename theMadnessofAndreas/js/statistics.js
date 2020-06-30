@@ -44,45 +44,29 @@ function showAll() {
 
 function redDiagrams() {
     diagramDiv = '';
-    let allWords = Array.from(allwordsList());
+    let allWords = Array.from(allwordsList()); //populate the array with the result from the allwordsList function
     let redAboutAll = [];
     let redAboutRed = [];
     let greenAboutRed = [];
     let blueAboutRed = [];
     let redDisagree = disagree('red');
 
-    for (let redWords of allWords) {
-        if (
-            redWords.redAgreeRed > 0 ||
-            redWords.greenAgreeRed > 0 ||
-            redWords.blueAgreeRed > 0
-        ) {
-            let total =
-                redWords.redAgreeRed +
-                redWords.greenAgreeRed +
-                redWords.blueAgreeRed;
+    for (let redWords of allWords) { 
+        if ( redWords.redAgreeRed > 0 || redWords.greenAgreeRed > 0 || redWords.blueAgreeRed > 0 ) {
+            let total = redWords.redAgreeRed + redWords.greenAgreeRed + redWords.blueAgreeRed; //creates a list with all the words said about red and how many agrees they have
             redAboutAll.push({ word: redWords.word, amount: total, redAgree: redWords.redAgreeRed, greenAgree: redWords.greenAgreeRed, blueAgree: redWords.blueAgreeRed });
-            if (redWords.redAgreeRed > 0) {
-                redAboutRed.push({
-                    word: redWords.word,
-                    amount: redWords.redAgreeRed,
-                });
+            if (redWords.redAgreeRed > 0) { //same as above but only red about red
+                redAboutRed.push({ word: redWords.word, amount: redWords.redAgreeRed, });
             }
             if (redWords.greenAgreeRed > 0) {
-                greenAboutRed.push({
-                    word: redWords.word,
-                    amount: redWords.greenAgreeRed,
-                });
+                greenAboutRed.push({ word: redWords.word, mount: redWords.greenAgreeRed, });
             }
             if (redWords.blueAgreeRed > 0) {
-                blueAboutRed.push({
-                    word: redWords.word,
-                    amount: redWords.blueAgreeRed,
-                });
+                blueAboutRed.push({ word: redWords.word, amount: redWords.blueAgreeRed, });
             }
         }
     }
-    redAboutAll.sort(sorting('amount'));
+    redAboutAll.sort(sorting('amount')); // ranks the objects based on the amount part of the objects within
     redAboutRed.sort(sorting('amount'));
     greenAboutRed.sort(sorting('amount'));
     blueAboutRed.sort(sorting('amount'));
@@ -486,8 +470,8 @@ function allwordsList() {
     let totalList = [];
     let testList = [];
 
-    for (let wordToAdd of noteModel.notes) {
-        let agreeRedAboutRed = 0;
+    for (let wordToAdd of noteModel.notes) { //goes through the notes step by step
+        let agreeRedAboutRed = 0; // all the different combinations for a color agreeing about another color
         let agreeGreenAboutRed = 0;
         let agreeBlueAboutRed = 0;
         let agreeRedAboutGreen = 0;
@@ -497,8 +481,9 @@ function allwordsList() {
         let agreeGreenAboutBlue = 0;
         let agreeBlueAboutBlue = 0;
 
+        // starts sorting the agrees based on which color it was about
         if (wordToAdd.aboutColor === 'red') {
-            agreeRedAboutRed = wordToAdd.redAgree.length;
+            agreeRedAboutRed = wordToAdd.redAgree.length; //reads how many users have agreed and add them to the right combination
             agreeGreenAboutRed = wordToAdd.greenAgree.length;
             agreeBlueAboutRed = wordToAdd.blueAgree.length;
         } else if (wordToAdd.aboutColor === 'green') {
@@ -511,6 +496,7 @@ function allwordsList() {
             agreeBlueAboutBlue = wordToAdd.blueAgree.length;
         }
         let disagree = wordToAdd.disagree;
+        // goes through the same list comparing word by word while making sure it does not add the same note twice
         if (testList.includes(wordToAdd.content) === false) {
             for (let noteInformation of noteModel.notes) {
                 if (
@@ -541,6 +527,7 @@ function allwordsList() {
                     }
                 }
             }
+            //the total amount of agrees
             let agree =
                 agreeRedAboutRed +
                 agreeGreenAboutRed +
@@ -551,7 +538,8 @@ function allwordsList() {
                 agreeRedAboutBlue +
                 agreeGreenAboutBlue +
                 agreeBlueAboutBlue;
-            testList.push(wordToAdd.content);
+            testList.push(wordToAdd.content); // just a list that is used to doublecheck that information from an ID is not added more then once not sure if it is needed anymore
+            // fills the new array
             totalList.push({
                 word: wordToAdd.content,
                 agree: agree,
@@ -569,9 +557,10 @@ function allwordsList() {
             });
         }
     }
-    return totalList;
+    return totalList; //returns it so it can fill the different arrays in the statistic functions
 }
 
+// a function that ranks the content within the arrays of object based on the value we choose to send into it
 function sorting(valueToSortAfter) {
     let sortOrder = -1;
     return function (a, b) {

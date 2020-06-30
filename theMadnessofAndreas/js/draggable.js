@@ -42,6 +42,8 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
 
+        // this try catch will update the correct document
+        // in the notes collection with the new x and y position after movement have stopped
         try {
             await db.collection('notes').doc(noteInModel.ID).update({
                 posX: noteInModel.posX, //x
