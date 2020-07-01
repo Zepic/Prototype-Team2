@@ -1,4 +1,4 @@
-show();
+readFirebase(); // Starts with the function that fills the model
 function show() {
     let entirePageHtml;
     if (model.activeView == 'startPage') {
@@ -90,13 +90,23 @@ function menuCode() {
             <div class="statisticsNav">
                         <button class="navButton button2" onclick="clickUser('user')">User page</button>
             </div>
-
             <div class=" dropdown">
             <button class="dropbtn" style="background-color: transparent">+ Add note +</button>
                 <div class="dropdown-content">
                     <input type="text" onchange="addNote(this.value)">
                 </div>
         </div>
+                    <label class="dropbtn" style="background-color: transparent; font-size: 20px;">Enter username: </label>  
+                    <input type="text" onchange="model.newUserName = this.value">
+                    <div class="red dropdown">                        
+                        <button class="navButton button2">Create user</button>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="createUser('red')">Red</a>
+                            <a href="#" onclick="createUser('green')">Green</a>
+                            <a href="#" onclick="createUser('blue')">Blue</a>                            
+                        </div>
+                    </div>
+                    
         </div>
         `;
 }
@@ -138,12 +148,12 @@ function groupPage() {
 function showNote() {
     let noteColor;
     let disabled = '';
-    const activeUserColour = model.users.find((u) => u.name == model.activeUser)
+    const activeUserColour = model.user.find((u) => u.name == model.activeUser)
         .color;
-    const activeGroupColor = model.groups.find(
+    const activeGroupColour = model.groups.find(
         (g) => g.name == model.activeGroup,
     ).color;
-    activeUserColour != activeGroupColor
+    activeUserColour != activeGroupColour
         ? (disabled = "disabled='disabled'")
         : '';
     if (model.activeGroup.includes('blue')) {
@@ -163,9 +173,9 @@ function showNote() {
                 <div class="noteContainer">
                     <b class="noteContent">${n.content}</b>
                     <div class="noteButtonDiv">
-                        <button type="button" class="noteButtons noteAgree" onclick="agree(${n.ID})">Agree</button>
-                        <button type="button" class="noteButtons noteDisagree" onclick="disAgree(${n.ID})" ${disabled}>Disagree</button>
-                        <button type="button" class="noteButtons noteShop" onclick="copyNote(${n.ID})">Copy Word</button>
+                        <button type="button" class="noteButtons noteAgree" onclick="agree('${n.ID}')">Agree</button>
+                        <button type="button" class="noteButtons noteDisagree" onclick="disAgree('${n.ID}')" ${disabled}>Disagree</button>
+                        <button type="button" class="noteButtons noteShop" onclick="copyNote('${n.ID}')">Copy Word</button>
                     </div>
                 </div>
             </div>
@@ -193,22 +203,65 @@ function userPage() {
 
     //code for generating page content for userName
     //or call another function with JS code to generate user page
-
-    //delete this code after you add corect code for user page
-    userPageHtml += showUserPageInfo();
     userPageHtml += `
-    <p>Add code here to generates content for user page</p>
+    <div class='userPage'>
+        <div class='copiedWords'>
+        <h3>Copied Words</h3>
+        <p>Here the words you feel relate to you end up</p>
+        <ul>
+                ${showCopiedWords()}
+            </ul>
+        </div>
+            <div class="personalNotes">
+                <h3>What you've learned</h3>
+                <p>Here you can write about what you've learned during this process</p>
+                <input class="input" type="text" onchange="createPersonalNote(this.value)">
+                <ul>
+                    ${showPersonalNotes()}
+                </ul>
+            </div>
+    </div>
     `;
 
     return userPageHtml;
 }
 
 //subfunctions for users pages
-//delete this function after you have corect code for user page
-function showUserPageInfo() {
-    return `
-        <div id="info">
-        User home page, Active user name in the model: ${model.activeUser}
-        </div>
-        `;
+function showCopiedWords() {
+    // let noteColor;
+    // if (noteModel.notes.includes('blue')) {noteColor = 'blue'}
+    // else if (noteModel.notes.includes('green')) {noteColor = 'green'}
+    // else if (noteModel.notes.includes('red')) {noteColor = 'red'}
+    // style="background-color:${noteColor};"
+
+    return model.user
+        .filter((u) => u.name == model.activeUser)
+    [0].copiedWords.map((u) => {
+        return `
+            <li>${copiedWordsNotes(u)}</li>
+            `;
+    })
+        .join('');
+}
+
+function copiedWordsNotes(id) {    
+    return noteModel.notes
+        .filter((n) => n.ID == id)
+        .map((n) => {
+            return `
+                ${n.content}
+            `;
+        })
+        .join('');
+}
+
+function showPersonalNotes() {
+    return model.user
+        .filter((u) => u.name == model.activeUser)
+    [0].personalNotes.map((u) => {
+        return `
+            <li>${u}</li>
+       `
+    })
+        .join('');
 }

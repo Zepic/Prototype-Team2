@@ -1,38 +1,26 @@
 //model
 const model = {
-    user: [
+    users: [
         {
-        name: 'terje',
-        color: 'green',
-        copiedWords: [6,5,4,10,69],
-        personalNotes:[
-            'bob', 'karl','hei',
-        ],
-    },
+            name: 'Mr. Green',
+            color: 'green',
+            copiedNotes: [],
+        },
         {
-        name: 'geir',
-        color: 'green',
-        copiedWords: [
-            7,13,11,73
-        ],
-        personalNotes:[
-            {
-                content: 'bob'
-            },
-            {
-                content: 'hei'
-            },
-            {
-                content: 'ree'
-            },
-        ],
-    },
+            name: 'Mr. Red',
+            color: 'green',
+            copiedNotes: [],
+        },
+        {
+            name: 'Mr. Blue',
+            color: 'blue',
+            copiedNotes: [],
+        },
     ],
-    // 
     activeView: 'startPage',
-    activeUser: 'geir',
-    activeGroup: 'blue 1',
-    activeAboutColor: 'blue',
+    activeUser: 'Mr. Blue',
+    activeGroup: '',
+    activeAboutColor: '',
     groups: [
         {
             name: 'red 1',

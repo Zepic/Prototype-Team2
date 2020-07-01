@@ -1,3 +1,4 @@
+
 function dragElement(elmnt) {
     const noteInModel = noteModel.notes.filter((n) => n.ID == elmnt.id)[0];
     var pos1 = 0,
@@ -15,7 +16,7 @@ function dragElement(elmnt) {
         pos4 = e.clientY;
         document.onmouseup = closeDragElement;
         // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
+        document.onmousemove = elementDrag;        
     }
 
     function elementDrag(e) {
@@ -29,13 +30,27 @@ function dragElement(elmnt) {
         // set the element's new position:
         elmnt.style.top = elmnt.offsetTop - pos2 + 'px';
         elmnt.style.left = elmnt.offsetLeft - pos1 + 'px';
-        noteInModel.posY = elmnt.offsetTop - pos2;
-        noteInModel.posX = elmnt.offsetLeft - pos1;
+        let updatedX = elmnt.offsetLeft - pos1;
+        let updatedY = elmnt.offsetTop - pos2;
+        noteInModel.posY = updatedY;
+        noteInModel.posX = updatedX;
     }
+        
 
-    function closeDragElement() {
+    async function closeDragElement() {
         // stop moving when mouse button is released:
         document.onmouseup = null;
         document.onmousemove = null;
+
+        // this try catch will update the correct document
+        // in the notes collection with the new x and y position after movement have stopped
+        try {
+            await db.collection('notes').doc(noteInModel.ID).update({
+                posX: noteInModel.posX, //x
+                posY: noteInModel.posY, //y                
+            });
+        } catch (error) {
+            console.error(error);
+        } 
     }
 }

@@ -90,11 +90,11 @@ function menuCode() {
             </div>
 
             <div class=" dropdown">
-            <button class="dropbtn" style="background-color: transparent">+ Add note +</button>
+                <button class="dropbtn" style="background-color: transparent">+ Add note +</button>
                 <div class="dropdown-content">
                     <input type="text" onchange="addNote(this.value)">
                 </div>
-        </div>
+            </div>
         </div>
         `;
 }
@@ -125,7 +125,7 @@ function content() {
 */
 
 function groupPage() {
-    tempGroup = model.activeGroup
+    tempGroup = model.activeGroup;
     capitalizedGroup = tempGroup.charAt(0).toUpperCase() + tempGroup.slice(1);
     return `
         <div>
@@ -184,33 +184,45 @@ function userPage() {
     userPageHtml += `
     <div class='userPage'>
         <div class='copiedWords'>
-            <ul>
+        <h3>Copied Words</h3>
+        <p>Here the words you feel relate to you end up</p>
+        <ul>
                 ${showCopiedWords()}
             </ul>
         </div>
             <div class="personalNotes">
-                
+                <h3>What you've learned</h3>
+                <p>Here you can write about what you've learned during this process</p>
+                <input class="input" type="text" onchange="createPersonalNote(this.value)">
+                <ul>
+                    ${showPersonalNotes()}
+                </ul>
             </div>
     </div>
     `;
-    // ${showPersonalNotes()}
+
     return userPageHtml;
 }
 
 //subfunctions for users pages
 function showCopiedWords(){
+    // let noteColor;
+    // if (noteModel.notes.includes('blue')) {noteColor = 'blue'}
+    // else if (noteModel.notes.includes('green')) {noteColor = 'green'}
+    // else if (noteModel.notes.includes('red')) {noteColor = 'red'}
+    // style="background-color:${noteColor};"
+
     return model.user
-        .filter((u) => u.name == model.activeUser)[0]
-        .copiedWords.map((u) => {
+        .filter((u) => u.name == model.activeUser)
+        [0].copiedWords.map((u) => {
             return`
-            ${showPersonalWords(u.copiedWords)}
+            <li>${copiedWordsNotes(u)}</li>
             `;
         })
         .join('');
 }
-// .filter((n) => n.group == model.activeGroup)
-// .filter((n) => n.aboutColor == model.activeAboutColor)
-function showPersonalWords(id){
+
+function copiedWordsNotes(id){
         
         return noteModel.notes
         .filter((n) => n.ID == id)
@@ -220,5 +232,15 @@ function showPersonalWords(id){
             `;
         })
         .join('');
-        
+}
+
+function showPersonalNotes(){
+    return model.user
+    .filter((u) => u.name == model.activeUser)
+    [0].personalNotes.map((u)=>{
+       return `
+            <li>${u.content}</li>
+       `
+    })
+    .join('');
 }

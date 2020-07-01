@@ -1,8 +1,11 @@
 body {
     min-height: 100vh;
-    overflow: auto;
+    overflow: hidden;
     padding: 0%;
     margin: 0%;
+    justify-content: center;
+    align-items   : center;
+    display: flex;
     background-image: linear-gradient(
         to right,
         hsl(355, 86%, 58%),
@@ -10,16 +13,22 @@ body {
     );
 }
 /* Color group buttons*/
+button {
+    min-height: 20vh;
+    min-width: 20vh;
+}
 .red {
     background-color: crimson;
+    border-radius: 50%;
 }
 .green {
     background-color: #4caf50;
+    border-radius: 50%;
 }
 .blue {
     background-color: rgb(28, 96, 224);
+    border-radius: 50%;
 }
-
 
 /* Dropdown Button */
 .dropbtn {
@@ -40,9 +49,9 @@ body {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 180px;
+    min-width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 100;
+    z-index: 1;
 }
 
 /* Links inside the dropdown */
@@ -77,68 +86,4 @@ body {
     height: 6vh;
     background-color: rgb(88, 87, 87);
     color: white;
-}
-.statisticsNav{
-    position: relative;
-    display: inline-block;
-}
-.navButton{
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    display: block;
-    cursor: pointer;
-}
-.button1{
-    background-color: orange;
-}
-.button2{
-    background-color: orangered;
-}
-.noteDiv {
-    position: absolute;
-    z-index: 9;
-    border: 1px solid #d3d3d3;
-    text-align: center;
-    min-height: 5rem;
-}
-.noteHeader {
-    padding: 1px;
-    cursor: move;
-    z-index: 10;
-    color: #fff;
-}
-.noteContent {
-    padding:10px;
-    font-size: large;
-}
-/* .noteContainer{
-    
-} */
-.noteButtonDiv{
-display: flex;
-}
-.noteButtons{
-    color: white;
-    background-color: rgb(155, 177, 164);
-    cursor: pointer;
-}
-/* .noteAgree{
-
-}
-.noteShop{
-
-}
-.noteDisagree{
-
-} */
-.nextColor{
-    height: 3rem;
-    width: 5rem;
-    display: flex;
-    text-align: center;
-    position: relative;
-    left: 193vh;
-    top: 87vh;
 }

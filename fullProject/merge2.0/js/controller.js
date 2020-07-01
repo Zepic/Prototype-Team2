@@ -30,6 +30,12 @@ function clickGroup(activeView, activeGroupName, aboutColor) {
     show();
 }
 
+//shows the statistics page
+function clickStatistics(activeView) {
+    model.activeView = activeView;
+    show();
+}
+
 function addNote(noteContent) {
     noteModel.notes.push({
         ID: noteModel.notes.length + 1,
@@ -47,24 +53,31 @@ function addNote(noteContent) {
     show();
 }
 
-//shows the statistics page
-function clickStatistics(activeView) {
-    model.activeView = activeView;
-    show();
+function copyNote(noteID) {
+    const userCopiedNotes = model.user.find((n) => n.name == model.activeUser)
+        .copiedNotes;
+    //this statement prevent to copy the note more than one time
+    if (userCopiedNotes.find((n) => n == noteID) == undefined) {
+        userCopiedNotes.push(noteID);
+    }
 }
 
+function agree(noteID) {
+    const userAgreeNotes = noteModel.notes.find((n) => n.ID == noteID);
+    const activeUser = model.user.find((u) => u.name == model.activeUser);
+    if (activeUser.color == 'red') {
+        userAgreeNotes.redAgree.push(model.activeUser);
+    } else if (activeUser.color == 'green') {
+        userAgreeNotes.greenAgree.push(model.activeUser);
+    } else if (activeUser.color == 'blue') {
+        userAgreeNotes.blueAgree.push(model.activeUser);
+    }
+}
 
-
-//add or remove agree
-function agree(noteNumber) {
-    // const note = model.notes.filter((n) => n.ID == noteNumber)[0];
-    // const agreeWithNoteIndex = note.agree.findIndex(
-    //     (u) => u == model.activeUser,
-    // );
-    // if (agreeWithNoteIndex == -1) {
-    //     note.agree.push(model.activeUser);
-    // } else {
-    //     note.agree.splice(agreeWithNoteIndex, 1);
-    // }
-    // show();
+function disAgree(noteID) {
+    const userDisagreeNotes = noteModel.notes.find((n) => n.ID == noteID)
+        .disagree;
+    if (userDisagreeNotes.find((u) => u == model.activeUser) == undefined) {
+        userDisagreeNotes.push(model.activeUser);
+    }
 }
