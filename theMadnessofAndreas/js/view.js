@@ -137,10 +137,13 @@ function content() {
 */
 
 function groupPage() {
+    tempGroup = model.activeGroup;
+    capitalizedGroup = tempGroup.charAt(0).toUpperCase() + tempGroup.slice(1);
     return `
         <div>
+        <h1 class='groupName'>${capitalizedGroup} about ${model.activeAboutColor}</h1>
             <div>${showNote()}</div>
-            <button class="nextColor" onclick="clickGroup()">Next color</button>
+            <button class="nextColor" onclick="clickGroup('group', '${model.activeGroup}', '${model.activeAboutColor}')">Next color</button>
         </div>
     `;
 }
