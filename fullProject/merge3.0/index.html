@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group Select</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <link id="pagestyle" href="css/styles-start.css" rel="stylesheet" />
+    <link href="css/statistics.css" rel="stylesheet" />    
+</head>
+<body>
+    <div id="content"></div>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDp-2y_w1J2zPDCFRzzt3oGNIbRty_tL84",
+            authDomain: "diversityicebreaker-14674.firebaseapp.com",
+            databaseURL: "https://diversityicebreaker-14674.firebaseio.com",
+            projectId: "diversityicebreaker-14674",
+            storageBucket: "diversityicebreaker-14674.appspot.com",
+            messagingSenderId: "1096563095296",
+            appId: "1:1096563095296:web:bea0683b3f6e53f99e65e5"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+
+    </script>
+    <script src="js/notes.js" defer></script>
+    <script src="js/model.js" defer></script>
+    <script src="js/controller.js" defer></script>
+    <script src="js/statisticsListgenerator.js" defer></script>
+    <script src="js/statistics.js" defer></script>
+    <script src="js/statisticsDemo.js" defer></script>
+    <script src="js/view.js" defer></script>
+    <script src="js/draggable.js" defer></script>
+</body>
+</html>
