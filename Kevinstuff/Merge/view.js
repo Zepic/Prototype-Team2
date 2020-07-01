@@ -228,7 +228,7 @@ function copiedWordsNotes(id){
         .filter((n) => n.ID == id)
         .map((n) => {
             return`
-                ${n.content}
+                <li>${n.content}</li>
             `;
         })
         .join('');
