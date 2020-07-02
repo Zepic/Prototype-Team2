@@ -35,8 +35,7 @@ async function readFirebase() { // I think function with await have to be async 
             function (userDoc) {
                 let userObj = userDoc.data();
                 userObj.ID = userDoc.id;
-                userList.push(userObj);
-                console.log(userObj);
+                userList.push(userObj);                
             });
         getNotesFromFirebase();
     } catch (error) {
@@ -61,4 +60,27 @@ async function getNotesFromFirebase() {
     } catch (error) {
         console.error(error);
     }
+}
+
+async function resetContent() {
+    try {
+        let noteList = noteModel.notes;
+        let userList = model.user;
+
+        for (let note of noteList) {
+            await db.collection('notes').doc(note.ID).delete();
+        }
+
+        for (let users of userList) {
+            if (users.ID != 'pwHIdY22f7JQSfC7HHEN') {
+                await db.collection('user').doc(users.ID).delete();
+            }
+        }
+
+        
+        
+    } catch (error) {
+        console.error(error);
+    }
+    readFirebase();
 }

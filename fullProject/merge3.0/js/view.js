@@ -106,6 +106,10 @@ function menuCode() {
                             <a href="#" onclick="createUser('blue')">Blue</a>                            
                         </div>
                     </div>
+                
+                    <div class="statisticsNav" style="float: right;">
+                        <button class="navButton button1"  onclick="resetContent()">Reset</button>
+                    </div>
                     
         </div>
         `;
